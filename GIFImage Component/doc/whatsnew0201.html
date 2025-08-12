@@ -1,0 +1,383 @@
+<HTML>
+<HEAD>
+  <TITLE>What's new in TGIFImage version 2.1</TITLE>
+</HEAD>
+
+<BODY BGCOLOR="#FFFFFF">
+
+<TABLE BORDER="0" CELLSPACING="0" CELLPADDING="0" WIDTH="100%" BGCOLOR="#008080">
+  <TR>
+  <TD ALIGN="CENTER"><FONT FACE="Arial,Helvetica" COLOR="#FFFFFF" SIZE="+2">&nbsp;<IMG BORDER=0 HEIGHT=10 WIDTH=10 ALIGN=ABSCENTER SRC="dot_r.gif">&nbsp;What's new in TGIFImage version 2.1&nbsp;<IMG BORDER=0 HEIGHT=10 WIDTH=10 ALIGN=ABSCENTER SRC="dot_l.gif"></FONT></TD>
+  </TR>
+</TABLE>
+
+<P>
+The following is a brief list of new (<IMG BORDER=0 HEIGHT=10 WIDTH=10 SRC="plus.gif" ALT="New">),
+obsolete (<IMG BORDER=0 HEIGHT=10 WIDTH=10 SRC="minus.gif" ALT="Obsolete">) and
+changed (<IMG BORDER=0 HEIGHT=10 WIDTH=10 SRC="recycle.gif" ALT="Changed">)
+functionality as well as bug fixes (<IMG BORDER=0 HEIGHT=10 WIDTH=10 SRC="bug.gif" ALT="Bug fix">) made in
+TGIFImage since version 2.0.
+
+<P>The list only includes high level changes that might affect end-users. For a
+complete list of modifications, see the <A HREF="history.txt">revision history</A>.<BR>
+If you are upgrading from a version prior to version 2.0, you can also read the
+list of <A HREF="whatsnew0200.html">version 2.0 changes</A> and
+<A HREF="whatsnew0150.html">version 1.5 changes</A>.
+
+<P>&nbsp;<BR>
+
+<TABLE BORDER="0" ALIGN=LEFT CELLSPACING=8 WIDTH="90%">
+<!-- General -->
+  <TR>
+  <TD WIDTH="25%" COLSPAN="2" BGCOLOR="#008080"><FONT FACE="Arial,Helvetica" COLOR="#FFFFFF" SIZE="+1">&nbsp;<IMG BORDER=0 HEIGHT=10 WIDTH=10 ALIGN=ABSCENTER SRC="dot_r.gif">&nbsp;General</FONT></TD>
+  <TD>&nbsp;</TD>
+  </TR>
+
+  <TR>
+    <TD ALIGN="CENTER" VALIGN="TOP" WIDTH=20><IMG BORDER=0 HEIGHT=20 WIDTH=20 SRC="plus.gif" ALT="New"></TD>
+    <TD COLSPAN="2"><FONT FACE="Arial,Helvetica">
+    Import of bitmaps with more than 256 colors.<BR><FONT SIZE="-1">
+    It is now possible to convert bitmaps with more than 256 colors to GIFs.
+    TGIFImage supports several reduction methods and palettes to decrease a
+    bitmap's color depth. The reduction method and palette is controlled by the
+    new ColorReduction and DitherMode properties. The default value of these
+    properties can be set with the global GIFImageDefaultColorReduction and
+    GIFImageDefaultDitherMode variables.
+    </FONT></FONT></TD>
+  </TR>
+
+  <TR>
+    <TD ALIGN="CENTER" VALIGN="TOP" WIDTH=20><IMG BORDER=0 HEIGHT=20 WIDTH=20 SRC="plus.gif" ALT="New"></TD>
+    <TD COLSPAN="2"><FONT FACE="Arial,Helvetica">
+    LZW-less compression.<BR><FONT SIZE="-1">
+    It is now possible to produce GIFs that uses RLE (Run Length Encoding)
+    compression instead of the patented LZW compression method.<BR>
+    You can choose between RLE and LZW compression with the new Compression
+    property. The default value of the property can be set with the
+    global GIFImageDefaultCompression variable.<BR>
+    RLE doesn't compress as good as LZW, so RLE compressed GIFs are larger than
+    LZW compressed ones. The good news is that RLE compressed GIFs are
+    completely compatible with LZW compressed ones, so all software that can
+    read LZW compressed GIFs, can also read RLE compressed GIFs.<BR>
+    I'm not a lawyer (as you might have guessed), but it is my opinion that you
+    won't need a LZW license if you use the RLE method to <I>write</I> GIFs.
+    </FONT></FONT></TD>
+  </TR>
+
+  <TR>
+    <TD ALIGN="CENTER" VALIGN="TOP" WIDTH=20><IMG BORDER=0 HEIGHT=20 WIDTH=20 SRC="plus.gif" ALT="New"></TD>
+    <TD COLSPAN="2"><FONT FACE="Arial,Helvetica">
+    Support for Delphi 4.<BR><FONT SIZE="-1">
+    TGIFImage now supports all 32 bit versions of Delphi and C++ Builder 3.
+    </FONT></FONT></TD>
+  </TR>
+
+  <TR>
+    <TD ALIGN="CENTER" VALIGN="TOP" WIDTH=20><IMG BORDER=0 HEIGHT=20 WIDTH=20 SRC="plus.gif" ALT="New"></TD>
+    <TD COLSPAN="2"><FONT FACE="Arial,Helvetica">
+    5 new <A HREF="demos.html">demo</A> applications.<BR><FONT SIZE="-1">
+    In addition to the new demos, most of the existing demo applications has
+    been modified to use the the new features.
+    </FONT></FONT></TD>
+  </TR>
+
+  <TR>
+    <TD ALIGN="CENTER" VALIGN="TOP" WIDTH=20><IMG BORDER=0 HEIGHT=20 WIDTH=20 SRC="bug.gif" ALT="Bug fix"></TD>
+    <TD COLSPAN="2"><FONT FACE="Arial,Helvetica">
+    Fixed bug with Delphi 2 and 24 bit displays.<BR><FONT SIZE="-1">
+    pf24bit has been excluded from SupportedPixelformats in order to fix this
+    problem.</FONT></FONT></TD>
+  </TR>
+
+  <TR>
+    <TD ALIGN="CENTER" VALIGN="TOP" WIDTH=20><IMG BORDER=0 HEIGHT=20 WIDTH=20 SRC="bug.gif" ALT="Bug fix"></TD>
+    <TD COLSPAN="2"><FONT FACE="Arial,Helvetica">
+    Added work around for optimizer bug in Delphi 4 and C++ Builder 3.<BR><FONT SIZE="-1">
+    It is now possible to import bitmaps with Delphi 4 and C++ Builder 3.
+    </FONT></FONT></TD>
+  </TR>
+
+  <TR>
+    <TD ALIGN="CENTER" VALIGN="TOP" WIDTH=20><IMG BORDER=0 HEIGHT=20 WIDTH=20 SRC="bug.gif" ALT="Bug fix"></TD>
+    <TD COLSPAN="2"><FONT FACE="Arial,Helvetica">
+    Added work around for another Delphi 4 optimizer bug in
+    InitializeBitmapInfoHeader.</FONT></TD>
+  </TR>
+
+  <TR>
+    <TD ALIGN="CENTER" VALIGN="TOP" WIDTH=20><IMG BORDER=0 HEIGHT=20 WIDTH=20 SRC="bug.gif" ALT="Bug fix"></TD>
+    <TD COLSPAN="2"><FONT FACE="Arial,Helvetica">
+    Added work around for race condition bug in Delphi 4's TThread.<BR><FONT SIZE="-1">
+    When resizing a TImage containing an animated GIF, the application would
+    often hang.
+    </FONT></FONT></TD>
+  </TR>
+
+  <TR>
+    <TD ALIGN="CENTER" VALIGN="TOP" WIDTH=20><IMG BORDER=0 HEIGHT=20 WIDTH=20 SRC="minus.gif" ALT="Obsolete"></TD>
+    <TD COLSPAN="2"><FONT FACE="Arial,Helvetica">
+    The lzw_patent.txt file has been removed from the kit.<BR><FONT SIZE="-1">
+    The file has been removed since it was incomplete.<BR>
+    Instead, the complete text of the LZW patent can be found on the
+    <A HREF="http://www.melander.dk/delphi/gifimage/">TGIFImage home page</A>.
+    </FONT></FONT></TD>
+  </TR>
+
+  <TR>
+    <TD ALIGN="CENTER" VALIGN="TOP" WIDTH=20><IMG BORDER=0 HEIGHT=20 WIDTH=20 SRC="plus.gif" ALT="New"></TD>
+    <TD COLSPAN="2"><FONT FACE="Arial,Helvetica">
+    Tolerance against rxLib.<BR><FONT SIZE="-1">
+    TGIFImage can now load the stream format used by rxLib's TGIFImage.
+    </FONT></FONT></TD>
+  </TR>
+
+  <TR>
+    <TD ALIGN="CENTER" VALIGN="TOP" WIDTH=20><IMG BORDER=0 HEIGHT=20 WIDTH=20 SRC="recycle.gif" ALT="Changed"></TD>
+    <TD COLSPAN="2"><FONT FACE="Arial,Helvetica">
+    Replaced the TBGR type with TRGBTriple.<BR><FONT SIZE="-1">
+    The TBGR type has been replaced with Delphi's TRGBTriple type. TRGBTriple is
+    declared in windows.pas.
+    </FONT></FONT></TD>
+  </TR>
+
+  <TR>
+    <TD ALIGN="CENTER" VALIGN="TOP" WIDTH=20><IMG BORDER=0 HEIGHT=20 WIDTH=20 SRC="recycle.gif" ALT="Changed"></TD>
+    <TD COLSPAN="2"><FONT FACE="Arial,Helvetica">
+    The threaded GIF renderer has been improved for Windows 95/98.<BR><FONT SIZE="-1">
+    The multi threaded GIF to bitmap renderer now uses a fixed pool of rendering
+    threads. This improves performance slightly on Windows 95 and 98 since these
+    "so called" operating systems can't schedule multiple threads properly.
+    </FONT></FONT></TD>
+  </TR>
+
+<!-- TGIFImage class -->
+  <TR><TD>&nbsp;</TD></TR>
+  <TR>
+  <TD WIDTH=20 COLSPAN="2" BGCOLOR="#008080"><FONT FACE="Arial,Helvetica" COLOR="#FFFFFF" SIZE="+1">&nbsp;<IMG BORDER=0 HEIGHT=10 WIDTH=10 ALIGN=ABSCENTER SRC="dot_r.gif">&nbsp;TGIFImage class</FONT></TD>
+  <TD></TD>
+  </TR>
+
+  <TR>
+    <TD ALIGN="CENTER" VALIGN="TOP" WIDTH=20><IMG BORDER=0 HEIGHT=20 WIDTH=20 SRC="recycle.gif" ALT="Changed"></TD>
+    <TD COLSPAN="2"><FONT FACE="Arial,Helvetica">
+    The OnProgress and OnChange properties are <I>not</I> copied when assigning
+    one TGIFImage to another.<BR><FONT SIZE="-1">
+    The OnProgress and OnChange events are instead triggered on the source
+    TGIFImage of the Assign.
+    </FONT></FONT></TD>
+  </TR>
+
+  <TR>
+    <TD ALIGN="CENTER" VALIGN="TOP" WIDTH=20><IMG BORDER=0 HEIGHT=20 WIDTH=20 SRC="plus.gif" ALT="New"></TD>
+    <TD COLSPAN="2"><FONT FACE="Arial,Helvetica">
+    New option: goClearOnLoop.<BR><FONT SIZE="-1">
+    Setting this option will cause the animation buffer to be cleared when
+    the animation wraps. This is how Netscape Navigator behaves.
+    </FONT></FONT></TD>
+  </TR>
+
+  <TR>
+    <TD ALIGN="CENTER" VALIGN="TOP" WIDTH=20><IMG BORDER=0 HEIGHT=20 WIDTH=20 SRC="plus.gif" ALT="New"></TD>
+    <TD COLSPAN="2"><FONT FACE="Arial,Helvetica">
+    New option: goTile.<BR><FONT SIZE="-1">
+    Setting this option will display a GIF tiled instead of stretched.
+    </FONT></FONT></TD>
+  </TR>
+
+  <TR>
+    <TD ALIGN="CENTER" VALIGN="TOP" WIDTH=20><IMG BORDER=0 HEIGHT=20 WIDTH=20 SRC="plus.gif" ALT="New"></TD>
+    <TD COLSPAN="2"><FONT FACE="Arial,Helvetica">
+    New method: PaintRestart.<BR><FONT SIZE="-1">
+    Calling PaintRestart will cause the animation to restart from the first frame.
+    </FONT></FONT></TD>
+  </TR>
+
+  <TR>
+    <TD ALIGN="CENTER" VALIGN="TOP" WIDTH=20><IMG BORDER=0 HEIGHT=20 WIDTH=20 SRC="plus.gif" ALT="New"></TD>
+    <TD COLSPAN="2"><FONT FACE="Arial,Helvetica">
+    New property: AnimationSpeed.<BR><FONT SIZE="-1">
+    The speed of the animation can now adjusted by setting the AnimationSpeed
+    property. The speed is specified as a percentage of the normal speed. The
+    valid range is 0 to 1000. Specifying a value of 0 will halt the animation
+    temporarily.<BR>
+    The default value of AnimationSpeed can be set with the global
+    GIFImageDefaultAnimationSpeed variable.
+    </FONT></FONT></TD>
+  </TR>
+
+  <TR>
+    <TD ALIGN="CENTER" VALIGN="TOP" WIDTH=20><IMG BORDER=0 HEIGHT=20 WIDTH=20 SRC="plus.gif" ALT="New"></TD>
+    <TD COLSPAN="2"><FONT FACE="Arial,Helvetica">
+    New property: ColorReduction.<BR><FONT SIZE="-1">
+    When importing bitmaps with more than 256 colors, this property specifies
+    the method used to reduce color depth to 256 colors or less.<BR>
+    Currently supported methods are:<BR>
+    &nbsp;•&nbsp;rmNone: Do not perform color reduction.<BR>
+    &nbsp;•&nbsp;rmWindows20: Reduce to the Windows 20 color system palette.<BR>
+    &nbsp;•&nbsp;rmWindows256: Reduce to the Windows 256 color halftone palette.<BR>
+    &nbsp;•&nbsp;rmWindowsGray: Reduce to the Windows 4 grayscale colors.<BR>
+    &nbsp;•&nbsp;rmMonochrome: Reduce to a black/white monochrome palette.<BR>
+    &nbsp;•&nbsp;rmGrayScale: Reduce to a uniform 256 shade grayscale palette.<BR>
+    &nbsp;•&nbsp;rmNetscape: Reduce to the Netscape 216 color palette.<BR>
+    &nbsp;•&nbsp;rmQuantize: Reduce to an optimal 2^n color palette using Octree color quantization.<BR>
+    &nbsp;•&nbsp;rmQuantizeWindows: Reduce to an optimal 256 color windows palette using Octree color quantization.<BR>
+    The default value of ColorReduction can be set with the global
+    GIFImageDefaultColorReduction variable.
+    </FONT></FONT></TD>
+  </TR>
+
+  <TR>
+    <TD ALIGN="CENTER" VALIGN="TOP" WIDTH=20><IMG BORDER=0 HEIGHT=20 WIDTH=20 SRC="plus.gif" ALT="New"></TD>
+    <TD COLSPAN="2"><FONT FACE="Arial,Helvetica">
+    New property: ReductionBits.<BR><FONT SIZE="-1">
+    This property specifies the color depth when the rmQuantize reduction method
+    is used.<BR>
+    The valid range of ReductionBits is from 3 to 8 corresponding to 8, 16, 32,
+    64, 128 or 256 colors.<BR>
+    The default value of ReductionBits can be set with the global
+    GIFImageDefaultReductionBits variable.
+    </FONT></FONT></TD>
+  </TR>
+
+  <TR>
+    <TD ALIGN="CENTER" VALIGN="TOP" WIDTH=20><IMG BORDER=0 HEIGHT=20 WIDTH=20 SRC="plus.gif" ALT="New"></TD>
+    <TD COLSPAN="2"><FONT FACE="Arial,Helvetica">
+    New property: DitherMode.<BR><FONT SIZE="-1">
+    When importing bitmaps with more than 256 colors, this property specifies
+    the method used to map the colors of the source image to the reduced palette.<BR>
+    Currently supported methods are:<BR>
+    &nbsp;•&nbsp;dmNearest: Map colors using a simple nearest color algorithm.<BR>
+    &nbsp;•&nbsp;dmFloydSteinberg: Map colors using Floyd Steinberg error
+    diffusion.<BR>
+    The default value of ColorReduction can be set with the global
+    GIFImageDefaultDitherMode variable.
+    </FONT></FONT></TD>
+  </TR>
+
+  <TR>
+    <TD ALIGN="CENTER" VALIGN="TOP" WIDTH=20><IMG BORDER=0 HEIGHT=20 WIDTH=20 SRC="plus.gif" ALT="New"></TD>
+    <TD COLSPAN="2"><FONT FACE="Arial,Helvetica">
+    New property: Compression.<BR><FONT SIZE="-1">
+    Used to specify the compression method used when saving GIFs.<BR>
+    These are the possible values:<BR>
+    &nbsp;•&nbsp;gcLZW: Normal LZW compression.<BR>
+    &nbsp;•&nbsp;gcRLE: GIF compatible RLE compression.<BR>
+    The default value of Compression can be set with the global
+    GIFImageDefaultCompression variable.
+    </FONT></FONT></TD>
+  </TR>
+
+  <TR>
+    <TD ALIGN="CENTER" VALIGN="TOP" WIDTH=20><IMG BORDER=0 HEIGHT=20 WIDTH=20 SRC="bug.gif" ALT="Bug fix"></TD>
+    <TD COLSPAN="2"><FONT FACE="Arial,Helvetica">
+    Added check for nil source in TGIFImage.Assign.<BR><FONT SIZE="-1">
+    Assigning <B>nil</B> to a TGIFImage is now handled safely.
+    </FONT></FONT></TD>
+  </TR>
+
+  <TR>
+    <TD ALIGN="CENTER" VALIGN="TOP" WIDTH=20><IMG BORDER=0 HEIGHT=20 WIDTH=20 SRC="plus.gif" ALT="New"></TD>
+    <TD COLSPAN="2"><FONT FACE="Arial,Helvetica">
+    Added support for meta files and icons.<BR><FONT SIZE="-1">
+    The Assign method now supports import of meta files (TMetaFile) and Icons
+    (TIcon). Neither types are imported as transparent GIFs though.
+    </FONT></FONT></TD>
+  </TR>
+
+  <TR>
+    <TD ALIGN="CENTER" VALIGN="TOP" WIDTH=20><IMG BORDER=0 HEIGHT=20 WIDTH=20 SRC="plus.gif" ALT="New"></TD>
+    <TD COLSPAN="2"><FONT FACE="Arial,Helvetica">
+    New method: OptimizeColorMap.<BR><FONT SIZE="-1">
+    OptimizeColorMap merges and optimizes multiple local color maps into a
+    single global color map. This is a commonly used method to reduce the size of
+    animated GIFs.
+    </FONT></FONT></TD>
+  </TR>
+
+
+<!-- TGIFSubImage class -->
+  <TR><TD>&nbsp;</TD></TR>
+  <TR>
+  <TD WIDTH=20 COLSPAN="2" BGCOLOR="#008080"><FONT FACE="Arial,Helvetica" COLOR="#FFFFFF" SIZE="+1">&nbsp;<IMG BORDER=0 HEIGHT=10 WIDTH=10 ALIGN=ABSCENTER SRC="dot_r.gif">&nbsp;TGIFSubImage class</FONT></TD>
+  <TD></TD>
+  </TR>
+
+  <TR>
+    <TD ALIGN="CENTER" VALIGN="TOP" WIDTH=20><IMG BORDER=0 HEIGHT=20 WIDTH=20 SRC="recycle.gif" ALT="Changed"></TD>
+    <TD COLSPAN="2"><FONT FACE="Arial,Helvetica">
+    TGIFSubImage.Assign(TGIFSubImage) has been optimized.<BR><FONT SIZE="-1">
+    Copying one GIF to another is now very fast.
+    </FONT></FONT></TD>
+  </TR>
+
+  <TR>
+    <TD ALIGN="CENTER" VALIGN="TOP" WIDTH=20><IMG BORDER=0 HEIGHT=20 WIDTH=20 SRC="bug.gif" ALT="Bug fix"></TD>
+    <TD COLSPAN="2"><FONT FACE="Arial,Helvetica">
+    A bug in TGIFSubImage.Decompress has been fixed.<BR><FONT SIZE="-1">
+    Interlaced images with a height divisible by 4 but not divisible by 8 would
+    cause a memory overwrite that resulted in some very nasty AVs.
+    </FONT></FONT></TD>
+  </TR>
+
+  <TR>
+    <TD ALIGN="CENTER" VALIGN="TOP" WIDTH=20><IMG BORDER=0 HEIGHT=20 WIDTH=20 SRC="bug.gif" ALT="Bug fix"></TD>
+    <TD COLSPAN="2"><FONT FACE="Arial,Helvetica">
+    Fixed bug in TGIFSubImage.DoGetXXXBitmap.<BR><FONT SIZE="-1">
+    GIFs containing images with a height of 1 would produce an "Invalid ScanLine
+    Index" exception under Delphi 2.
+    </FONT></FONT></TD>
+  </TR>
+
+  <TR>
+    <TD ALIGN="CENTER" VALIGN="TOP" WIDTH=20><IMG BORDER=0 HEIGHT=20 WIDTH=20 SRC="bug.gif" ALT="Bug fix"></TD>
+    <TD COLSPAN="2"><FONT FACE="Arial,Helvetica">
+    Fixed integer overflow bug in Progress events.<BR><FONT SIZE="-1">
+    It is now possible to load and display GIFs larger than 20Mb (yes, that's
+    MEGA bytes), provided you have a large enough swap file.<BR>
+    Oh by the way, don't try it on Windows 95/98. TGIFImage can handle these large
+    GIFs, but Windows 95/98 can't.
+    </FONT></FONT></TD>
+  </TR>
+
+
+<!-- TGIFPainter class -->
+  <TR><TD>&nbsp;</TD></TR>
+  <TR>
+  <TD WIDTH=20 COLSPAN="2" BGCOLOR="#008080"><FONT FACE="Arial,Helvetica" COLOR="#FFFFFF" SIZE="+1">&nbsp;<IMG BORDER=0 HEIGHT=10 WIDTH=10 ALIGN=ABSCENTER SRC="dot_r.gif">&nbsp;TGIFPainter class</FONT></TD>
+  <TD></TD>
+  </TR>
+
+  <TR>
+    <TD ALIGN="CENTER" VALIGN="TOP" WIDTH=20><IMG BORDER=0 HEIGHT=20 WIDTH=20 SRC="plus.gif" ALT="New"></TD>
+    <TD COLSPAN="2"><FONT FACE="Arial,Helvetica">
+    New property: AnimationSpeed.<BR><FONT SIZE="-1">
+    The speed of the animation can now adjusted by setting the AnimationSpeed
+    property. The speed is specified as a percentage of the normal speed. The
+    valid range is 0 to 1000. Specifying a value of 0 will halt the animation
+    temporarily.<BR>
+    The speed is specified as a percentage of the normal speed.
+    </FONT></FONT></TD>
+  </TR>
+
+  <TR>
+    <TD ALIGN="CENTER" VALIGN="TOP" WIDTH=20><IMG BORDER=0 HEIGHT=20 WIDTH=20 SRC="recycle.gif" ALT="Changed"></TD>
+    <TD COLSPAN="2"><FONT FACE="Arial,Helvetica">
+    The ActiveImage property is now writable.<BR><FONT SIZE="-1">
+    By modifying the value of the ActiveImage property, it is possible to alter
+    the animation sequence in the OnStartPaint, OnPaint and OnLoop event handlers.
+    </FONT></FONT></TD>
+  </TR>
+
+</TABLE>
+
+<BR CLEAR=all>&nbsp;
+
+<CENTER>
+<HR NOSHADE>
+
+<FONT SIZE="-1">
+  Copyright &copy; 1998 <A HREF="mailto:anders@melander.dk">Anders Melander</A>. All rights reserved.
+</FONT>
+</CENTER>
+</BODY>
+</HTML>

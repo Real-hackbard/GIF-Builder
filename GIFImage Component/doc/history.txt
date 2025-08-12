@@ -1,0 +1,577 @@
+////////////////////////////////////////////////////////////////////////////////
+//                                                                            //
+// Project:	GIF Graphics Object                                           //
+// Description:	TGraphic implementation of the GIF89a graphics format.        //
+// Copyright	(c) 1997-99 Anders Melander.                                  //
+//		All rights reserved.                                          //
+//                                                                            //
+////////////////////////////////////////////////////////////////////////////////
+//                                                                            //
+//              Revision history                                              //
+//                                                                            //
+////////////////////////////////////////////////////////////////////////////////
+//                                                                            //
+// If you modify this software, you should include a notice in the revision   //
+// history giving the date and the name of the person performing the          //
+// modification and a brief description of the modification.                  //
+//                                                                            //
+////////////////////////////////////////////////////////////////////////////////
+
+Version	Date	Sign	Description
+--------------------------------------------------------------------------------
+0001	120797	anme	- Modified GifImage (see credits) to derive from TGraphic.
+			- Added TPicture registration.
+			- Added support for stream based (TStream) instead of
+			  file based I/O.
+
+0002	150797	anme	- Zapped version 0.01 - it was just too damned slow.
+			- Version 0.02 is a completely new design rewritten from
+			  scratch from the gif89a specification.
+	200797	anme	- Implemented GIF compressor (see credits).
+			  10-20 times faster that version 0.01 on some images.
+		fila	- Improved hash key generator - Average hit ratio is now
+			  about 5:1 compared to 2:1 for original algorithm.
+	220797	anme	- Optimized compressor hash functions - Average hit
+			  ratio is now about 15:1.
+	270797	anme	- Implemented GIF decompressor (see credits).
+			  Fast'n dirty port of "C" version. Will need to be
+			  optimized and cleaned up at some point.
+
+0100	300797	anme	- Implemented TGIFPainter for drawing animated GIFs.
+			- Implemented TGIFAppExtNSLoop to support Netscape loop
+			  extension.
+			- Implemented TGIFUnknownAppExtension to support unknown
+			  application extensions.
+
+0101	030897	anme	- Added TGIFPainter support for transparent GIFs
+			  Only supported for D3 in this version.
+	080897	anme	- Added TGIFPainter support for Disposal.
+	110897	anme	- Fixed TGIFPainter thread termination on TGIFImage
+			  destruction.
+	160897	anme	- Fixed bug in TGIFSubImage.Assign(TGIFSubImage).
+			- Added TPicture registration.
+			- Completed implementation of TGraphic functions.
+	230897	anme	- Improved handling of Paint & Draw options.
+			- Improved handling of threaded/animated Draw().
+	271097	anme	- Added handling of non-compliant zero-padding between
+			  image blocks.
+			- sDecodeTooFewBits is now treated as a warning condition
+			  instead of an error.
+			- Added validation of Color Index for TGIFHeader
+			  BackgroundColorIndex and TGIFGraphicControlExtension
+			  TransparentColorIndex.
+			  Invalid index triggers a sBadColorIndex warning and
+			  sets the index to 0.
+			- Changed TGIFImage.Paint to draw in main thread if
+			  there is only one sub image.
+	221197	anme	- Fixed bug in TGIFAppExtNSLoop. Signature was not
+			  written to GIF file.
+			- Changed TGIFImage.Add() to return index of new item.
+			- Added ability to TGIFColorMap.Optimize to remove
+			  unused palette entries after bitmap import.
+			- Added check for empty colormap in ExportPalette.
+			- Added Restart to TGIFPainter for improved performance.
+	291197	anme	- Fixed Access Violation when streaming an empty
+			  TGIFSubImage by improving TGIFSubImage.GetEmpty.
+			- Added Painters property to TGIFImage to make it
+			  possible to determine if a given painter is still
+			  alive.
+			- Fixed reentrancy bug in TGIFPainter.Execute that would
+			  corrupt the destination canvas handle under some
+			  obscure circumstances.
+	061297	anme	- Improved handling of Paint executing in main thread.
+			- Released as beta 0101a.
+
+0102	201297	anme    - Added Warning method to TGIFItem and TColorMap to
+			  improve centralized error handling.
+			  This was done to handle invalid Background color index
+			  values in GIFs produced by Microsoft's free GIF
+			  animator tool. The problem was brought to my attention
+			  by Brad Choate - Thanks.
+			- Removed unused gwsOK and gwOK constants.
+			- Changed TGIFWarning to procedure of object.
+			- TGIFImage.Bitmap is now volatile but still public...
+			- Changed TGIFImage.Draw and Paint completely to draw
+			  indirectly via a TBitmap.
+			  This should eliminate the goAsync problem for Draw.
+			- Added TGIFImage.StopDraw to stop async Draw.
+			- Removed potential leak in TGIFPainter.Execute.
+			  If an exception was raised during the extension
+			  preprocessing, the frame buffers would not be freed.
+			- TGIFImage.Assign can now assign from any TPicture that
+			  can assign to a TBitmap (TPicture->TBitmap->TGIFimage)
+	271297	anme	- Added goDirectDraw option.
+			  goDirectDraw will cause TGIFImage.Draw() to Paint()
+			  directly on the destination canvas instead of via the
+			  bitmap buffer.
+			- Added TGIFImage.ThreadPriority property.
+			- Added TGIFImage.DrawBackgroundColor property.
+			- Added TGIFSubImage.StretchDraw().
+			- Added TGIFSubImage.ScaleRect().
+	110198	anme	- Misc mods based on feedback from Reinier Sterkenburg.
+			  <r.p.sterkenburg@dataweb.nl>:
+			  - Added TGIFList.Image property in order to be able to
+			    report warnings in LoadFromStream.
+			  - TGIFExtensionList.LoadFromStream now handles missing
+			    extension introducers.
+			    Instead of generating an exception, a warning event
+			    is now produced.
+			  - TGIFSubImage.Decompress now handles premature end of
+			    file.
+			    Instead of generating an exception, a warning event
+			    is now produced.
+	150198	anme	- Added TGIFList.Warning to enable graceful recovery
+			  from "bad block type" in TGIFImageList.LoadFromStream.
+			- Fixed disposal problem in TGIFPainter.DoPaintFrame.
+			- Added TGIFPainter.DoPaint for non-buffered paint.
+	220198	anme	- Added check for no color tables defined.
+			  Causes a sNoColorTable exception.
+			- Rewritten palette management.
+			- Temporarily added DoTransparent parameter to
+			  TGIFSubImage.Draw and StretchDraw until
+			  TBitmap.Transparent problem is fixed.
+			- Added goLoopContinously to TGIFDrawOptions on request
+			  from Reinier Sterkenburg.
+			  The loop count specified in the GCE will be ignored
+			  if this option is set.
+			- Added TGIFImage.PaintTryLock.
+			- Added code in TGIFImage.PaintLock to avoid dead locks.
+	270198	anme	- Added TGIFColorMap.Data property for access to raw
+			  colormap data.
+			- Added TGIFSubImage.DoGetBitmap and DoGetDitherBitmap.
+			- Added Floyd Steinberg dithering to TGIFSubImage
+			  GetBitmap via DoGetDitherBitmap (see credits).
+			- Added goDither to TGIFDrawOptions.
+			- Fixed goLoopContinously for GIFs without loop ext.
+			- Modified TGIFApplicationExtension.LoadFromStream
+			  to handle GIFs produced by older Adobe programs.
+	280198	anme	- Fixed bug in TGIFImage.Pack: Only first subimage's
+			  bitmap and palette was zapped.
+			- Added TGIFSubImage.Mask for better transparency
+			  implementation. Mask is create in DoGet*Bitmap
+			  and used in StretchDraw.
+			- Copied TransparentStretchBlt from D3 graphics.pas to
+			  implement transparency without TBitmap.Transparent.
+	050298	anme	- Fixed TransparentStretchBlt by using method posted
+			  to borland.public.delphi.vcl.components.writing by
+			  Brian Lowe of Acro Technology Inc. on 30Jan98.
+			  This solved a problem that I must have used at least
+			  60 hours trying to nail.
+			  Thank you to Stefan Hoffmeister for bringing the fix
+			  to my attention.
+			- Added TGIFSubImage.Transparent read-only property for
+			  better performance.
+			- Removed PaintLock/PaintUnlock from TGIFImage.Destroy
+			  which caused a dead lock under rare circumstances.
+	110298	anme	- Moved buffer setup from TGIFPainter.Execute to
+			  TGIFPainter.Create.
+			- Added adjustment of animation delay.
+			  The animation delay now compensates for the time spent
+			  converting the GIF to a bitmap resulting in a more
+			  smooth startup animation.
+			- Replaced use of Sleep() in threaded paint with
+			  WaitForSingleObject with timeout.
+			  This will enable TGIFPainter.Stop to abort the thread
+			  even though it is waiting for the delay to expire.
+			- Added TGIFImage.NewBitmap.
+			- Added buffering of background in TGIFPainter for
+			  transparent paint with dmBackground disposal.
+			- The goFullDraw option is now obsolete.
+			- Fixed deadlock problem in TGIFPainter.Stop when
+			  TGIFPainter was running in main thread.
+	190298	anme	- Added goAutoDither option.
+			  The goAutoDither option modifies the behavior of the
+			  goDither option. If goAutoDither is set, the goDither
+			  option will be ignored on displays which supports more
+			  than 256 colors.
+			- Renamed the goDrawTransparent option to goTransparent.
+
+0105	280298	anme	- Fixed loop bug in TGIFPainter.Execute.
+			  Loop would wrap to wrong frame if loop extension
+			  wasn't the first.
+			- Fixed bug in transparent dmBackground disposal.
+			  Only area covered by previous frame should be
+			  restored - not complete image.
+			- "Minor" optimizations of TGIFSubImage.Decompress.
+			- Added progress events to TGIFImage.LoadFromStream
+			  and SaveToStream.
+			- Released as version 0105.
+			  Even though the last release was version 0101 beta A,
+			  I have decided to bump the version number up to 0105
+			  to reflect the major improvements over the last
+			  release.
+			  Unfortunately this release does still not support
+			  Delphi 2 as promised.
+
+0106	090398	anme	- Minor improvement of Progress events in
+			  TGIFImage.LoadFromStream and SaveToStream.
+			- Added TGIFImageList.SaveToStream method.
+			- Added Progress events to TGIFImage.Assign.
+			- Added copy of OnProgress and OnChange properties to
+			  TGIFImage.Assign.
+	100398	anme	- Fixed bug in TGIFPainter.Stop when drawing in main
+			  thread. TGIFPainter object was deleted before Execute
+			  method had finished resulting in access violations.
+
+0200	150398	rps	- Ported to Delphi 2.x by Reinier Sterkenburg.
+			  Added support for PixelFormat and ScanLine for Delphi
+			  2.x
+			  Reiniers port will later be merged with the main
+			  source and released as version 2.x.
+	290398	anme	- Added Getters and Setters for TGIFSubImage Left, Top,
+			  Width and Height properties (and various others) for
+			  compatibility with C++ Builder.
+			  C++ Builder does not support properties of the form
+			  property <name>:<type> read <record>.<field> etc.
+			- Changed some compile time conditions for compatibility
+			  with C++ Builder.
+			  Now uses {$ifndef ver90} instead of {$ifdef ver100} to
+			  check for Delphi 3.x and later.
+			- Added PixelFormat support for Delphi 2.x with
+			  SetPixelFormat and GetPixelFormat utility functions.
+	010498	anme	- Misc modifications after studying Netscape Mozilla
+			  source code:
+			  * Removed comment about GIFDefaultDelay since the
+			    correct value has now been verified.
+			  * Added GIFMinimumDelay to limit animation speed.
+			  * Added support for ANIMEXTS extension.
+			  * More tolerant load of GIF header.
+			- Added STRICT_MOZILLA conditional define to disable
+			  non-Mozilla compliant behaviour.
+			- Ported TGIFSubImage.Assign to Delphi 2:
+			  * Fixed bugs in import of 1 bit/pixel bitmaps.
+			  * Replaced use of TBitmap.Scanline[] and PixelFormat
+			    with internal DIB support functions.
+			  * Fixed bugs in import via TCanvas.Pixels.
+			- Fixed memory allocation bug in TColorMap.SetCapacity.
+			  Too little memory was being reallocated on resize.
+	060498	anme	- Ported TGIFSubImage.GetXXXBitmap to Delphi 2 by
+			  removing dependancy on TBitmap.ScanLine.
+			- Added GIFMaximumDelay to replace hardcoded limit
+			  in TGIFPainter.Execute.
+			- Merged Reinier Sterkenburg's Delphi 2 port with the
+			  main source.
+			- Added a lot of Delphi 3 stuff that's missing from
+			  Delphi 2.
+	110498	anme	- Modified DoGetBitmap and DoGetDitherBitmap to
+			  circumvent Delphi 2's braindead palette behaviour;
+			  When realizing a palette the first and last 10 palette
+			  entries are always set to the system palette colors no
+			  matter what palette we attempt to define. This is
+			  basically a Windows issue but since Delphi 3 doesn't
+			  have this problem, I blame it on Delphi 2.
+			- Tweaked animation timing values to compensate for
+			  the fact that we perform better than Mozilla.
+			  Added FAST_AS_HELL conditional define to disable
+			  tweaks.
+			- Added paint events to TGIFImage and TGIFPainter:
+			  OnStartPaint, OnPaint, OnLoop and OnEndPaint.
+			- Changed TGIFPainter.ActiveImage to be a property.
+			- Added dummy component registration procedure Register
+			  to allow design time GIF paint options to be set and
+			  add design time support to Delphi 2.
+			  The Register procedure by default disables the
+			  goLoop option at design time to avoid using CPU
+			  resources and distract the developer.
+	140498	anme	- Fixed "TBitmap.PixelFormat := pf8bit" leak by using
+			  method posted to borland.public.delphi.graphics by
+			  Greg Chapman on 15 Feb 1998.
+			  Scratch yet another bug that I simply couldn't locate.
+			  Thank you to Yorai Aminov and Mark Zamoyta for
+			  bringing the fix to my attention.
+	180498	anme	- Misc changes after feedback from Reinier Sterkenburg:
+			  * Added clear of image memory to
+                            TGIFSubImage.Decompress to avoid "random noise" in
+                            incomplete or corrupted images.
+			  * Fixed bug in handling of Adobe Application
+			    Extensions which caused "Abstract error".
+			- Added required compiler options.
+			- Fixed bug in TGIFImage.InternalPaint that caused a
+			  "Out of system resources" error when width or height
+			  of paint rect was <= 0 and multiple paint threads
+			  were in use.
+			- Minor improvement of animation timing when running in
+			  main thread.
+			- Removed PaintLock functions since they were not
+			  nescessary and caused a major bottle neck when running
+			  multiple threads on the same image.
+			  This has caused a general performance improvement.
+			- Added conditional TPicture registration via the
+			  REGISTER_TGIFIMAGE conditional define.
+        230498	anme	- Fixed GetPixelFormat to support NT after feedback from
+        		  Reinier Sterkenburg.
+        		- Added CopyPalette function to support old versions of
+                          Delphi 2.x
+                        - Added Exception trap to TGIFPainter.Execute.
+                          Nescessary to make sure that an exception doesn't halt
+                          the thread and thus hangs the application.
+        260498	anme	- Implemented clipboard support.
+        		- Source cleaned up for release.
+	260498	anme	- Released as version 2.0
+
+0201	160598	anme	- Added support for C++ Builder 1.x
+			  Thanks to Olivier Ottavi for helping me with this.
+			- Fixed bug in TGIFSubImage.Decompress:
+                          Interlaced images with a height divisable by 4 but not
+                          divisable by 8 would cause a memory overwrite that
+                          resulted in some very nasty AVs.
+                          Thanks to Reinier Sterkenburg and Tomoya Kikuchi for
+                          bringing this problem to my attention.
+	220598	anme	- Added TColorReduction and TDitherMode types to support
+        		  color quantization.
+			- Added ColorReduction and DitherMode properties to
+        		  TGIFImage.
+                        - Added color quantization support by incorporating
+                          Earl F. Glynn's quantization library (see credits).
+        070698	anme	- Fixed bugs in TGIFSubImage.DoGetXXXBitmap:
+			  GIFs containing images with a height of 1 would
+                          produce an "Invalid ScanLine Index" exception under
+                          Delphi 2.
+        		- Fixed bug that caused Range Check Errors with Delphi
+                          2 on 24 bit displays. pf24bit has been excluded from
+                          SupportedPixelformats in order to fix this problem.
+        130698	anme	- Added goClearOnLoop option to mimic Netscape behavior
+        		  on request from Aldo Ghigliano.
+        		- Vastly improved TGIFSubImage.Assign(TGIFSubImage)
+                          performance and thus also improved the performance of
+                          TGIFImage.Assign(TGIFImage).
+        150698	anme	- Added ReduceColors for import of bitmaps with more
+        		  than 256 colors.
+        		- Many type casts added to avoid Delphi 4 compiler
+                          warnings.
+	220698	anme	- Added goTile option to support display of tiled GIFs.
+        		- Added DoTile parameter to TGIFSubImage.Draw and
+                          StretchDraw to support goTile option.
+        260698	anme	- Added temporary workaround for optimizer bug in
+        		  C++ Builder 3 and Delphi 4's pascal compiler.
+                          When gifimage.pas were compiled with these compilers
+                          and *without* the DEBUG compiler symbol defined,
+                          TGIFImage could not import bitmaps on NT 4.
+                          Thanks to Esa Nikulainen and Piombo Enzo for bringing
+                          the problem to my attention.
+        060798	anme	- Added check for nil source in TGIFImage.Assign.
+        		  Thanks to Paolo Aiello for suggesting this.
+        		- Removed conditional {$O+} (optimization) to allow
+                          users to control this option themselves.
+        130798	anme	- Fixed Delphi 4/NT4 problem in GDICheck function.
+        060898	anme	- Back again after a short break...
+        		- Moved string resources from implementation to design
+                          section.
+                        - Changed TGIFImage.Assign to *not* copy any of the
+                          source event handlers. This behaviour is more in line
+                          with the rest of the VCL.
+                        - Implemented color reduction in TColorLookup classes.
+                        - Rewrote Floyd Steinberg dithering stuff and moved it
+                          to the TFloydSteinbergEngine class.
+        150898	anme	- Added workaround for TThread race condition bug in
+        		  Delphi 4.
+        		- Added GIFVersion constants.
+        250898	anme	- Added TGIFStream classes for GIF style block I/O.
+        		- Virtualized GIF encoder as TGIFEncoder class.
+                        - Added TGIFCompression type to support multiple GIF
+                          encoders.
+                        - Added TGIFImage.Compression property.
+        		- Added TRLEEncoder class for RLE compression.
+                        - Moved LZW compression to TLZWEncoder class.
+                          The rewrite and modularisation of the LZW compressor
+                          has resulted in a performance improvement of 9-10%
+                          when compiled with optimization, but a degradation of
+                          3-4% when compiled without optimization - Strange.
+                        - Added TGIFImage.PaintRestart.
+                        - Added support for adjustable animation speed with
+                          AnimationSpeed property for TGIFimage and TGIFPainter.
+        290898	anme	- Moved copyright messages to copyright.txt
+        		- Moved revision history to history.txt
+                        - Moved credits to credits.txt
+                        - Removed TGIFImage.Changed since it didn't do anything.
+        050998	anme	- Added support for WMF, ICO and other TGraphic formats
+        		  to TGIFImage.Assign.
+                          Thanks to Fred Hovey for the solution.
+        		- Added tolerance against rxLib's TGIFImage.
+                          TGIFImage can now load the stream format used by
+                          rxLib's TGIFImage.
+                        - Moved CF_GIF declaration to interface section.
+	090998	anme	- Misc. fixes for Delphi 2 compatibility.
+        		- Work around yet another Delphi 4 optimizer bug in
+                          InitializeBitmapInfoHeader.
+                        - Moved TGIFSubImage DIB stuff to TDIBReader and
+                          TDIBWriter classes for Delphi 2 scan line support.
+                        - Added check for color overrun to DoCompress methods.
+                        - Added color reduction to Windows system color palette,
+                          halftone palette, greayscale, monochrome and arbitrary
+                          bit depth.
+                        - Added GIFImageDefaultColorReductionBits global
+                          variable to control quantization to arbitrary bit
+                          depth (currently 3-8 bits).
+        130998	anme	- Added TGIFImage.OptimizeColorMap.
+        		  OptimizeColorMap merges and optimizes multiple local
+                          color maps into a single global color map.
+        		- Added TGIFColorMap.ImportColorMap.
+        180998	anme	- Added color mappers for grayscale and monochrome.
+        		- Replaced the TBGR type with TRGBTriple.
+                        - Optimized animation timing for precision.
+                          Replaced GetTickCount with timeGetTime and added
+                          loop feedback to the timing calculation.
+                        - Fixed bitmap import with Delphi 2 in 256 color mode.
+                          It appears that this was broken in version 2.0
+        061098	anme	- Fixed minor bug in TGIFImage.Draw:
+        		  The first frame of a tiled, buffered and animated GIF
+                          where displayed stretched instead of tiled.
+        		- Fixed performance problem with TBitmap.PixelFormat in
+                          TDIBWriter (via TGIFSubImage.DoGetxxxBitmap).
+                          Thanks to Len Richter for bringing the problem to my
+                          attention.
+                        - Fixed integer overflow bug in Progress events when
+                          loading and displaying extremely large (>20Mb) GIFs.
+        081098	anme	- Surfaced TGIFPainter event handle as EventHandle
+        		  property.
+        		- Changed threaded renderer to use a pool of worker
+                          threads. This was done to avoid thread synchronization
+                          congestion on Win95/98. Situation slightly improved,
+                          but not fixed.
+                        - Added TGIFSubImage.HasBitmap function.
+                        - Fixed range check bug in GDICheck()... again.
+        131098	anme	- Made TGIFPainter.ActiveImage property writable.
+        		  ActiveImage should only be modified in the
+                          OnStartPaint, OnPaint or OnLoop event handlers.
+	151098	anme	- Released as version 2.1
+
+0202	181198	anme	- Fixed problem in TGIFPainter.Execute with interframe
+			  delay when animation speed were modified.
+			- Fixed problem in TGIFPainter.Execute with oscillation
+                          of automatic interframe delay adjustment.
+                          Thanks to Mark Leighty for bringing the problem to my
+                          attention.
+	291198	anme	- Renamed TFloydSteinbergEngine class to
+        		  TFloydSteinbergDitherer.
+        		- Added support for 5 new error diffusion dithering
+                          methods: "Stucki", "Sierra", "Jarvis, Judice & Ninke",
+                          "Stevenson & Arche" and "Burkes".
+                          Since I'm not quite happy with the quality of all of
+                          these dithering methods (compared to Floyd Steinberg),
+                          some of them might be removed again at some time.
+        131298	anme	- Optimized GIF rendering performance:
+        		  Improvement varies from Windows NT to Windows 95/98...
+                          Improvement relative to version 2.0:
+                          * Non-dithered: from 160% (NT) to 320% (Win95)
+                          * Dithered: from 0% (NT) to 50% (Win95)
+                          Improvement relative to version 2.1:
+                          * Non-dithered: from 1200% (NT) to 1650% (Win95)
+                          * Dithered: from 50% (NT) to 60% (Win95)
+        		- Modified TGIFSubImage.DoGetDitherBitmap to use
+                          TFloydSteinbergDitherer.
+        		- Modified TDIBWriter to use DIB sections instead of
+                          TBitmaps.
+                        - Replaced some longInts with DWORDs to avoid overflows
+                          when timeGetTime returned a value bigger than
+                          high(integer).
+                        - Added GIFImageRenderOnLoad global var to control
+                          on-load rendering.
+        030199	anme	- Added OnAfterPaint event to TGIFImage and TGIFPainter.
+        		- Fixed palette leak in ReduceColors.
+        170199	anme	- Fixed two bugs in TGIFImage.InternalPaint that occured
+        		  when TGIFImage.Paint were used to display non-animated
+                          GIFs:
+        		  * Null pointer assignment
+        		  * Endless TranslateMessage/DispatchMessage loop.
+                          Thanks to Bart Pelgrims for bringing this problem to
+                          my attention.
+        		- Added overrides of TGraphic.GetTransparent and
+                          SetTransparent virtual methods to implement the
+                          TGraphic.Transparent property. Later changed to
+                          TGIFImage.IsTransparent property.
+                        - Found a much better way to work around the thread race
+                          bug in Delphi 4.
+	230199	anme	- Improved work around of Delphi 4/C++ Builder 3
+        		  optimizer bug in GetPixelFormat and
+                          InitializeBitmapInfoHeader.
+        		- Fixed bug in InitializeBitmapInfoHeader with pf15bit
+                          and pf16bit bitmaps.
+                        - Improved Delphi 2.x import of bitmap in 16 or 24 bit
+                          display mode.
+        280199	anme	- Removed TGIFSubImage.LoadFromFile. It didn't have any
+        		  use at all since there were no corresponding
+                          SaveToFile...
+        		- Added TGIFItem.SaveToFile and LoadFromFile. Not much
+                          use for these either, but now we have them...
+                        - Changed TGIFSubImage.HasBitmap from function to
+                          read/write property.
+                        - TGIFSubImage size/position validation moved to
+                          TGIFSubImage.SetBounds.
+                        - Replaced TGIFHeader.AssignTo with TGIFHeader.Assign.
+                        - Added TGIFHeader.Clear method.
+        110299	anme	- TGIFImage.Header is now obsolete. Instead the
+        		  TGIFImage BackgroundColorIndex and BackgroundColor
+                          properties has been made writable and the AspectRatio
+                          property has been added.
+        240299	anme	- Added rmPalette color reduction method.
+        		- Modified ReduceColors() to support rmPalette.
+                        - Removed render thread pool. The potential performance
+                          gain didn't match the added complexity.
+                        - Added TGIFSubImage.Scanline property.
+                        - Fixed bug in TGIFColorMap.DoOptimize that would empty
+                          the color map if all colors were being used.
+                        - Added TGIFImage.IsTransparent property.
+                        - The type of the TGIFApplicationExtension.Identifier
+                          and Authentication properties has been changed to
+                          strings because C++ Builder 4 doesn't support array
+                          properties.
+                          Thanks to Jim O'Brien for bringing this problem to my
+                          attention.
+	020399	anme	- Added CreateOptimizedPaletteForManyBitmaps function.
+        		- Added TGIFSubImage.Crop for transparency optimization.
+        		- Added TGIFSubImage.Merge for redundancy optimization.
+                        - Added TGIFImage.Optimize method.
+                        - Fixed minor bug in TGIFSubImage.GetBitmap.
+                          Transparency Mask was not created for frames with a
+                          width smaller than 8 pixels.
+                        - Made TGIFSubImage.BoundsRect writable.
+                        - Modified non-reduced import of pf24bit bitmap to use
+                          TDIBReader instead of TCanvas.Pixel. Import is now at
+                          least 500% faster for pf24bit format.
+	110399	anme	- Checked for C++ Builder 4 compatibility.
+        		- Fixed Range Check error in GDICheck function.
+                        - Removed obsolete C++ Builder 1 code.
+                        - Moved graphics import conversion from TGIFImage.Assign
+                          to TGIFSubImage.Assign.
+                        - Added support for import of TPicture to
+                          TGIFSubImage.Assign.
+                        - Fixed bug in import of pfDevice bitmaps in
+                          TGIFSubImage.Assign.
+                        - Improved Delphi 2 graphic import.
+        250399	anme	- Improved TGIFImage.Optimize to also remove invalid
+        		  Netscape loop extensions and passive GCEs.
+        		- Added work around to SafeSetPixelFormat for bug in
+                          TBitmap's pf8bit conversion.
+                        - Added work around to TGIFSubImage.Assign for same bug.
+                        - Fixed several transparency related bugs in
+                          TColorMapOptimizer.
+                        - Changed TGIFColorMap.Add to allow non-unique colors.
+                        - Added TGIFColorMap.AddUnique method.
+        		- Modified TDIBWriter to use global memory instead of
+			  DIB sections if the CREATEDIBSECTION_SLOW symbol is
+			  defined. Bechmarks has show DIB sections to be twice
+			  as slow as global memory.
+        120499	anme	- Added GIFImageOptimizeOnStream global variable to
+        		  control optimization of GIFs streamed to .DFM files.
+        		- Added synchronization to TGIFImage.Optimize to avoid
+                          conflict between paint threads and optimizer.
+                        - Fixed problem in TGIFPainter.Stop with shutdown of low
+                          priority paint threads.
+                          Low priority threads could take a very long time to
+                          shutdown.
+                        - Added support for the Netscape extension's buffering
+                          sub block and improved I/O of the Netscape extension.
+                        - Modified TGIFColorMap.Optimize to handle global color
+                          maps used by more than one frame.
+                        - Added ooColorMap optimize option.
+                        - Modified TGIFImage.Optimize to handle false
+                          transparency and redundant disposal.
+	210599	anme	- Prepared for Delphi 5.
+        		- Minor fixes for Delphi 2.
+                        - Minor improvements in TGIFImage.SaveToClipboardFormat:
+                          Added error handling and fixed potential memory lock
+                          problem.
+        		- Released as version 2.2
+--------------------------------------------------------------------------------
+

@@ -1,0 +1,898 @@
+<HTML>
+<HEAD>
+  <TITLE>TGIFImage FAQ</TITLE>
+</HEAD>
+
+<BODY BGCOLOR="#FFFFFF">
+
+<TABLE BORDER="0" CELLSPACING="0" CELLPADDING="0" WIDTH="100%" BGCOLOR="#008080">
+  <TR>
+  <TD ALIGN="CENTER"><FONT FACE="Arial,Helvetica" COLOR="#FFFFFF" SIZE="+2">&nbsp;<IMG BORDER=0 HEIGHT=10 WIDTH=10 ALIGN=ABSCENTER SRC="dot_r.gif">&nbsp;Frequently Asked Questions&nbsp;<IMG BORDER=0 HEIGHT=10 WIDTH=10 ALIGN=ABSCENTER SRC="dot_l.gif"></FONT></TD>
+  </TR>
+</TABLE>
+
+<P>
+This is the growing list of questions that people most often ask about TGIFImage.<BR>
+Please read it carefully <I>before</I> you mail me questions about TGIFImage.
+
+<P>
+
+<TABLE BORDER="0" ALIGN=LEFT CELLSPACING=8 WIDTH="90%">
+  <TR>
+    <TD COLSPAN=2><HR NOSHADE></TD>
+  </TR>
+  <TR>
+    <TD ALIGN="CENTER" VALIGN="TOP" WIDTH=40><IMG BORDER=0 HEIGHT=50 WIDTH=40 SRC="q.gif" ALT="Question"></TD>
+    <TD><FONT FACE="Arial,Helvetica">
+    I have made a small application that displays a GIF in a TImage component.
+    The GIF displays fine in design mode in Delphi but nothings shows up when
+    the application is running. What's wrong?
+    </FONT></TD>
+  </TR>
+  <TR>
+    <TD ALIGN="CENTER" VALIGN="TOP" WIDTH=40><IMG BORDER=0 HEIGHT=50 WIDTH=40 SRC="a.gif" ALT="Answer"></TD>
+    <TD>
+      <TABLE BORDER=1 ALIGN=LEFT CELLSPACING=0 WIDTH="80%">
+      <TR>
+        <TD><FONT FACE="Arial,Helvetica">
+        <IMG BORDER=0 HEIGHT=24 WIDTH=26 SRC="delphi.gif" ALT="Delphi"><B>&nbsp;Delphi</B><BR>
+        You have probably forgotten to include the "gifimage" unit in your uses
+        clause. Unless you add gifimage to one of the uses clauses in your
+        application (doesn't matter where), there is no way your application can
+        know what to do with a GIF.
+        </FONT></TD>
+      <TR>
+      </TABLE>
+    <BR CLEAR=all>&nbsp;
+      <TABLE BORDER=1 ALIGN=LEFT CELLSPACING=0 WIDTH="80%">
+      <TR>
+        <TD><FONT FACE="Arial,Helvetica">
+        <IMG BORDER=0 HEIGHT=24 WIDTH=26 SRC="builder.gif" ALT="C++ Builder"><B>&nbsp;C++ Builder</B><BR>
+        You need to include the "gifimage" module in your project. Unless the
+        gifimage module (gifimage.pas) is added to your project, it will not get
+        linked into your application, and your application will not know how to
+        handle GIFs.
+        </FONT></TD>
+      <TR>
+      </TABLE>
+    <BR CLEAR=all>&nbsp;<BR><FONT FACE="Arial,Helvetica">
+    If your GIF shows at design time it must mean that you have included
+    gifimage.pas in a package that is active at design time (most packages are).
+    If it then doesn't show at run time the package probably isn't active at run
+    time meaning that you haven't selected to compile and link with run time
+    packages.
+    </FONT></TD>
+  </TR>
+
+  <TR>
+    <TD COLSPAN=2><HR NOSHADE></TD>
+  </TR>
+  <TR>
+    <TD ALIGN="CENTER" VALIGN="TOP" WIDTH=40><IMG BORDER=0 HEIGHT=50 WIDTH=40 SRC="q.gif" ALT="Question"></TD>
+    <TD><FONT FACE="Arial,Helvetica">
+    Why aren't GIF files listed as a file type in my TOpenPictureDialog or TSavePictureDialog?
+    </FONT></TD>
+  </TR>
+  <TR>
+    <TD ALIGN="CENTER" VALIGN="TOP" WIDTH=40><IMG BORDER=0 HEIGHT=50 WIDTH=40 SRC="a.gif" ALT="Answer"></TD>
+    <TD>
+      <FONT FACE="Arial,Helvetica">Because you haven't told TOpenPictureDialog and
+      TSavePictureDialog about TGIFImage...<BR>
+      The following code snippets shows how to use a TOpenPictureDialog to load GIF files.
+      The same technique can be used for TSavePictureDialog, TOpenDialog and TSaveDialog.<P>
+      <TABLE BORDER=1 ALIGN=LEFT CELLSPACING=0 WIDTH="80%">
+      <TR>
+        <TD><FONT FACE="Arial,Helvetica">
+        <IMG BORDER=0 HEIGHT=24 WIDTH=26 SRC="delphi.gif" ALT="Delphi"><B>&nbsp;Delphi</B><PRE>
+        OpenPictureDialog1.DefaultExt := GraphicExtension(TGIFImage);
+        OpenPictureDialog1.Filter := GraphicFilter(TGIFImage);
+        <B>if</B> OpenPictureDialog1.Execute <B>then</B>
+          { load the GIF somehow }</PRE>
+        </FONT></TD>
+      <TR>
+      </TABLE>
+    <BR CLEAR=all>&nbsp;
+      <TABLE BORDER=1 ALIGN=LEFT CELLSPACING=0 WIDTH="80%">
+      <TR>
+        <TD><FONT FACE="Arial,Helvetica">
+        <IMG BORDER=0 HEIGHT=24 WIDTH=26 SRC="builder.gif" ALT="C++ Builder"><B>&nbsp;C++ Builder</B><PRE>
+        OpenPictureDialog1->DefaultExt = GraphicExtension(<B>__classid</B>(TGIFImage));
+        OpenPictureDialog1->Filter = GraphicFilter(<B>__classid</B>(TGIFImage));
+        <B>if</B> (OpenPictureDialog1->Execute)
+          { load the GIF somehow }</PRE>
+        </FONT></TD>
+      <TR>
+      </TABLE>
+      <BR CLEAR=all>&nbsp;<BR>
+      See the Convert demo for an example of this. The GraphicExtension and GraphicFilter
+      functions are documented in the VCL online help.
+    </FONT></TD>
+  </TR>
+
+  <TR>
+    <TD COLSPAN=2><HR NOSHADE></TD>
+  </TR>
+  <TR>
+    <TD ALIGN="CENTER" VALIGN="TOP" WIDTH=40><IMG BORDER=0 HEIGHT=50 WIDTH=40 SRC="q.gif" ALT="Question"></TD>
+    <TD><FONT FACE="Arial,Helvetica">
+    Do I need to add TGIFImage to a package before I can use it?
+    </FONT></TD>
+  </TR>
+  <TR>
+    <TD ALIGN="CENTER" VALIGN="TOP" WIDTH=40><IMG BORDER=0 HEIGHT=50 WIDTH=40 SRC="a.gif" ALT="Answer"></TD>
+    <TD><FONT FACE="Arial,Helvetica">
+    It depends... You don't <I>need</I> to install gifimage into a package unless
+    you need GIF support at design time or wish to put your GIF support in a
+    run time package.<BR>
+    If you would like to be able to load GIF files into TImage components at
+    design time you should install TGIFImage as a component (see the
+    <A HREF="install.html">Installation Instructions</A>).
+    </FONT></TD>
+  </TR>
+
+  <TR>
+    <TD COLSPAN=2><HR NOSHADE></TD>
+  </TR>
+  <TR>
+    <TD ALIGN="CENTER" VALIGN="TOP" WIDTH=40><IMG BORDER=0 HEIGHT=50 WIDTH=40 SRC="q.gif" ALT="Question"></TD>
+    <TD><FONT FACE="Arial,Helvetica">
+    I have converted a bitmap to a GIF using the TGIFImage.Assign method but the
+    colors of the GIF are all wrong. Is this a bug?
+    </FONT></TD>
+  </TR>
+  <TR>
+    <TD ALIGN="CENTER" VALIGN="TOP" WIDTH=40><IMG BORDER=0 HEIGHT=50 WIDTH=40 SRC="a.gif" ALT="Answer"></TD>
+    <TD><FONT FACE="Arial,Helvetica">
+    No, probably not.<BR>
+    The problem is that your bitmap is in a format that TGIFImage doesn't
+    directly support, namely 15, 16, 24 or 32 bit format.
+    <P>In order to be able to import bitmaps with more than 256 colors,
+    TGIFimage first reduces the potential number of colors to a maximum of 256
+    and then converts the bitmap to 8 bit format. This must be done because the GIF
+    format doesn't support more than 256 colors.<BR>
+    You can control the method TGIFImage uses to choose the colors that are used
+    in the final GIF by setting the GIFImageDefaultColorReduction variable.
+    </FONT></TD>
+  </TR>
+
+  <TR>
+    <TD COLSPAN=2><HR NOSHADE></TD>
+  </TR>
+  <TR>
+    <TD ALIGN="CENTER" VALIGN="TOP" WIDTH=40><IMG BORDER=0 HEIGHT=50 WIDTH=40 SRC="q.gif" ALT="Question"></TD>
+    <TD><FONT FACE="Arial,Helvetica">
+    I have heard that your TGIFImage is the greatest GIF component around. Is this true?
+    </FONT></TD>
+  </TR>
+  <TR>
+    <TD ALIGN="CENTER" VALIGN="TOP" WIDTH=40><IMG BORDER=0 HEIGHT=50 WIDTH=40 SRC="a.gif" ALT="Answer"></TD>
+    <TD><FONT FACE="Arial,Helvetica">
+    Yes, it is absolutely true.<BR>
+    <FONT SIZE="-1">(Isn't it just great when you can write your own FAQ?)</FONT>
+    </FONT></TD>
+  </TR>
+
+  <TR>
+    <TD COLSPAN=2><HR NOSHADE></TD>
+  </TR>
+  <TR>
+    <TD ALIGN="CENTER" VALIGN="TOP" WIDTH=40><IMG BORDER=0 HEIGHT=50 WIDTH=40 SRC="q.gif" ALT="Question"></TD>
+    <TD><FONT FACE="Arial,Helvetica">
+    I'm getting "Canvas does not allow drawing" exceptions and all sorts of
+    access violations when I use TGIFImage. What am I doing wrong?
+    </FONT></TD>
+  </TR>
+  <TR>
+    <TD ALIGN="CENTER" VALIGN="TOP" WIDTH=40><IMG BORDER=0 HEIGHT=50 WIDTH=40 SRC="a.gif" ALT="Answer"></TD>
+    <TD><FONT FACE="Arial,Helvetica">
+    It sounds like you are using the goDirectDraw and goAsync options and are
+    forgetting to kill the paint thread before you delete the canvas the thread
+    is painting on.
+    <P>
+    When you use the goDirectDraw option, it is very important to stop the paint
+    thread before the canvas is deleted. The reason for this is that the paint
+    thread has no way of knowing that the canvas has been deleted and will
+    continue to use the canvas even after it is dead and gone to the great bit
+    bucket in the sky.<P>
+    You can use TGIFImage.PaintStop to stop <I>all</I> paint threads or
+    TGIFImage.StopDraw to stop <I>only</I> the main paint thread. The main paint
+    thread is the one that are used when you display a GIF with a TImage
+    component or by using TCanvas.Draw and TCanvas.StretchDraw.
+    </FONT></TD>
+  </TR>
+
+  <TR>
+    <TD COLSPAN=2><HR NOSHADE></TD>
+  </TR>
+  <TR>
+    <TD ALIGN="CENTER" VALIGN="TOP" WIDTH=40><IMG BORDER=0 HEIGHT=50 WIDTH=40 SRC="q.gif" ALT="Question"></TD>
+    <TD><FONT FACE="Arial,Helvetica">
+    I've just installed TGIFImage but I can't find it anywhere on the component
+    palette. Where is it?
+    </FONT></TD>
+  </TR>
+  <TR>
+    <TD ALIGN="CENTER" VALIGN="TOP" WIDTH=40><IMG BORDER=0 HEIGHT=50 WIDTH=40 SRC="a.gif" ALT="Answer"></TD>
+    <TD><FONT FACE="Arial,Helvetica">
+    TGIFImage isn't a component and as such won't show up on the component
+    palette. Only classes that are derived from TComponent are real components.
+    I often refer to TGIFImage as a component but this is only because it's
+    easier for people to understand.
+    <P>
+    TGIFImage is just like TBitmap, TStringList, TIniFile etc; It's a class that
+    you only use at run-time.
+    </FONT></TD>
+  </TR>
+
+  <TR>
+    <TD COLSPAN=2><HR NOSHADE></TD>
+  </TR>
+  <TR>
+    <TD ALIGN="CENTER" VALIGN="TOP" WIDTH=40><IMG BORDER=0 HEIGHT=50 WIDTH=40 SRC="q.gif" ALT="Question"></TD>
+    <TD><FONT FACE="Arial,Helvetica">
+    What do I need to do in order to use GIFs with the TImage component?
+    </FONT></TD>
+  </TR>
+  <TR>
+    <TD ALIGN="CENTER" VALIGN="TOP" WIDTH=40><IMG BORDER=0 HEIGHT=50 WIDTH=40 SRC="a.gif" ALT="Answer"></TD>
+    <TD><FONT FACE="Arial,Helvetica">
+      <TABLE BORDER=1 ALIGN=LEFT CELLSPACING=0 WIDTH="80%">
+      <TR>
+        <TD><FONT FACE="Arial,Helvetica">
+        <IMG BORDER=0 HEIGHT=24 WIDTH=26 SRC="delphi.gif" ALT="Delphi"><B>&nbsp;Delphi</B><BR>
+        The only thing you need to do, is to add the "gifimage" unit to a uses
+        clause anywhere in your project:<BR>
+        <PRE>
+          <B>Uses</B>
+            GifImage, <FONT COLOR="#808080">Windows,</FONT> <FONT COLOR="#A0A0A0">Messages,</FONT> <FONT COLOR="#C0C0C0">SysUtils,</FONT> <FONT COLOR="#E0E0E0">Classes... etc.</FONT></PRE>
+        </FONT></TD>
+      <TR>
+      </TABLE>
+    <BR CLEAR=all>&nbsp;
+      <TABLE BORDER=1 ALIGN=LEFT CELLSPACING=0 WIDTH="80%">
+      <TR>
+        <TD><FONT FACE="Arial,Helvetica">
+        <IMG BORDER=0 HEIGHT=24 WIDTH=26 SRC="builder.gif" ALT="C++ Builder"><B>&nbsp;C++ Builder</B><BR>
+        The only thing you need to do, is to include the "gifimage" module in
+        your project. To include the gifimage module in your project, you can
+        either use the project manager or add the following line to your project
+        source file:<BR>
+        <PRE>
+          <B>USEUNIT("GIFImage");</B></PRE>
+        </FONT></TD>
+      <TR>
+      </TABLE>
+    <BR CLEAR=all>&nbsp;<BR><FONT FACE="Arial,Helvetica">
+    When you do this, TGIFImage will automagically register itself with the
+    TPicture class in the initialization section of the gifimage unit.<BR>
+    TPicture is the class that TImage uses to support different graphic formats.<P>
+    Note that in order to load and display GIFs at <I>design time</I>, you have
+    to add gifimage.pas to a designtime package or install it in the VCL library (Delphi 2).
+    See the <A HREF="install.html">Installation instructions</A> for details. 
+    </FONT></TD>
+  </TR>
+
+  <TR>
+    <TD COLSPAN=2><HR NOSHADE></TD>
+  </TR>
+  <TR>
+    <TD ALIGN="CENTER" VALIGN="TOP" WIDTH=40><IMG BORDER=0 HEIGHT=50 WIDTH=40 SRC="q.gif" ALT="Question"></TD>
+    <TD><FONT FACE="Arial,Helvetica">
+    When I load a form with a TImage that contains a GIF I get a an error message
+    saying something like "Out of memory while expanding stream". I have plenty
+    of memory in my system. What's wrong?
+    </FONT></TD>
+  </TR>
+  <TR>
+    <TD ALIGN="CENTER" VALIGN="TOP" WIDTH=40><IMG BORDER=0 HEIGHT=50 WIDTH=40 SRC="a.gif" ALT="Answer"></TD>
+    <TD><FONT FACE="Arial,Helvetica">
+    You probably have another GIF library installed.<BR>
+    The error is often caused by one GIF library attempting to load an image
+    stored in a form (or some other stream) by another GIF library.<BR>
+    Read the "Before you start" section of the <A HREF="install.html">Installation instructions</A>
+    for a solution.
+    </FONT></TD>
+  </TR>
+
+  <TR>
+    <TD COLSPAN=2><HR NOSHADE></TD>
+  </TR>
+  <TR>
+    <TD ALIGN="CENTER" VALIGN="TOP" WIDTH=40><IMG BORDER=0 HEIGHT=50 WIDTH=40 SRC="q.gif" ALT="Question"></TD>
+    <TD><FONT FACE="Arial,Helvetica">
+    How do I prevent a GIF from animating when I load it into a TImage component?
+    </FONT></TD>
+  </TR>
+  <TR>
+    <TD ALIGN="CENTER" VALIGN="TOP" WIDTH=40><IMG BORDER=0 HEIGHT=50 WIDTH=40 SRC="a.gif" ALT="Answer"></TD>
+    <TD><FONT FACE="Arial,Helvetica">
+      You can do this by setting the default GIF options prior to loading the GIF:<BR>
+      <TABLE BORDER=1 ALIGN=LEFT CELLSPACING=0 WIDTH="80%">
+      <TR>
+        <TD><FONT FACE="Arial,Helvetica">
+        <IMG BORDER=0 HEIGHT=24 WIDTH=26 SRC="delphi.gif" ALT="Delphi"><B>&nbsp;Delphi</B><PRE>
+        Exclude(GIFImageDefaultDrawOptions, goAnimate);
+        Image1.Picture.LoadFromFile(Filename);
+        Include(GIFImageDefaultDrawOptions, goAnimate);</PRE>
+        </FONT></TD>
+      <TR>
+      </TABLE>
+    <BR CLEAR=all>&nbsp;
+      <TABLE BORDER=1 ALIGN=LEFT CELLSPACING=0 WIDTH="80%">
+      <TR>
+        <TD><FONT FACE="Arial,Helvetica">
+        <IMG BORDER=0 HEIGHT=24 WIDTH=26 SRC="builder.gif" ALT="C++ Builder"><B>&nbsp;C++ Builder</B><PRE>
+        GIFImageDefaultDrawOptions >> goAnimate;
+        Image1->Picture->LoadFromFile(Filename);
+        GIFImageDefaultDrawOptions << goAnimate;</PRE>
+        </FONT></TD>
+      <TR>
+      </TABLE>
+    </FONT></TD>
+  </TR>
+
+  <TR>
+    <TD COLSPAN=2><HR NOSHADE></TD>
+  </TR>
+  <TR>
+    <TD ALIGN="CENTER" VALIGN="TOP" WIDTH=40><IMG BORDER=0 HEIGHT=50 WIDTH=40 SRC="q.gif" ALT="Question"></TD>
+    <TD><FONT FACE="Arial,Helvetica">
+    I'm drawing a transparent animated GIF on top of another image but when I
+    change the background image, the area covered by the animated GIF still
+    displays the old background. How do I get it to use the new background?
+    </FONT></TD>
+  </TR>
+  <TR>
+    <TD ALIGN="CENTER" VALIGN="TOP" WIDTH=40><IMG BORDER=0 HEIGHT=50 WIDTH=40 SRC="a.gif" ALT="Answer"></TD>
+    <TD><FONT FACE="Arial,Helvetica">
+      The problem is that TGIFImage doesn't know that you have changed the
+      background image and still has the old background in its buffers.<BR>
+      In order to clear TGIFImage's background buffer, you will have to restart
+      the animation:<P>
+      <TABLE BORDER=1 ALIGN=LEFT CELLSPACING=0 WIDTH="80%">
+      <TR>
+        <TD><FONT FACE="Arial,Helvetica">
+        <IMG BORDER=0 HEIGHT=24 WIDTH=26 SRC="delphi.gif" ALT="Delphi"><B>&nbsp;Delphi</B><PRE>
+        // Stop animations and clear buffers
+        TGIFImage(Image1.Picture.Graphic).StopDraw;
+        // Restart animation
+        Image1.Invalidate;</PRE>
+        </FONT></TD>
+      <TR>
+      </TABLE>
+    <BR CLEAR=all>&nbsp;
+      <TABLE BORDER=1 ALIGN=LEFT CELLSPACING=0 WIDTH="80%">
+      <TR>
+        <TD><FONT FACE="Arial,Helvetica">
+        <IMG BORDER=0 HEIGHT=24 WIDTH=26 SRC="builder.gif" ALT="C++ Builder"><B>&nbsp;C++ Builder</B><PRE>
+        // Stop animations and clear buffers
+        static_cast<TGIFImage *>(Image1->Picture->Graphic)->StopDraw();
+        // Restart animation
+        Image1->Invalidate();</PRE>
+        </FONT></TD>
+      <TR>
+      </TABLE>
+    </FONT></TD>
+  </TR>
+
+  <TR>
+    <TD COLSPAN=2><HR NOSHADE></TD>
+  </TR>
+  <TR>
+    <TD ALIGN="CENTER" VALIGN="TOP" WIDTH=40><IMG BORDER=0 HEIGHT=50 WIDTH=40 SRC="q.gif" ALT="Question"></TD>
+    <TD><FONT FACE="Arial,Helvetica">
+    How can I disable GIF animation at design time?
+    </FONT></TD>
+  </TR>
+  <TR>
+    <TD ALIGN="CENTER" VALIGN="TOP" WIDTH=40><IMG BORDER=0 HEIGHT=50 WIDTH=40 SRC="a.gif" ALT="Answer"></TD>
+    <TD><FONT FACE="Arial,Helvetica">
+    Modify the <B>Register</B> procedure in gifimage.pas to include the following line:<BR>
+    <PRE>
+    Exclude(GIFImageDefaultDrawOptions, goAnimate);</PRE>
+    </FONT></TD>
+  </TR>
+
+  <TR>
+    <TD COLSPAN=2><HR NOSHADE></TD>
+  </TR>
+  <TR>
+    <TD ALIGN="CENTER" VALIGN="TOP" WIDTH=40><IMG BORDER=0 HEIGHT=50 WIDTH=40 SRC="q.gif" ALT="Question"></TD>
+    <TD><FONT FACE="Arial,Helvetica">
+    What does the warning message "Premature end of data" mean?
+    </FONT></TD>
+  </TR>
+  <TR>
+    <TD ALIGN="CENTER" VALIGN="TOP" WIDTH=40><IMG BORDER=0 HEIGHT=50 WIDTH=40 SRC="a.gif" ALT="Answer"></TD>
+    <TD><FONT FACE="Arial,Helvetica">
+    It means that the LZW decoder ran out of data while it was decompressing the
+    GIF file and indicates that the GIF file is either corrupt or has been
+    truncated.<BR>
+    This can easily happen when you save GIFs from the internet.
+    </FONT></TD>
+  </TR>
+
+  <TR>
+    <TD COLSPAN=2><HR NOSHADE></TD>
+  </TR>
+  <TR>
+    <TD ALIGN="CENTER" VALIGN="TOP" WIDTH=40><IMG BORDER=0 HEIGHT=50 WIDTH=40 SRC="q.gif" ALT="Question"></TD>
+    <TD><FONT FACE="Arial,Helvetica">
+    How can I display a GIF without using the TImage component?
+    </FONT></TD>
+  </TR>
+  <TR>
+    <TD ALIGN="CENTER" VALIGN="TOP" WIDTH=40><IMG BORDER=0 HEIGHT=50 WIDTH=40 SRC="a.gif" ALT="Answer"></TD>
+    <TD><FONT FACE="Arial,Helvetica">
+    You can use the TGIFImage.Paint method or TCanvas.Draw and TCanvas.StretchDraw.<BR>
+    See the <A HREF="../demo/thread/">Thread</A> demo application for an example
+    of how to use TGIFImage.Paint.
+    </FONT></TD>
+  </TR>
+
+  <TR>
+    <TD COLSPAN=2><HR NOSHADE></TD>
+  </TR>
+  <TR>
+    <TD ALIGN="CENTER" VALIGN="TOP" WIDTH=40><IMG BORDER=0 HEIGHT=50 WIDTH=40 SRC="q.gif" ALT="Question"></TD>
+    <TD><FONT FACE="Arial,Helvetica">
+    When will there be a version of TGIFImage for Delphi&nbsp;1?
+    </FONT></TD>
+  </TR>
+  <TR>
+    <TD ALIGN="CENTER" VALIGN="TOP" WIDTH=40><IMG BORDER=0 HEIGHT=50 WIDTH=40 SRC="a.gif" ALT="Answer"></TD>
+    <TD><FONT FACE="Arial,Helvetica">
+    There are currently no plans for a Delphi 1 version.<BR>
+    The reason is that it probably would require a major rewrite and generally
+    decrease the speed and integrity of the 32 bit version of the library.<BR>
+    For a list of GIF libraries that support Delphi 1, you can check out some of
+    the <A HREF="competition.html">other libraries</A>.
+    </FONT></TD>
+  </TR>
+
+  <TR>
+    <TD COLSPAN=2><HR NOSHADE></TD>
+  </TR>
+  <TR>
+    <TD ALIGN="CENTER" VALIGN="TOP" WIDTH=40><IMG BORDER=0 HEIGHT=50 WIDTH=40 SRC="q.gif" ALT="Question"></TD>
+    <TD><FONT FACE="Arial,Helvetica">
+    When will there be a version of TGIFImage for C++&nbsp;Builder&nbsp;1?
+    </FONT></TD>
+  </TR>
+  <TR>
+    <TD ALIGN="CENTER" VALIGN="TOP" WIDTH=40><IMG BORDER=0 HEIGHT=50 WIDTH=40 SRC="a.gif" ALT="Answer"></TD>
+    <TD><FONT FACE="Arial,Helvetica">
+    There are currently no plans for a C++ Builder 1 version.<BR>
+    Read this <A HREF="cbuilder1.html">lame excuse</A> for an explanation and
+    then check out the <A HREF="competition.html">competition</A> instead.
+    </FONT></TD>
+  </TR>
+
+  <TR>
+    <TD COLSPAN=2><HR NOSHADE></TD>
+  </TR>
+  <TR>
+    <TD ALIGN="CENTER" VALIGN="TOP" WIDTH=40><IMG BORDER=0 HEIGHT=50 WIDTH=40 SRC="q.gif" ALT="Question"></TD>
+    <TD><FONT FACE="Arial,Helvetica">
+    I have created an animated GIF but I can't get it to loop. What's wrong?
+    </FONT></TD>
+  </TR>
+  <TR>
+    <TD ALIGN="CENTER" VALIGN="TOP" WIDTH=40><IMG BORDER=0 HEIGHT=50 WIDTH=40 SRC="a.gif" ALT="Answer"></TD>
+    <TD><FONT FACE="Arial,Helvetica">
+    You need to add a "Netscape Loop" extension block to the first frame of your
+    GIF. The loop block <I>must</I> be the first extension you define for the
+    frame or else it will not work.<BR>
+    See the <A HREF="../demo/animate">Animate</A> demo for an example of how to
+    build an animated GIF.
+    </FONT></TD>
+  </TR>
+
+  <TR>
+    <TD COLSPAN=2><HR NOSHADE></TD>
+  </TR>
+  <TR>
+    <TD ALIGN="CENTER" VALIGN="TOP" WIDTH=40><IMG BORDER=0 HEIGHT=50 WIDTH=40 SRC="q.gif" ALT="Question"></TD>
+    <TD><FONT FACE="Arial,Helvetica">
+    I'm displaying an animated GIF in a TImage component but the display
+    flickers quite a bit. It looks as if the image is cleared between each frame,
+    making it quite flashy. Is there a way to disable this?
+    </FONT></TD>
+  </TR>
+  <TR>
+    <TD ALIGN="CENTER" VALIGN="TOP" WIDTH=40><IMG BORDER=0 HEIGHT=50 WIDTH=40 SRC="a.gif" ALT="Answer"></TD>
+    <TD><FONT FACE="Arial,Helvetica">
+    This problem is described in the <A HREF="bugs.html">List of known problems</A>.<BR>
+    To avoid the flicker you must use the goDirectDraw option. See the
+    <A HREF="../demo/animate/">Animate</A>, <A HREF="../demo/resource/">Resource</A>
+    and <A HREF="../demo/explorer/">GIF Explorer</A> demo applications for an
+    example of this.
+    </FONT></TD>
+  </TR>
+
+  <TR>
+    <TD COLSPAN=2><HR NOSHADE></TD>
+  </TR>
+  <TR>
+    <TD ALIGN="CENTER" VALIGN="TOP" WIDTH=40><IMG BORDER=0 HEIGHT=50 WIDTH=40 SRC="q.gif" ALT="Question"></TD>
+    <TD><FONT FACE="Arial,Helvetica">
+    How can I modify the speed of an animated GIF?
+    </FONT></TD>
+  </TR>
+  <TR>
+    <TD ALIGN="CENTER" VALIGN="TOP" WIDTH=40><IMG BORDER=0 HEIGHT=50 WIDTH=40 SRC="a.gif" ALT="Answer"></TD>
+    <TD><FONT FACE="Arial,Helvetica">
+    The speed of an animated GIF is controlled by "Graphic Control Extension"
+    (GCE) blocks that are attached to each frame of an animated GIF.<BR>
+    To modify the speed you must adjust the Delay value specified in the GCE blocks.<BR>
+    If you just wish to modify the animations speed temporarily at run time, you
+    can use the TGIFImage.AnimationSpeed property. See the <A HREF="../demo/explorer/">GIF Explorer</A>
+    demo application for an example of this.
+    </FONT></TD>
+  </TR>
+
+  <TR>
+    <TD COLSPAN=2><HR NOSHADE></TD>
+  </TR>
+  <TR>
+    <TD ALIGN="CENTER" VALIGN="TOP" WIDTH=40><IMG BORDER=0 HEIGHT=50 WIDTH=40 SRC="q.gif" ALT="Question"></TD>
+    <TD><FONT FACE="Arial,Helvetica">
+    When I open some of the demo applications in Delphi (or C++ Builder) I get a
+    lot of warning messages saying something like:
+    <PRE>
+    Error reading FormMain.Font.CharSet: Property does not exist</PRE>
+    </FONT></TD>
+  </TR>
+  <TR>
+    <TD ALIGN="CENTER" VALIGN="TOP" WIDTH=40><IMG BORDER=0 HEIGHT=50 WIDTH=40 SRC="a.gif" ALT="Answer"></TD>
+    <TD><FONT FACE="Arial,Helvetica">
+    You can safely ignore these messages.<BR>
+    The reason you are getting them is that the forms were saved with a newer
+    version of Delphi or C++ Builder than the one you are using. If you open all
+    the forms in the IDE and then save them, you will not get the warning
+    messages the next time you open the forms.
+    </FONT></TD>
+  </TR>
+
+  <TR>
+    <TD COLSPAN=2><HR NOSHADE></TD>
+  </TR>
+  <TR>
+    <TD ALIGN="CENTER" VALIGN="TOP" WIDTH=40><IMG BORDER=0 HEIGHT=50 WIDTH=40 SRC="q.gif" ALT="Question"></TD>
+    <TD><FONT FACE="Arial,Helvetica">
+    How do I make a transparent GIF?
+    </FONT></TD>
+  </TR>
+  <TR>
+    <TD ALIGN="CENTER" VALIGN="TOP" WIDTH=40><IMG BORDER=0 HEIGHT=50 WIDTH=40 SRC="a.gif" ALT="Answer"></TD>
+    <TD><FONT FACE="Arial,Helvetica">
+    Try something like this:
+    <PRE>
+    <B>var</B>
+      GIF: TGIFImage;
+      Ext: TGIFGraphicControlExtension;
+    <B>begin</B>
+      GIF := TGIFImage.Create;
+      <B>try</B>
+        // Convert bitmap to GIF
+        GIF.Assign(Bitmap);
+        // Create an extension to set the transparency flag
+        Ext := TGIFGraphicControlExtension.Create(GIF.Images[0]);
+        Ext.Transparent := True;
+        // Set transparent color to lower left pixel color
+        Ext.TransparentColorIndex :=
+          GIF.Images[0].ActiveColorMap[GIF.Images[0].Pixels[0, GIF.Height-1]];
+        GIF.Images[0].Extensions.Add(Ext);
+        // Do something with the GIF here...
+        ...
+      <B>finally</B>
+        GIF.Free;
+      <B>end</B>;
+    end;</PRE>
+    You should also check out the <A HREF="../demo/animate/">Animate</A> demo
+    application for an example of this.
+    </FONT></TD>
+  </TR>
+
+  <TR>
+    <TD COLSPAN=2><HR NOSHADE></TD>
+  </TR>
+  <TR>
+    <TD ALIGN="CENTER" VALIGN="TOP" WIDTH=40><IMG BORDER=0 HEIGHT=50 WIDTH=40 SRC="q.gif" ALT="Question"></TD>
+    <TD><FONT FACE="Arial,Helvetica">
+    Isn't there an easier way to make a transparent GIF?
+    </FONT></TD>
+  </TR>
+  <TR>
+    <TD ALIGN="CENTER" VALIGN="TOP" WIDTH=40><IMG BORDER=0 HEIGHT=50 WIDTH=40 SRC="a.gif" ALT="Answer"></TD>
+    <TD><FONT FACE="Arial,Helvetica">
+    Yes of course there is:
+    <PRE>
+    <B>var</B>
+      GIF: TGIFImage;
+    <B>begin</B>
+      GIF := TGIFImage.Create;
+      <B>try</B>
+        // Make bitmap transparent
+        Bitmap.Transparent := True;
+        // Convert bitmap to GIF
+        GIF.Assign(Bitmap);
+        // Do something with the GIF here...
+        ...
+      <B>finally</B>
+        GIF.Free;
+      <B>end</B>;
+    <B>end</B>;</PRE>
+    </FONT></TD>
+  </TR>
+
+  <TR>
+    <TD COLSPAN=2><HR NOSHADE></TD>
+  </TR>
+  <TR>
+    <TD ALIGN="CENTER" VALIGN="TOP" WIDTH=40><IMG BORDER=0 HEIGHT=50 WIDTH=40 SRC="q.gif" ALT="Question"></TD>
+    <TD><FONT FACE="Arial,Helvetica">
+    Is there an ActiveX or DLL version of TGIFImage?
+    </FONT></TD>
+  </TR>
+  <TR>
+    <TD ALIGN="CENTER" VALIGN="TOP" WIDTH=40><IMG BORDER=0 HEIGHT=50 WIDTH=40 SRC="a.gif" ALT="Answer"></TD>
+    <TD><FONT FACE="Arial,Helvetica">
+    No.
+    </FONT></TD>
+  </TR>
+
+  <TR>
+    <TD COLSPAN=2><HR NOSHADE></TD>
+  </TR>
+  <TR>
+    <TD ALIGN="CENTER" VALIGN="TOP" WIDTH=40><IMG BORDER=0 HEIGHT=50 WIDTH=40 SRC="q.gif" ALT="Question"></TD>
+    <TD><FONT FACE="Arial,Helvetica">
+    My GIFs looks strange in PhotoShop, but displays correctly in other applications.
+    </FONT></TD>
+  </TR>
+  <TR>
+    <TD ALIGN="CENTER" VALIGN="TOP" WIDTH=40><IMG BORDER=0 HEIGHT=50 WIDTH=40 SRC="a.gif" ALT="Answer"></TD>
+    <TD><FONT FACE="Arial,Helvetica">
+    This is a bug in PhotoShop.<BR>
+    PhotoShop is unable to handle local color maps (common in animated GIFs) and
+    only supports GIFs with local color maps. The TGIFImage.OptimizeColorMap method
+    can be used to convert local color maps to a single global color map.
+    </FONT></TD>
+  </TR>
+
+  <TR>
+    <TD COLSPAN=2><HR NOSHADE></TD>
+  </TR>
+  <TR>
+    <TD ALIGN="CENTER" VALIGN="TOP" WIDTH=40><IMG BORDER=0 HEIGHT=50 WIDTH=40 SRC="q.gif" ALT="Question"></TD>
+    <TD><FONT FACE="Arial,Helvetica">
+    How can I force a GIF to use 8 bits per pixel?
+    </FONT></TD>
+  </TR>
+  <TR>
+    <TD ALIGN="CENTER" VALIGN="TOP" WIDTH=40><IMG BORDER=0 HEIGHT=50 WIDTH=40 SRC="a.gif" ALT="Answer"></TD>
+    <TD><FONT FACE="Arial,Helvetica">
+    Although it is generally better to use as few bits per pixel as possible (TGIFImage
+    takes care of this for you) to minimize the size of the GIF, some applications are not able to
+    read GIFs with less than 8 bits per pixel.<BR>
+    The following procedure forces a GIF to use 8 bits per pixel by filling up the color map:
+    <PRE>
+    <B>procedure</B> Force8BitGIF(GIF: TGIFImage);
+    <B>begin</B>
+      <B>while</B> (GIF.Image[0].ActiveColorMap.Count < 256) <B>do</B>
+        GIF.Image[0].ActiveColorMap.Add(TColor(0));
+    <B>end</B>;</PRE>
+    </FONT></TD>
+  </TR>
+
+  <TR>
+    <TD COLSPAN=2><HR NOSHADE></TD>
+  </TR>
+  <TR>
+    <TD ALIGN="CENTER" VALIGN="TOP" WIDTH=40><IMG BORDER=0 HEIGHT=50 WIDTH=40 SRC="q.gif" ALT="Question"></TD>
+    <TD><FONT FACE="Arial,Helvetica">
+    How can I display/load/save GIFs with the TDBImage component?
+    </FONT></TD>
+  </TR>
+  <TR>
+    <TD ALIGN="CENTER" VALIGN="TOP" WIDTH=40><IMG BORDER=0 HEIGHT=50 WIDTH=40 SRC="a.gif" ALT="Answer"></TD>
+    <TD><FONT FACE="Arial,Helvetica">
+    The TDBImage component only supports the BMP format (TBitmap), so it cannot be used
+    to display GIFs.<BR>
+    In order to store GIFs in a database you must use BLOB fields and manually read and
+    write the GIFs from and to the BLOB fields.<BR>
+    The following two procedures can be used to save and load GIFs to and from a BLOB field:<BR>
+    <PRE>
+    <B>procedure</B> SaveToField(FField:TBlobField; GIF:TGIFImage);
+    <B>var</B>
+      Stream: TBlobStream;
+    <B>begin</B>
+      Stream := TBlobStream.Create(FField, bmWrite);
+      <B>try</B>
+        GIF.SaveToStream(Stream);
+      <B>finally</B>
+        Stream.Free;
+      <B>end</B>;
+    <B>end</B>;
+    
+    <B>procedure</B> LoadFromField(FField:TBlobField; GIF: TGIFImage);
+    <B>var</B>
+      Stream: TBlobStream;
+    <B>begin</B>
+      Stream := TBlobStream.Create(FField, bmRead);
+      <B>try</B>
+        GIF.LoadFromStream(Stream);
+      <B>finally</B>
+        Stream.Free;
+      <B>end</B>;
+    <B>end</B>;</PRE>
+    </FONT></TD>
+  </TR>
+
+  <TR>
+    <TD COLSPAN=2><HR NOSHADE></TD>
+  </TR>
+  <TR>
+    <TD ALIGN="CENTER" VALIGN="TOP" WIDTH=40><IMG BORDER=0 HEIGHT=50 WIDTH=40 SRC="q.gif" ALT="Question"></TD>
+    <TD><FONT FACE="Arial,Helvetica">
+    BoundsChecker (or MemorySleuth, MemProof etc) shows that TGIFImage is
+    leaking a bitmap handle. What should I do?
+    </FONT></TD>
+  </TR>
+  <TR>
+    <TD ALIGN="CENTER" VALIGN="TOP" WIDTH=40><IMG BORDER=0 HEIGHT=50 WIDTH=40 SRC="a.gif" ALT="Answer"></TD>
+    <TD><FONT FACE="Arial,Helvetica">
+    This is probably a "controlled" leak if it is <I>only</I> a single bitmap
+    handle. It is supposed to be there, don't worry about it.<BR>
+    In order to work around a serios resource leak in Delphi 3, TGIFImage leaks
+    a single bitmap handle on purpose. This shouldn't be a problem since the
+    bitmap handle is freed when you application exits.
+    </FONT></TD>
+  </TR>
+
+  <TR>
+    <TD COLSPAN=2><HR NOSHADE></TD>
+  </TR>
+  <TR>
+    <TD ALIGN="CENTER" VALIGN="TOP" WIDTH=40><IMG BORDER=0 HEIGHT=50 WIDTH=40 SRC="q.gif" ALT="Question"></TD>
+    <TD><FONT FACE="Arial,Helvetica">
+    I'm displaying 10 animated GIFs on my form and they just take forever to
+    display on the first run through the animation. What's wrong?
+    </FONT></TD>
+  </TR>
+  <TR>
+    <TD ALIGN="CENTER" VALIGN="TOP" WIDTH=40><IMG BORDER=0 HEIGHT=50 WIDTH=40 SRC="a.gif" ALT="Answer"></TD>
+    <TD><FONT FACE="Arial,Helvetica">
+    You must be running Windows 95 or 98.<BR>
+    TGIFImage uses threads to render GIFs into bitmaps, and Windows 95 and 98
+    does a very poor job of scheduling multiple threads.<BR>
+    During the first run through an animation, the GIF is converted (rendered)
+    to bitmaps and compared to just drawing the GIF, this process is very
+    processor intensive. This is why it is only the first run that is slow. Your
+    machine can probably easily handle the load, but Windows chokes on the
+    combination of multiple threads and high processor utilization.<BR>
+    Unfortunately there isn't any easy solution to this problem at the moment.
+    If possible, reduce the size and number of GIFs you are displaying
+    simultaneously.<BR>
+    Windows NT haven't got this problem.
+    </FONT></TD>
+  </TR>
+
+  <TR>
+    <TD COLSPAN=2><HR NOSHADE></TD>
+  </TR>
+  <TR>
+    <TD ALIGN="CENTER" VALIGN="TOP" WIDTH=40><IMG BORDER=0 HEIGHT=50 WIDTH=40 SRC="q.gif" ALT="Question"></TD>
+    <TD><FONT FACE="Arial,Helvetica">
+    My application (or even Windows) crashes when I'm displaying a lot of
+    animated GIFs at the same time. Is this a bug?
+    </FONT></TD>
+  </TR>
+  <TR>
+    <TD ALIGN="CENTER" VALIGN="TOP" WIDTH=40><IMG BORDER=0 HEIGHT=50 WIDTH=40 SRC="a.gif" ALT="Answer"></TD>
+    <TD><FONT FACE="Arial,Helvetica">
+    Again, you must be running Windows 95 or 98.<BR>
+    Animated GIFs use a lot of GDI resources and Windows 95 and 98 haven't got
+    a lot of those. If you are running other resource hungry aplications at the
+    same time (like Outlook or Word), the situation is even worse.<BR>
+    Each GIF uses at least 4 bitmaps plus 2 bitmaps per frame (1 if the frame
+    isn't transparent) and 2 palettes plus 1 palette per frame. Is you are
+    displaying many transparent GIFs with a lot of frames in each, you can
+    easily consume all your systems GDI resources.<BR>
+    There isn't any easy solution to this problem either. Try reducing the
+    number of GIFs or at least the number of frames in each GIF.<BR>
+    Windows NT haven't got this problem either.
+    </FONT></TD>
+  </TR>
+
+  <TR>
+    <TD COLSPAN=2><HR NOSHADE></TD>
+  </TR>
+  <TR>
+    <TD ALIGN="CENTER" VALIGN="TOP" WIDTH=40><IMG BORDER=0 HEIGHT=50 WIDTH=40 SRC="q.gif" ALT="Question"></TD>
+    <TD><FONT FACE="Arial,Helvetica">
+    I have written a commercial image processing library and wish to use some of TGIFImage's routines in it.<BR>
+    Am I allowed to do this?
+    </FONT></TD>
+  </TR>
+  <TR>
+    <TD ALIGN="CENTER" VALIGN="TOP" WIDTH=40><IMG BORDER=0 HEIGHT=50 WIDTH=40 SRC="a.gif" ALT="Answer"></TD>
+    <TD><FONT FACE="Arial,Helvetica">
+    No. The TGIFImage conditions of use prohibits the use of TGIFImage, or parts of it, in commercial
+    development libraries.<BR>
+    If you wish to use TGIFImage in a development library (or component), your library must be
+    released as freeware.
+    </FONT></TD>
+  </TR>
+
+  <TR>
+    <TD COLSPAN=2><HR NOSHADE></TD>
+  </TR>
+  <TR>
+    <TD ALIGN="CENTER" VALIGN="TOP" WIDTH=40><IMG BORDER=0 HEIGHT=50 WIDTH=40 SRC="q.gif" ALT="Question"></TD>
+    <TD><FONT FACE="Arial,Helvetica">
+    I wish to use TGIFImage in a shareware image viewer.<BR>
+    Am I allowed to do this?
+    </FONT></TD>
+  </TR>
+  <TR>
+    <TD ALIGN="CENTER" VALIGN="TOP" WIDTH=40><IMG BORDER=0 HEIGHT=50 WIDTH=40 SRC="a.gif" ALT="Answer"></TD>
+    <TD><FONT FACE="Arial,Helvetica">
+    Sure, no problem.<BR>
+    There are no restrictions on the use of TGIFImage in end-user applications.
+    </FONT></TD>
+  </TR>
+
+  <TR>
+    <TD COLSPAN=2><HR NOSHADE></TD>
+  </TR>
+  <TR>
+    <TD ALIGN="CENTER" VALIGN="TOP" WIDTH=40><IMG BORDER=0 HEIGHT=50 WIDTH=40 SRC="q.gif" ALT="Question"></TD>
+    <TD><FONT FACE="Arial,Helvetica">
+    What was used to create the TGIFImage on-line help?
+    </FONT></TD>
+  </TR>
+  <TR>
+    <TD ALIGN="CENTER" VALIGN="TOP" WIDTH=40><IMG BORDER=0 HEIGHT=50 WIDTH=40 SRC="a.gif" ALT="Answer"></TD>
+    <TD><FONT FACE="Arial,Helvetica">
+    Time2Help.<BR>
+    <A HREF="http://www.time2help.com">http://www.time2help.com</A><BR>
+    Without Time2Help, the TGIFImage on-line help would never have become a reality.
+    </FONT></TD>
+  </TR>
+
+  <TR>
+    <TD COLSPAN=2><HR NOSHADE></TD>
+  </TR>
+  <TR>
+    <TD ALIGN="CENTER" VALIGN="TOP" WIDTH=40><IMG BORDER=0 HEIGHT=50 WIDTH=40 SRC="q.gif" ALT="Question"></TD>
+    <TD><FONT FACE="Arial,Helvetica">
+    What Installation System was used to create the TGIFImage installer?
+    </FONT></TD>
+  </TR>
+  <TR>
+    <TD ALIGN="CENTER" VALIGN="TOP" WIDTH=40><IMG BORDER=0 HEIGHT=50 WIDTH=40 SRC="a.gif" ALT="Answer"></TD>
+    <TD><FONT FACE="Arial,Helvetica">
+    Wise InstallMaster version 7.<BR>
+    Great product, incompetent support, lousy upgrade policy.<BR>
+    <A HREF="http://www.wisesolutions.com">http://www.wisesolutions.com</A><BR>
+    Unfortunately I cannot wholeheartedly recommend Wise Install because of their
+    mediocre support and upgrade history. I suggest you check the Wise newsgroups
+    for more info.
+    </FONT></TD>
+  </TR>
+
+</TABLE>
+
+<BR CLEAR=all>&nbsp;
+
+<CENTER>
+<HR NOSHADE>
+
+<FONT SIZE="-1">
+  Copyright &copy; 1999 <A HREF="mailto:anders@melander.dk">Anders Melander</A>. All rights reserved.
+</FONT>
+</CENTER>
+</BODY>
+</HTML>

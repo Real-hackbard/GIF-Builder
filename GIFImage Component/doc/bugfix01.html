@@ -1,0 +1,105 @@
+<HTML>
+<HEAD>
+  <TITLE>Bug-fix for Delphi 3.0 graphics.pas</TITLE>
+</HEAD>
+
+<BODY TEXT="#000000" BGCOLOR="#FFFFFF">
+
+<TABLE BORDER=0 CELLSPACING=0 CELLPADDING=0 WIDTH="100%" BGCOLOR="#A0A0A0">
+  <TR>
+    <TD ALIGN=CENTER><FONT FACE="Arial,Helvetica" COLOR="#FFFFFF" SIZE="+1">Bug-fix for Delphi 3.0 graphics.pas</FONT></TD>
+  </TR>
+</TABLE>
+
+<P>Adapted from description on <A HREF="http://www.dataweb.nl/~r.p.sterkenburg/bugs3/vcl.htm#Graphics-LockList">The Delphi Bug List</A>.
+
+<P>Two procedures in <CODE>graphics.pas</CODE> are missing a call to <CODE>BitmapCanvasList.UnlockList</CODE>.
+
+<P>This bug will cause VCL graphics functions, which have <EM>not</EM>
+been called from the main thread, to hang. They cannot lock
+<CODE>BitmapCanvasList</CODE> because the main thread never unlocks it.
+
+<P>The only solution is to modify the two procedures in <CODE>graphics.pas</CODE> as indicated below.
+
+<P><HR noshade><P>
+
+<TABLE WIDTH="60%" BORDER=0 CELLSPACING=0 CELLPADDING=4>
+  <TR BGCOLOR="#FFCC00">
+    <TD>&nbsp;</TD>
+    <TD VALIGN=MIDDLE>
+      <FONT FACE="Arial,Helvetica" COLOR="#000000" SIZE="-1">
+      <STRONG>procedure FreeMemoryContexts</STRONG><BR>
+      <FONT SIZE="-2">
+      Add the lines marked with <FONT COLOR=red><B>red</B></FONT>.
+      </FONT></FONT>
+    </TD>
+    <TD>&nbsp;</TD>
+  </TR>
+  <TR BGCOLOR="#FFFFCC"><TD>&nbsp;</TD><TD>
+<PRE><B>procedure</B> FreeMemoryContexts;
+<B>var</B>
+  I: Integer;
+<B>begin</B>
+  <B>with</B> BitmapCanvasList.LockList <B>do</B>
+  <B>begin</B>
+    <FONT COLOR=red><B>try</B></FONT>
+      <B>for</B> I := Count-1 <B>downto</B> 0 <B>do</B>
+        <B>with</B> TBitmapCanvas(Items[I]) <B>do</B>
+          <B>if</B> TryLock <B>then</B>
+          <B>try</B>
+            FreeContext;
+          <B>finally</B>
+            Unlock;
+          <B>end</B>;
+    <FONT COLOR=red><B>finally</B>
+      BitmapCanvasList.UnLockList;
+    <B>end</B>;</FONT>
+  <B>end</B>;
+<B>end</B>;</PRE>
+  </TD><TD>&nbsp;</TD></TR>
+</TABLE>
+
+<P>
+
+<TABLE WIDTH="60%" BORDER=0 CELLSPACING=0 CELLPADDING=4>
+  <TR BGCOLOR="#FFCC00">
+    <TD>&nbsp;</TD>
+    <TD VALIGN=MIDDLE>
+      <FONT FACE="Arial,Helvetica" COLOR="#000000" SIZE="-1">
+      <STRONG>procedure DeselectBitmap</STRONG><BR>
+      <FONT SIZE="-2">
+      Add the lines marked with <FONT COLOR=red><B>red</B></FONT>.
+      </FONT></FONT>
+    </TD>
+    <TD>&nbsp;</TD>
+  </TR>
+  <TR BGCOLOR="#FFFFCC"><TD>&nbsp;</TD><TD>
+<PRE><B>procedure</B> DeselectBitmap(AHandle: HBITMAP);
+<B>var</B>
+  I: Integer;
+<B>begin</B>
+  <B>if</B> AHandle = 0 <B>then</B> Exit;
+  <B>with</B> BitmapCanvasList.LockList <B>do</B>
+    <FONT COLOR=red><B>try</B></FONT>
+      <B>for</B> I := Count - 1 <B>downto</B> 0 <B>do</B>
+        <B>with</B> TBitmapCanvas(Items[I]) <B>do</B>
+          <B>if</B> (FBitmap &lt;&gt; <B>nil</B>) <B>and</B>
+             (FBitmap.FImage.FHandle = AHandle) <B>then</B>
+            FreeContext;
+    <FONT COLOR=red><B>finally</B>
+      BitmapCanvasList.UnLockList;
+    <B>end</B>;</FONT>
+<B>end</B>;</PRE>
+  </TD><TD>&nbsp;</TD></TR>
+</TABLE>
+
+<P>
+
+<CENTER>
+  <HR noshade>
+  <FONT SIZE="-1">
+    Copyright &copy; 1999 <A HREF="mailto:anders@melander.dk">Anders Melander</A>. All rights reserved.
+  </FONT>
+</CENTER>
+
+</HTML>

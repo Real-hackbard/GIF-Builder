@@ -1,0 +1,198 @@
+[Closed Files]
+File_0=SourceModule,'D:\Incoming\[.WORK]\D7_262.ASCii HTML Creator v.0.37\Unit1.pas',0,1,1338,5,1344,0,0
+File_1=SourceModule,'C:\Program Files\Borland\Delphi7\Lib\DFFileInfo.pas',0,1,1,1,1,0,0
+File_2=SourceModule,'C:\Program Files\Borland\Delphi7\Lib\Bass_Dynamic.pas',0,1,1,1,1,0,0
+File_3=SourceModule,'C:\Eigene Dateien\FlatStyle\FlatUtilitys.pas',0,1,43,21,76,0,0
+File_4=SourceModule,'C:\Eigene Dateien\FlatStyle\TFlatTabControlUnit.pas',0,1,31,1,41,0,0
+File_5=SourceModule,'C:\Eigene Dateien\FlatStyle\HSLUtils.pas',0,1,1,1,1,0,0
+File_6=SourceModule,'C:\Eigene Dateien\FlatStyle\TFlatRegister.pas',0,4,7,19,20,0,0
+File_7=SourceModule,'C:\Eigene Dateien\FlatStyle\TFlatButtonUnit.pas',0,1,356,1,377,0,0
+File_8=SourceModule,'C:\Eigene Dateien\FlatStyle\TFlatGaugeUnit.pas',0,1,145,12,149,0,0
+File_9=SourceModule,'C:\Eigene Dateien\FlatStyle\TFlatProgressBarUnit.pas',0,1,43,34,48,0,0
+
+[Modules]
+Module0=D:\Incoming\[.WORK]\GIF Builder\GIF Builder\Unit1.pas
+Module1=D:\Incoming\[.WORK]\GIF Builder\GIF Builder\AnimatedGIFBuilder.dpr
+Count=2
+EditWindowCount=1
+
+[D:\Incoming\[.WORK]\GIF Builder\GIF Builder\Unit1.pas]
+ModuleType=SourceModule
+FormState=1
+FormOnTop=1
+
+[D:\Incoming\[.WORK]\GIF Builder\GIF Builder\AnimatedGIFBuilder.dpr]
+ModuleType=SourceModule
+FormState=0
+FormOnTop=0
+
+[D:\Incoming\[.WORK]\GIF Builder\GIF Builder\ProjectGroup1.bpg]
+FormState=0
+FormOnTop=0
+
+[EditWindow0]
+ViewCount=2
+CurrentView=1
+View0=0
+View1=1
+CodeExplorer=CodeExplorer@EditWindow0
+MessageView=MessageView@EditWindow0
+Create=1
+Visible=1
+State=0
+Left=1606
+Top=253
+Width=894
+Height=576
+MaxLeft=-1
+MaxTop=-1
+ClientWidth=878
+ClientHeight=537
+LeftPanelSize=0
+LeftPanelClients=CodeExplorer@EditWindow0
+LeftPanelData=00000400010000000C000000436F64654578706C6F726572000000000000000000000000000000000001000000000000000000000000FFFFFFFF
+RightPanelSize=0
+BottomPanelSize=0
+BottomPanelClients=MessageView@EditWindow0
+BottomPanelData=00000400010000000B0000004D657373616765566965776E030000000000000255000000000000000100000000000000000000000001000000006E03000000000000FFFFFFFF
+
+[View0]
+Module=D:\Incoming\[.WORK]\GIF Builder\GIF Builder\AnimatedGIFBuilder.dpr
+CursorX=1
+CursorY=1
+TopLine=1
+LeftCol=1
+
+[View1]
+Module=D:\Incoming\[.WORK]\GIF Builder\GIF Builder\Unit1.pas
+CursorX=1
+CursorY=1
+TopLine=1
+LeftCol=1
+
+[Watches]
+Count=0
+
+[Breakpoints]
+Count=1
+Breakpoint0='D:\Incoming\[.WORK]\Animated GIF Builder 1.0 Source\GIF Builder\Unit1.pas',251,'',0,1,'',1,0,0,'',1,'','',''
+
+[AddressBreakpoints]
+Count=0
+
+[Main Window]
+Create=1
+Visible=1
+State=2
+Left=1481
+Top=50
+Width=136
+Height=123
+MaxLeft=-1
+MaxTop=-1
+MaxWidth=1296
+MaxHeight=149
+ClientWidth=1280
+ClientHeight=110
+
+[ProjectManager]
+Create=1
+Visible=0
+State=0
+Left=369
+Top=372
+Width=446
+Height=318
+MaxLeft=-1
+MaxTop=-1
+ClientWidth=430
+ClientHeight=279
+TBDockHeight=318
+LRDockWidth=446
+Dockable=1
+
+[AlignmentPalette]
+Create=1
+Visible=0
+State=0
+Left=1480
+Top=125
+Width=156
+Height=89
+MaxLeft=-1
+MaxTop=-1
+ClientWidth=150
+ClientHeight=60
+
+[PropertyInspector]
+Create=1
+Visible=1
+State=0
+Left=1381
+Top=420
+Width=260
+Height=540
+MaxLeft=-1
+MaxTop=-1
+ClientWidth=244
+ClientHeight=501
+TBDockHeight=380
+LRDockWidth=190
+Dockable=1
+SplitPos=85
+ArrangeBy=Name
+SelectedItem=Name
+ExpandedItems=Anchors,BorderIcons,HorzScrollBar,VertScrollBar
+HiddenCategories=
+
+[ObjectTree]
+Create=1
+Visible=1
+State=0
+Left=1377
+Top=139
+Width=267
+Height=256
+MaxLeft=-1
+MaxTop=-1
+ClientWidth=251
+ClientHeight=217
+TBDockHeight=256
+LRDockWidth=190
+Dockable=1
+
+[CodeExplorer@EditWindow0]
+Create=1
+Visible=0
+State=0
+Left=0
+Top=12
+Width=140
+Height=434
+MaxLeft=-1
+MaxTop=-1
+ClientWidth=140
+ClientHeight=434
+TBDockHeight=305
+LRDockWidth=140
+Dockable=1
+
+[MessageView@EditWindow0]
+Create=1
+Visible=0
+State=0
+Left=12
+Top=0
+Width=866
+Height=85
+MaxLeft=-1
+MaxTop=-1
+ClientWidth=866
+ClientHeight=85
+TBDockHeight=85
+LRDockWidth=443
+Dockable=1
+
+[DockHosts]
+DockHostCount=0
+
