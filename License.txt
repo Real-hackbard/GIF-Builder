@@ -1,0 +1,71 @@
+////////////////////////////////////////////////////////////////////////////////
+//                                                                            //
+// Project:	GIF Graphics Object                                           //
+// Description:	TGraphic implementation of the GIF89a graphics format.        //
+// Copyright	(c) 1997-99 Anders Melander.                                  //
+//		All rights reserved.                                          //
+//                                                                            //
+////////////////////////////////////////////////////////////////////////////////
+//                                                                            //
+//              Copyright messages                                            //
+//                                                                            //
+////////////////////////////////////////////////////////////////////////////////
+//                                                                            //
+// Many of the algorithms and methods used in this library are based on work  //
+// originally done by others. The following is the copyright messages of      //
+// these libraries.                                                           //
+//                                                                            //
+////////////////////////////////////////////////////////////////////////////////
+
+Portions copyright (c) Inprise Corporation.
+
+--------------------------------------------------------------------------------
+
+The Graphics Interchange Format(c) is the Copyright property of CompuServe
+Incorporated.  GIF(sm) is a Service Mark property of CompuServe Incorporated.
+
+--------------------------------------------------------------------------------
+
+  +-------------------------------------------------------------------+
+  | Copyright 1993, David Koblas (koblas@netcom.com)                  |
+  |                                                                   |
+  | Permission to use, copy, modify, and to distribute this software  |
+  | and its documentation for any purpose is hereby granted without   |
+  | fee, provided that the above copyright notice appear in all       |
+  | copies and that both that copyright notice and this permission    |
+  | notice appear in supporting documentation.  There is no           |
+  | representations about the suitability of this software for        |
+  | any purpose.  this software is provided "as is" without express   |
+  | or implied warranty.                                              |
+  |                                                                   |
+  +-------------------------------------------------------------------+
+
+--------------------------------------------------------------------------------
+
+Copyright (C) 1989 by Jef Poskanzer.
+
+Permission to use, copy, modify, and distribute this software and its
+documentation for any purpose and without fee is hereby granted, provided that
+the above copyright notice appear in all copies and that both that copyright
+notice and this permission notice appear in supporting documentation.  This
+software is provided "as is" without express or implied warranty.
+
+--------------------------------------------------------------------------------
+
+COPYRIGHT 1994,1995 BY THE QUEST CENTER AT COLD SPRING HARBOR LABS.
+Permission granted for unlimited use, provided that Thomas Boutell and the Quest
+Center at Cold Spring Harbor Labs are given credit for the library in the
+user-visible documentation of your software. If you modify gd, we ask that you
+share the modifications with us so they can be added to the distribution.
+See gd.html for details.
+
+--------------------------------------------------------------------------------
+
+miGIF Compression - mouse and ivo's GIF-compatible compression
+            -run length encoding compression routines-
+   Copyright (C) 1998 Hutchison Avenue Software Corporation
+                 http://www.hasc.com
+                 info@hasc.com
+
+--------------------------------------------------------------------------------
+
