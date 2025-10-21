@@ -1,0 +1,187 @@
+<HTML>
+<HEAD>
+  <TITLE>TGIFImage Known Problems</TITLE>
+</HEAD>
+
+<BODY BGCOLOR="#FFFFFF">
+
+<TABLE BORDER="0" CELLSPACING="0" CELLPADDING="0" WIDTH="100%" BGCOLOR="#008080">
+  <TR>
+  <TD ALIGN="CENTER"><FONT FACE="Arial,Helvetica" COLOR="#FFFFFF" SIZE="+2">&nbsp;<IMG BORDER=0 HEIGHT=10 WIDTH=10 ALIGN=ABSCENTER SRC="dot_r.gif">&nbsp;Known Problems and Bugs&nbsp;<IMG BORDER=0 HEIGHT=10 WIDTH=10 ALIGN=ABSCENTER SRC="dot_l.gif"></FONT></TD>
+  </TR>
+</TABLE>
+
+<P>
+The following are the problems with TGIFImage that are known to exist at this
+time (23-may-1999).<BR>
+If you find a bug or encounter a problem that is not described here, please check the
+<A HREF="http://www.melander.dk/delphi/gifimage/release_notes/bugs.html">bug list</A>
+at the TGIFImage home page for up to date information. If that doesn't help, feel free
+to <A HREF="feedback.html">report the problem</A> to me.<BR>
+
+<P>
+
+<TABLE BORDER=0 ALIGN=LEFT CELLSPACING=10 WIDTH="90%">
+  <TR><TD COLSPAN=2>
+  <TABLE BORDER=0 ALIGN=LEFT CELLPADDING=2 WIDTH="30%" BGCOLOR="#008080">
+    <TR>
+      <TD><FONT FACE="Arial,Helvetica" COLOR="#FFFFFF" SIZE="+1">&nbsp;<IMG BORDER=0 HEIGHT=10 WIDTH=10 ALIGN=ABSCENTER SRC="dot_r.gif">&nbsp;General problems</FONT></TD>
+    </TR>
+  </TABLE>
+  </TD></TR>
+  <TR>
+    <TD ALIGN="CENTER" VALIGN="TOP" WIDTH=20><IMG BORDER=0 HEIGHT=20 WIDTH=20 SRC="bug.gif" ALT="bug"></TD>
+    <TD>
+    The combination of buffered, tiled and transparent draw will display the
+    background incorrectly (scaled).<BR>
+    Consider using the goDirectDraw option to circumvent this problem.<BR><BR>
+    </TD>
+  </TR>
+
+  <TR>
+    <TD ALIGN="CENTER" VALIGN="TOP" WIDTH=20><IMG BORDER=0 HEIGHT=20 WIDTH=20 SRC="bug.gif" ALT="bug"></TD>
+    <TD>
+    The combination of non-buffered (goDirectDraw) and stretched draw is some
+    times distorted with a checkerboard effect.<BR>
+    The cause of this problem is believed to be a bug in either Windows GDI or
+    certain video drivers.<BR><BR>
+    </TD>
+  </TR>
+
+  <TR>
+    <TD ALIGN="CENTER" VALIGN="TOP" WIDTH=20><IMG BORDER=0 HEIGHT=20 WIDTH=20 SRC="bug.gif" ALT="bug"></TD>
+    <TD>
+    Certain animated GIFs might have a problem when displayed inside a scroll box.<BR>
+    If an animated GIF is displayed inside a scroll box (e.g. a TScrollBox or
+    a scrollable TForm) and part of the GIF is outside the visible area, the
+    background that is buffered by TGIFImage will contain a snap shot of the
+    area outside the scroll box. This can be reproduced with the GIF Explorer
+    demo application.<BR>
+
+    This isn't a TGIFImage bug per se, but just the way the windows GDI
+    behaves. To avoid this effect, use double buffering. In Delphi 4 & 5 and
+    C++ Builder 4, one can use the double buffering capability of
+    TWinControl: Put a TImage component inside a TPanel component and set the
+    TPanel's DoubleBuffering property to True at run-time. In older versions of
+    Delphi and C++ Builder, a TBitmap can be used for double buffering. See the
+    Thread demo application for an example of this.<BR><BR>
+    </TD>
+  </TR>
+
+  <TR>
+    <TD ALIGN="CENTER" VALIGN="TOP" WIDTH=20><IMG BORDER=0 HEIGHT=20 WIDTH=20 SRC="bug.gif" ALT="bug"></TD>
+    <TD>
+    Buffered display flickers when TGIFImage is used by a transparent TImage
+    component to display an animated GIF.<BR>
+    This is a problem with TImage caused by the fact that TImage was designed
+    with static images in mind. Not much I can do about it. Try using double
+    buffering (see above).<BR><BR>
+    </TD>
+  </TR>
+
+  <TR>
+    <TD ALIGN="CENTER" VALIGN="TOP" WIDTH=20><IMG BORDER=0 HEIGHT=20 WIDTH=20 SRC="bug.gif" ALT="bug"></TD>
+    <TD>
+    The VCL unit <CODE>graphics.pas</CODE> in Delphi 3.0 contains a bug that
+    causes multi-threaded applications to hang if they use TBitmap. If you plan
+    to use the multi-threaded GIF painter (which is the default for TGIFImage)
+    or use TGIFImage or TBitmap in multi-threaded applications (Delphi 3 ISAPI/NSAPI
+    applications are multi-threaded) you'll have to
+    fix the bug in <CODE>graphics.pas</CODE>.<BR>
+
+    The modification you need to perform on <CODE>graphics.pas</CODE> is
+    described <A HREF="bugfix01.html">here</A>.<BR>
+
+    The bug has been fixed by Borland in Delphi 3.01.<BR><BR>
+    </TD>
+  </TR>
+
+  <TR>
+    <TD ALIGN="CENTER" VALIGN="TOP" WIDTH=20><IMG BORDER=0 HEIGHT=20 WIDTH=20 SRC="bug.gif" ALT="bug"></TD>
+    <TD>
+    The <CODE>ByteSwapColors</CODE> procedure of the Delphi 3.0
+    <CODE>graphics.pas</CODE> unit contains a bug that affects TGIFImage.<BR>
+
+    <CODE>ByteSwapColors</CODE> is used various places in <CODE>graphics.pas</CODE>
+    to convert an array of RGB values (TPaletteEntry) to BGR values (TRGBQuad) and vice
+    versa. The problem is that the first entry of the array is never converted.<BR>
+
+    The problem does not exist in versions of Delphi prior to 3.0 since
+    they use a different method to convert between RGB and BGR.<BR>
+
+    The modification you need to perform on <CODE>graphics.pas</CODE> is
+    described <A HREF="bugfix02.html">here</A>.<BR>
+
+    The bug has been fixed by Borland in Delphi 3.01.<BR><BR>
+    </TD>
+  </TR>
+
+  <TR>
+    <TD ALIGN="CENTER" VALIGN="TOP" WIDTH=20><IMG BORDER=0 HEIGHT=20 WIDTH=20 SRC="bug.gif" ALT="bug"></TD>
+    <TD>
+    The <CODE>TBitmap.SetPixelFormat</CODE> procedure of the Delphi 3.x
+    <CODE>graphics.pas</CODE> unit contains a resource leak.<BR>
+
+    The resource leak only occurs when converting a TBitmap to pf8bit pixel format.
+    Although TGIFimage contains a work-around for this bug, and thus isn't affected,
+    your application can still suffer from the bug if you use TBitmaps or
+    TJPEGImages.<BR>
+
+    The modification you need to perform on <CODE>graphics.pas</CODE> is
+    described <A HREF="bugfix03.html">here</A>.<BR>
+
+    The bug has been fixed by Borland in Delphi 4.<BR><BR>
+    </TD>
+  </TR>
+
+  <TR><TD COLSPAN=2>
+  <TABLE BORDER=0 ALIGN=LEFT CELLPADDING=2 WIDTH="30%" BGCOLOR="#008080">
+    <TR>
+      <TD><FONT FACE="Arial,Helvetica" COLOR="#FFFFFF" SIZE="+1">&nbsp;<IMG BORDER=0 HEIGHT=10 WIDTH=10 ALIGN=ABSCENTER SRC="dot_r.gif">&nbsp;C++ Builder problems</FONT></TD>
+    </TR>
+  </TABLE>
+  </TD></TR>
+  <TR>
+    <TD ALIGN="CENTER" VALIGN="TOP" WIDTH=20><IMG BORDER=0 HEIGHT=20 WIDTH=20 SRC="bug.gif" ALT="bug"></TD>
+    <TD>
+    When compiling the TGIFImage demo applications with C++ Builder 4, you might get the
+    following errors:<BR>
+    <I>Unable to find package import</I> for inetdb40.bpi and inet40.bpi<BR>
+    <I>Unable to open file DCLUSR40.LIB</I><BR>
+    This is caused by a bug in C++ Builder's conversion of the projects
+    from C++ Builder version 3 to version 4 format. To resolve the problem, do
+    the following for all the demo make files (.BPR files):<BR>
+    <TABLE BORDER=0 ALIGN=LEFT CELLPADDING=0 WIDTH="80%">
+      <TR>
+        <TD ALIGN="CENTER" VALIGN="TOP" WIDTH=15><IMG BORDER=0 HEIGHT=15 WIDTH=15 SRC="1g.gif" ALT="1"></TD>
+        <TD>Open the .BPR file in notepad.</TD>
+      </TR>
+      <TR>
+        <TD ALIGN="CENTER" VALIGN="TOP" WIDTH=15><IMG BORDER=0 HEIGHT=15 WIDTH=15 SRC="2g.gif" ALT="2"></TD>
+        <TD>In the SPARELIBS line, remove the reference to DCLUSR40.lib.</TD>
+      </TR>
+      <TR>
+        <TD ALIGN="CENTER" VALIGN="TOP" WIDTH=15><IMG BORDER=0 HEIGHT=15 WIDTH=15 SRC="3g.gif" ALT="3"></TD>
+        <TD>In the PACKAGES line, remove the references to inetdb40.bpi and inet40.bpi</TD>
+      </TR>
+      <TR>
+        <TD ALIGN="CENTER" VALIGN="TOP" WIDTH=15><IMG BORDER=0 HEIGHT=15 WIDTH=15 SRC="4g.gif" ALT="4"></TD>
+        <TD>Save the file.<BR><BR></TD>
+      </TR>
+    </TABLE>
+    </TD>
+  </TR>
+
+</TABLE>
+
+<BR CLEAR=all>&nbsp;
+
+<CENTER>
+<HR NOSHADE>
+
+<FONT SIZE="-1">
+  Copyright &copy; 1998-99 <A HREF="mailto:anders@melander.dk">Anders Melander</A>. All rights reserved.
+</FONT>
+</CENTER>
+</BODY>
+</HTML>

@@ -1,0 +1,74 @@
+////////////////////////////////////////////////////////////////////////////////
+//                                                                            //
+// Project:	GIF Graphics Object                                           //
+// Description:	TGraphic implementation of the GIF89a graphics format.        //
+// Copyright	(c) 1997-99 Anders Melander.                                  //
+//		All rights reserved.                                          //
+//                                                                            //
+////////////////////////////////////////////////////////////////////////////////
+//                                                                            //
+//              Credits                                                       //
+//                                                                            //
+////////////////////////////////////////////////////////////////////////////////
+//                                                                            //
+// Many of the algorithms and methods used in this library are based on work  //
+// originally done by others:                                                 //
+//                                                                            //
+////////////////////////////////////////////////////////////////////////////////
+
+The on-line help was created with (a few clicks using) Time2Help.
+  * http://www.time2help.com
+
+The color quantization classes were adapted from:
+  * ColorQuantizationLibrary and PaletteLibrary by Earl F. Glynn.
+    They can be found at efg's Computer Lab: http://www.efg2.com/
+    Earl also helped me with my English grammer :-)
+
+The "TBitmap.PixelFormat := pf8bit" leak was fixed by:
+  * Greg Chapman <glc@well.com>
+  with help from:
+  * Yorai Aminov <yaminov@trendline.co.il> and
+  * Mark Zamoyta <markcaz@earthlink.net>
+
+The Delphi 2.x port was based on work done by:
+  * Reinier Sterkenburg <r.p.sterkenburg@dataweb.nl>
+    Reinier has also been *very* helpful with beta testing.
+
+TransparentStretchBlt was fixed by:
+  * Brian Lowe of Acro Technology Inc. <brianlow@acrotechweb.com>
+  and brought to my attention by:
+  * Stefan Hoffmeister <Stefan.Hoffmeister@Uni-Passau.de>
+
+The original Floyd Steinberg dithering routine was based on work done by:
+  * The Independent JPEG Group.
+  * David Ullrich <ullrich@hardy.math.okstate.edu>, who also helped me weed
+    out a few bugs in my implementation. Thanks.
+  * Jef Poskanzer in ppmquant.c from the netpbm library
+
+The compressor is based on:
+  * ppmtogif.c (pbmplus) by Jef Poskanzer and others.
+  * gifcompr.c, gifencode.c (GIFENCOD) by David Rowley <mgardi@watdscu.waterloo.edu>.
+  * writegif.c (GIFTOOL) by David Koblas <koblas@netcom.com>
+  * compress.c - File compression ala IEEE Computer, June 1984, by
+    Spencer W. Thomas       (decvax!harpo!utah-cs!utah-gr!thomas)
+    Jim McKie               (decvax!mcvax!jim)
+    Steve Davies            (decvax!vax135!petsd!peora!srd)
+    Ken Turkowski           (decvax!decwrl!turtlevax!ken)
+    James A. Woods          (decvax!ihnp4!ames!jaw)
+    Joe Orost               (decvax!vax135!petsd!joe)
+  * gcd.c (gd) by Tom Boutell <boutell@boutell.com>
+
+The decompressor is based on work done by
+  * readgif.c (GIFTOOL) by David Koblas <koblas@netcom.com>
+
+The hash routines were adapted from
+  * gif_hash.c (gif-lib) by Gershon Elber <gershon@cs.utah.edu>
+  * with help from Filip Larsen <filip@post4.tele.dk>
+
+Version 0.01 was based on work done by:
+  * Sean Wenzel, Compuserve 71736,1245
+  * Richard Dominelli, RichardA_Dominelli@mskcc.org
+  * Richard Shotbolt, Compuserve 100327,2305
+  * Stefan Böther, stefc@fabula.com
+  * Reinier Sterkenburg, r.p.sterkenburg@dataweb.nl
+

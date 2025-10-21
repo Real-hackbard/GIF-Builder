@@ -1,0 +1,310 @@
+<HTML>
+<HEAD>
+  <TITLE>What's new in TGIFImage version 2.0</TITLE>
+</HEAD>
+
+<BODY BGCOLOR="#FFFFFF">
+
+<TABLE BORDER="0" CELLSPACING="0" CELLPADDING="0" WIDTH="100%" BGCOLOR="#008080">
+  <TR>
+  <TD ALIGN="CENTER"><FONT FACE="Arial,Helvetica" COLOR="#FFFFFF" SIZE="+2">&nbsp;<IMG BORDER=0 HEIGHT=10 WIDTH=10 ALIGN=ABSCENTER SRC="dot_r.gif">&nbsp;What's new in TGIFImage version 2.0&nbsp;<IMG BORDER=0 HEIGHT=10 WIDTH=10 ALIGN=ABSCENTER SRC="dot_l.gif"></FONT></TD>
+  </TR>
+</TABLE>
+
+<P>
+The following is a brief list of new (<IMG BORDER=0 HEIGHT=10 WIDTH=10 SRC="plus.gif" ALT="New">),
+obsolete (<IMG BORDER=0 HEIGHT=10 WIDTH=10 SRC="minus.gif" ALT="Obsolete">) and
+changed (<IMG BORDER=0 HEIGHT=10 WIDTH=10 SRC="recycle.gif" ALT="Changed">)
+functionality as well as bug fixes (<IMG BORDER=0 HEIGHT=10 WIDTH=10 SRC="bug.gif" ALT="Bug fix">) made in
+TGIFImage since the previous release (version 1.5).
+
+<P>The list only includes high level changes that might affect end-users. For a
+complete list of modifications, see the file <A HREF="history.txt">history.txt</A><BR>
+If you are upgrading from a version prior to version 1.5, you can also read the
+list of <A HREF="whatsnew0150.html">version 1.5 changes</A>
+
+<P>&nbsp;<BR>
+
+<TABLE BORDER="0" ALIGN=LEFT CELLSPACING=8 WIDTH="90%">
+<!-- General -->
+  <TR>
+  <TD WIDTH="25%" COLSPAN="2" BGCOLOR="#008080"><FONT FACE="Arial,Helvetica" COLOR="#FFFFFF" SIZE="+1">&nbsp;<IMG BORDER=0 HEIGHT=10 WIDTH=10 ALIGN=ABSCENTER SRC="dot_r.gif">&nbsp;General</FONT></TD>
+  <TD>&nbsp;</TD>
+  </TR>
+
+  <TR>
+    <TD ALIGN="CENTER" VALIGN="TOP" WIDTH=20><IMG BORDER=0 HEIGHT=20 WIDTH=20 SRC="plus.gif" ALT="New"></TD>
+    <TD COLSPAN="2"><FONT FACE="Arial,Helvetica">
+    The TGIFImage library now supports Delphi 2, 3 and C++ Builder 3.<BR><FONT SIZE="-1">
+    Most of the demo applications have been ported to Delphi 2, but since I have
+    no expertise in C++ Builder there are no demos for it at this time.
+    </FONT></FONT></TD>
+  </TR>
+
+  <TR>
+    <TD ALIGN="CENTER" VALIGN="TOP" WIDTH=20><IMG BORDER=0 HEIGHT=20 WIDTH=20 SRC="recycle.gif" ALT="Changed"></TD>
+    <TD COLSPAN="2"><FONT FACE="Arial,Helvetica">
+    Compliance with Netscape Navigator has been improved after studying
+    the Netscape Mozilla source code.<BR><FONT SIZE="-1">
+    The improvements mostly has to do with animation timing, application
+    extensions and tolerance against invalid GIFs.
+    </FONT></FONT></TD>
+  </TR>
+
+  <TR>
+    <TD ALIGN="CENTER" VALIGN="TOP" WIDTH=20><IMG BORDER=0 HEIGHT=20 WIDTH=20 SRC="recycle.gif" ALT="Changed"></TD>
+    <TD COLSPAN="2"><FONT FACE="Arial,Helvetica">
+    Animation speed is now more Netscape Navigator like.<BR><FONT SIZE="-1">
+    Tweaked animation timing values to compensate for the fact that we perform
+    better than Mozilla. Added FAST_AS_HELL conditional define to disable tweaks.
+    </FONT></FONT></TD>
+  </TR>
+
+  <TR>
+    <TD ALIGN="CENTER" VALIGN="TOP" WIDTH=20><IMG BORDER=0 HEIGHT=20 WIDTH=20 SRC="plus.gif" ALT="New"></TD>
+    <TD COLSPAN="2"><FONT FACE="Arial,Helvetica">
+    New global variable GIFMaximumDelay.<BR><FONT SIZE="-1">
+    Specifies the maximum possible animation delay for non-threaded paint. This
+    value is used to avoid that a very long and slow GIF hangs the system.
+    </FONT></FONT></TD>
+  </TR>
+
+  <TR>
+    <TD ALIGN="CENTER" VALIGN="TOP" WIDTH=20><IMG BORDER=0 HEIGHT=20 WIDTH=20 SRC="plus.gif" ALT="New"></TD>
+    <TD COLSPAN="2"><FONT FACE="Arial,Helvetica">
+    Added dummy component registration procedure "Register" to allow design time
+    GIF paint options to be set and add design time support to Delphi 2.<BR><FONT SIZE="-1">
+    The Register procedure by default disables the goLoop option at design
+    time to avoid using CPU resources (and distract the developer). GIFs displayed
+    in a TImage component will animate once and then stop.
+    </FONT></FONT></TD>
+  </TR>
+
+  <TR>
+    <TD ALIGN="CENTER" VALIGN="TOP" WIDTH=20><IMG BORDER=0 HEIGHT=20 WIDTH=20 SRC="bug.gif" ALT="Bug fix"></TD>
+    <TD COLSPAN="2"><FONT FACE="Arial,Helvetica">
+    The very nasty "TBitmap.PixelFormat := pf8bit" resource leak has finally
+    been fixed.<BR><FONT SIZE="-1">
+    This bug was mentioned in the version 1.5 list of "known problems" and
+    manifested itself when GIFs were created/displayed/deleted numerous times.<BR>
+    Since this is a bug in Delphi 3's TBitmap class, it also affects use of
+    TBitmap and TJPEGImage on 256 color systems.<BR>
+    The bug has been fixed in C++ Builder 3.
+    </FONT></FONT></TD>
+  </TR>
+
+  <TR>
+    <TD ALIGN="CENTER" VALIGN="TOP" WIDTH=20><IMG BORDER=0 HEIGHT=20 WIDTH=20 SRC="minus.gif" ALT="Obsolete"></TD>
+    <TD COLSPAN="2"><FONT FACE="Arial,Helvetica">
+    All PaintLock functions has been removed.<BR><FONT SIZE="-1">
+    Since TGIFImage uses the TThread.Synchronize method to protect non-reentrant
+    code, the PaintLock functions were found to be totally superfluous. Their
+    use were also causing a major bottle neck when running multiple threads on
+    the same image.<BR>
+    Their removal has caused a general performance improvement. Even for single
+    threaded paint operations.
+    </FONT></FONT></TD>
+  </TR>
+
+  <TR>
+    <TD ALIGN="CENTER" VALIGN="TOP" WIDTH=20><IMG BORDER=0 HEIGHT=20 WIDTH=20 SRC="plus.gif" ALT="New"></TD>
+    <TD COLSPAN="2"><FONT FACE="Arial,Helvetica">
+    Added conditional TPicture registration via the REGISTER_TGIFIMAGE
+    conditional define.<BR><FONT SIZE="-1">
+    This should make "some" coexistence with other GIF libraries possible (not
+    that I can imagine why you would wish to disable TGIFImage).
+    </FONT></FONT></TD>
+  </TR>
+
+
+<!-- TGIFImage class -->
+  <TR><TD>&nbsp;</TD></TR>
+  <TR>
+  <TD WIDTH=20 COLSPAN="2" BGCOLOR="#008080"><FONT FACE="Arial,Helvetica" COLOR="#FFFFFF" SIZE="+1">&nbsp;<IMG BORDER=0 HEIGHT=10 WIDTH=10 ALIGN=ABSCENTER SRC="dot_r.gif">&nbsp;TGIFImage class</FONT></TD>
+  <TD></TD>
+  </TR>
+
+  <TR>
+    <TD ALIGN="CENTER" VALIGN="TOP" WIDTH=20><IMG BORDER=0 HEIGHT=20 WIDTH=20 SRC="recycle.gif" ALT="Changed"></TD>
+    <TD COLSPAN="2"><FONT FACE="Arial,Helvetica">
+    The OnProgress and OnChange properties are now copied when assigning one
+    TGIFImage to another.
+    </FONT></TD>
+  </TR>
+
+  <TR>
+    <TD ALIGN="CENTER" VALIGN="TOP" WIDTH=20><IMG BORDER=0 HEIGHT=20 WIDTH=20 SRC="recycle.gif" ALT="Changed"></TD>
+    <TD COLSPAN="2"><FONT FACE="Arial,Helvetica">
+    TGIFImage.Assign now generates OnProgress events.<BR><FONT SIZE="-1">
+    The sProgressCopying message is used when copying the image data.
+    </FONT></FONT></TD>
+  </TR>
+
+  <TR>
+    <TD ALIGN="CENTER" VALIGN="TOP" WIDTH=20><IMG BORDER=0 HEIGHT=20 WIDTH=20 SRC="plus.gif" ALT="New"></TD>
+    <TD COLSPAN="2"><FONT FACE="Arial,Helvetica">
+    New events: OnStartPaint, OnPaint, OnLoop and OnEndPaint.<BR><FONT SIZE="-1">
+    OnStartPaint occurs when the animation starts.<BR>
+    OnPaint occurs just before each frame is painted.<BR>
+    OnLoop occurs when the animation wraps and starts over again.<BR>
+    OnEndPaint occurs when the animation ends.<BR>
+    </FONT></FONT></TD>
+  </TR>
+
+  <TR>
+    <TD ALIGN="CENTER" VALIGN="TOP" WIDTH=20><IMG BORDER=0 HEIGHT=20 WIDTH=20 SRC="bug.gif" ALT="Bug fix"></TD>
+    <TD COLSPAN="2"><FONT FACE="Arial,Helvetica">
+    Bug in paint of empty image fixed.<BR><FONT SIZE="-1">
+    A bug in InternalPaint that caused an "Out of system resources" error when
+    width or height of the paint rect was <= 0 and multiple paint threads were
+    in use has been fixed.
+    </FONT></FONT></TD>
+  </TR>
+
+  <TR>
+    <TD ALIGN="CENTER" VALIGN="TOP" WIDTH=20><IMG BORDER=0 HEIGHT=20 WIDTH=20 SRC="plus.gif" ALT="New"></TD>
+    <TD COLSPAN="2"><FONT FACE="Arial,Helvetica">
+    Added clipboard support.<BR><FONT SIZE="-1">
+    The LoadFromClipboardFormat and SaveToClipboardFormat methods can now be
+    used with TGIFImage.
+    </FONT></FONT></TD>
+  </TR>
+
+
+<!-- TGIFSubImage class -->
+  <TR><TD>&nbsp;</TD></TR>
+  <TR>
+  <TD WIDTH=20 COLSPAN="2" BGCOLOR="#008080"><FONT FACE="Arial,Helvetica" COLOR="#FFFFFF" SIZE="+1">&nbsp;<IMG BORDER=0 HEIGHT=10 WIDTH=10 ALIGN=ABSCENTER SRC="dot_r.gif">&nbsp;TGIFSubImage class</FONT></TD>
+  <TD></TD>
+  </TR>
+
+  <TR>
+    <TD ALIGN="CENTER" VALIGN="TOP" WIDTH=20><IMG BORDER=0 HEIGHT=20 WIDTH=20 SRC="bug.gif" ALT="Bug fix"></TD>
+    <TD COLSPAN="2"><FONT FACE="Arial,Helvetica">
+    Import of bitmaps in pf1bit format has been fixed.
+    </FONT></TD>
+  </TR>
+
+  <TR>
+    <TD ALIGN="CENTER" VALIGN="TOP" WIDTH=20><IMG BORDER=0 HEIGHT=20 WIDTH=20 SRC="bug.gif" ALT="Bug fix"></TD>
+    <TD COLSPAN="2"><FONT FACE="Arial,Helvetica">
+    Import of bitmaps via TCanvas.Pixels has been fixed.<BR><FONT SIZE="-1">
+    It's still slow as h*ll but that shouldn't matter much since it isn't
+    really used anymore.
+    </FONT></FONT></TD>
+  </TR>
+
+  <TR>
+    <TD ALIGN="CENTER" VALIGN="TOP" WIDTH=20><IMG BORDER=0 HEIGHT=20 WIDTH=20 SRC="recycle.gif" ALT="Changed"></TD>
+    <TD COLSPAN="2"><FONT FACE="Arial,Helvetica">
+    Modified DoGetBitmap and DoGetDitherBitmap to circumvent Delphi 2's
+    braindead palette behaviour.<BR><FONT SIZE="-1">
+    When realizing a palette the first and last 10 palette entries are always
+    set to the system palette colors no matter what palette we attempt to
+    define. This is basically a Windows issue but since Delphi 3 doesn't have
+    this problem, I blame it on Delphi 2.
+    </FONT></FONT></TD>
+  </TR>
+
+  <TR>
+    <TD ALIGN="CENTER" VALIGN="TOP" WIDTH=20><IMG BORDER=0 HEIGHT=20 WIDTH=20 SRC="bug.gif" ALT="Bug fix"></TD>
+    <TD COLSPAN="2"><FONT FACE="Arial,Helvetica">
+    Bug in load of Adobe GIFs fixed.<BR><FONT SIZE="-1">
+    GIFs containing the non compliant "Adobe Application Extensions" are now
+    loaded correctly.
+    </FONT></FONT></TD>
+  </TR>
+
+  <TR>
+    <TD ALIGN="CENTER" VALIGN="TOP" WIDTH=20><IMG BORDER=0 HEIGHT=20 WIDTH=20 SRC="recycle.gif" ALT="Changed"></TD>
+    <TD COLSPAN="2"><FONT FACE="Arial,Helvetica">
+    Decompress now clears the image memory before the image is decompressed.<BR><FONT SIZE="-1">
+    This should remove "random noise" when displaying incomplete or corrupted images.
+    </FONT></FONT></TD>
+  </TR>
+
+
+<!-- TGIFPainter class -->
+  <TR><TD>&nbsp;</TD></TR>
+  <TR>
+  <TD WIDTH=20 COLSPAN="2" BGCOLOR="#008080"><FONT FACE="Arial,Helvetica" COLOR="#FFFFFF" SIZE="+1">&nbsp;<IMG BORDER=0 HEIGHT=10 WIDTH=10 ALIGN=ABSCENTER SRC="dot_r.gif">&nbsp;TGIFPainter class</FONT></TD>
+  <TD></TD>
+  </TR>
+
+  <TR>
+    <TD ALIGN="CENTER" VALIGN="TOP" WIDTH=20><IMG BORDER=0 HEIGHT=20 WIDTH=20 SRC="bug.gif" ALT="Bug fix"></TD>
+    <TD COLSPAN="2"><FONT FACE="Arial,Helvetica">
+    A bug in TGIFPainter.Stop that caused access violations has been fixed.<BR><FONT SIZE="-1">
+    When drawing in main thread the TGIFPainter object was deleted before the
+    Execute method had finished.
+    </FONT></FONT></TD>
+  </TR>
+
+  <TR>
+    <TD ALIGN="CENTER" VALIGN="TOP" WIDTH=20><IMG BORDER=0 HEIGHT=20 WIDTH=20 SRC="plus.gif" ALT="New"></TD>
+    <TD COLSPAN="2"><FONT FACE="Arial,Helvetica">
+    New events: OnStartPaint, OnPaint, OnLoop and OnEndPaint.<BR><FONT SIZE="-1">
+    OnStartPaint occurs when the animation starts.<BR>
+    OnPaint occurs just before each frame is painted.<BR>
+    OnLoop occurs when the animation wraps and starts over again.<BR>
+    OnEndPaint occurs when the animation ends.<BR>
+    </FONT></FONT></TD>
+  </TR>
+
+  <TR>
+    <TD ALIGN="CENTER" VALIGN="TOP" WIDTH=20><IMG BORDER=0 HEIGHT=20 WIDTH=20 SRC="plus.gif" ALT="New"></TD>
+    <TD COLSPAN="2"><FONT FACE="Arial,Helvetica">
+    Added ActiveImage property.<BR><FONT SIZE="-1">
+    Specifies the index number of the frame being displayed.
+    </FONT></FONT></TD>
+  </TR>
+
+  <TR>
+    <TD ALIGN="CENTER" VALIGN="TOP" WIDTH=20><IMG BORDER=0 HEIGHT=20 WIDTH=20 SRC="recycle.gif" ALT="Changed"></TD>
+    <TD COLSPAN="2"><FONT FACE="Arial,Helvetica">
+    Added Exception trap to TGIFPainter.Execute.<BR><FONT SIZE="-1">
+    This was nescessary to make sure that an exception doesn't halt the thread
+    and thus causes the application to hang because it is waiting for the
+    thread to be deleted.
+    </FONT></FONT></TD>
+  </TR>
+
+<!-- Misc classes -->
+  <TR><TD>&nbsp;</TD></TR>
+  <TR>
+  <TD WIDTH=20 COLSPAN="2" BGCOLOR="#008080"><FONT FACE="Arial,Helvetica" COLOR="#FFFFFF" SIZE="+1">&nbsp;<IMG BORDER=0 HEIGHT=10 WIDTH=10 ALIGN=ABSCENTER SRC="dot_r.gif">&nbsp;Misc classes</FONT></TD>
+  <TD></TD>
+  </TR>
+
+  <TR>
+    <TD ALIGN="CENTER" VALIGN="TOP" WIDTH=20><IMG BORDER=0 HEIGHT=20 WIDTH=20 SRC="bug.gif" ALT="Bug fix"></TD>
+    <TD COLSPAN="2"><FONT FACE="Arial,Helvetica">
+    A memory allocation bug in TColorMap.SetCapacity has been fixed.<BR><FONT SIZE="-1">
+    Too little memory was being reallocated when the color map was resized (e.g. when importing a TBitmap).
+    </FONT></FONT></TD>
+  </TR>
+
+  <TR>
+    <TD ALIGN="CENTER" VALIGN="TOP" WIDTH=20><IMG BORDER=0 HEIGHT=20 WIDTH=20 SRC="recycle.gif" ALT="Changed"></TD>
+    <TD COLSPAN="2"><FONT FACE="Arial,Helvetica">
+    A harmless and unavoidable compiler warning has been disabled.<BR><FONT SIZE="-1">
+    The warning was:
+    <PRE>
+    Warning: GIFImage.pas(xxx): Method 'Create' hides virtual method of base type 'TGIFItem'.
+    </PRE>
+    </FONT></FONT></TD>
+  </TR>
+
+</TABLE>
+
+<BR CLEAR=all>&nbsp;
+
+<CENTER>
+<HR NOSHADE>
+
+<FONT SIZE="-1">
+  Copyright &copy; 1998 <A HREF="mailto:anders@melander.dk">Anders Melander</A>. All rights reserved.
+</FONT>
+</CENTER>
+</BODY>
+</HTML>

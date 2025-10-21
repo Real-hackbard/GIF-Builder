@@ -1,0 +1,251 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/REC-html40/loose.dtd">
+<HTML>
+<!--	The Structure of Frames
++-----+------+	["GIF89M.htm"]
+| toc |      |	|
++-----+ spec |	+--+--("GIF89M1.htm", "GIF89M_toc")
+|index|      |	|  +--("GIF89M2.htm", "GIF89M_index") -- this
++-----+------+	+-----("GIF89M3.htm", "GIF89M_spec")
+-->
+<HEAD>
+<meta name="ROBOTS"		content="NOINDEX">
+<meta name="last_updated"	content="1999-03-08T00:00:00+0900">
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta http-equiv="Content-Script-Type"	content="text/javascript">
+<meta http-equiv="Content-Style-Type"	content="text/css">
+<meta name="author"		content="Yukinori Watanabe">
+<meta name="author_email"	content="xyuki@iname.com">
+<meta name="copyright"		content="HTML conversion Copyright (C)1998 Yukinori Watanabe">
+<title>Index (A Child Frame of GIF89M.htm)</title>
+<link rev="made"		href="mailto:xyuki@iname.com">
+<link rel="start" type="text/html" href="GIF89M.htm">
+<style>
+<!--
+BODY		{color:#000000; background-color:#fffff0; }
+A		{color:#000000; text-decoration:none;}
+A:hover		{color:#000000; background-color:#ffcc66;}
+A:active	{color:#ff0000;}
+A:visited	{color:#000000;}
+A.abc		{color:#000000; text-decoration:none;}
+A.abc:hover	{color:#000000; background-color:#ccffff;}
+A:abc:visited	{color:#000000;}
+SMALL		{font-size:12px; font-family: verdana, helvetica; }
+INPUT		{font-size:12px; font-family: verdana, helvetica; }
+-->
+</style>
+<script language="JavaScript">
+<!--
+var	JSVersion = 1.0;
+var	bIE4Win32 = false;
+//-->
+</script>
+<script language="JavaScript1.1">
+<!--
+JSVersion = 1.1;
+//-->
+</script>
+<script language="JavaScript">
+<!--
+if (window.name != "GIF89M_index") {
+	if (JSVersion>=1.1)
+		window.location.replace("GIF89M.htm")
+	else	window.location.href =  "GIF89M.htm"
+}
+//-->
+</script>
+<script language="JavaScript1.2">
+<!--
+bIE4Win32 = (typeof(document.all)=="object") && (navigator.platform=="Win32");
+
+var	oRange = null;
+var	bReset = true;
+
+function resetRange() {
+	oRange = parent.GIF89M_spec.document.body.createTextRange();
+}
+
+function findIt(oForm) {
+var	BIGNUM = 10000000;
+var	sKey = oForm.key.value;
+	if (sKey == "") return;
+var	bBackward = oForm.dir[1].checked;
+var	iSearchScope = bBackward ? -BIGNUM : BIGNUM;
+var	iFlags = 0;
+	if (oForm.bword.checked) iFlags |= 2;
+	if (oForm.bcase.checked) iFlags |= 4;
+	if (bReset) {
+		bReset = false;
+		resetRange();
+	}
+	if (oRange.findText(sKey, iSearchScope, iFlags)) {
+		oRange.select();
+		oRange.scrollIntoView();
+		oRange.collapse(bBackward);
+	} else {
+		alert("not found");
+		bReset = true;
+	}
+}
+function cancelReset() {
+	bReset = false;
+}
+//-->
+</script>
+</HEAD>
+
+<BODY bgcolor="#fffff0" text="#000000" link="#000000" vlink="#000000" alink="#ff0000">
+
+<script language="JavaScript">
+</script>
+<noscript>
+	<div align="center"><!--#geoguide--></div>
+</noscript>
+
+<div align="center">
+
+<table bgcolor="#ffffff" width="100%" border="0" cellspacing="1" cellpadding="0">
+<colgroup><col align="left"></colgroup>
+<tr><td bgcolor="#ffcccc" align="center"><b><font face="'Courier New',Courier" size="+1"><a class="abc" name="ABC" href="#A">A</a><a class="abc" href="#B">B</a><a class="abc" href="#C">C</a><a class="abc" href="#D">D</a><a class="abc" href="#E">E</a><font color="#999999">F</font><a class="abc" href="#G">G</a><a class="abc" href="#H">H</a><a class="abc" href="#I">I</a><font color="#999999">JK</font><br><a class="abc" href="#L">L</a><a class="abc" href="#M">M</a><font color="#999999">N</font><a class="abc" href="#O">O</a><a class="abc" href="#P">P</a><a class="abc" href="#Q">Q</a><a class="abc" href="#R">R</a><a class="abc" href="#S">S</a><a class="abc" href="#T">T</a><a class="abc" href="#U">U</a><a class="abc" href="#V">V</a></font></b></td></tr>
+
+<script language="JavaScript1.2">
+<!--
+if (typeof(window.find) == "function") {
+	document.writeln('<form><tr><td align="left" bgColor="#ccccff"><input type="button" value="Find..." onClick="parent.GIF89M_spec.find()"><\/td><\/tr><\/form>')
+} else if (bIE4Win32) {
+	document.write('<form style="font-size:10px"><tr><td align="left" bgColor="#ccccff">');
+	document.write('<input type="text" name="key" size="12" onChange="resetRange()"');
+	document.write('><input type="button" value="Find" onClick="findIt(this.form)"><br>');
+	document.write('<span style="font-size:10px">');
+	document.write('<input type="radio" name="dir" onClick="cancelReset()" checked>forward');
+	document.write('<input type="radio" name="dir" onClick="cancelReset()">backward<br>');
+	document.write('<input type="checkbox" name="bword" onClick="cancelReset()">whole words');
+	document.write('<input type="checkbox" name="bcase" onClick="cancelReset()">case');
+	document.write('<\/span>');
+	document.write('<\/td><\/tr><\/form>');
+}
+//-->
+</script>
+
+<tr><td bgcolor="#99ffcc"><a name="A"><b>A</b></a><small> [<a href="#ABC">ABC...</a>]</small></td></tr>
+<tr><td bgcolor="#ccffcc"><small><a target="GIF89M_spec" href="GIF89M3.htm#ActiveColorTable">Active Color Table</a></small></td></tr>
+<tr><td bgcolor="#ccffcc"><small><a target="GIF89M_spec" href="GIF89M3.htm#26ApplicationAuthenticationCode">Application Authentication Code</a></small></td></tr>
+<tr><td bgcolor="#ccffcc"><small><a target="GIF89M_spec" href="GIF89M3.htm#26ApplicationIdentifier">Application Identifier</a></small></td></tr>
+<tr><td bgcolor="#99ffcc"><a name="B"><b>B</b></a><small> [<a href="#ABC">ABC...</a>]</small></td></tr>
+<tr><td bgcolor="#ccffcc"><small><a target="GIF89M_spec" href="GIF89M3.htm#18BackgroundColorIndex">Background Color Index</a></small></td></tr>
+<tr><td bgcolor="#ccffcc"><small><a target="GIF89M_spec" href="GIF89M3.htm#BlocksExtensionsScope">Block</a></small></td></tr>
+<tr><td bgcolor="#ccffcc"><small>&nbsp;&nbsp;<a target="GIF89M_spec" href="GIF89M3.htm#ControlBlocks">Control ~</a></small></td></tr>
+<tr><td bgcolor="#ccffcc"><small>&nbsp;&nbsp;<a target="GIF89M_spec" href="GIF89M3.htm#Graphic-RenderingBlocks">Graphic-Rendering ~</a></small></td></tr>
+<tr><td bgcolor="#ccffcc"><small>&nbsp;&nbsp;<a target="GIF89M_spec" href="GIF89M3.htm#SpecialPurposeBlocks">Special Purpose ~</a></small></td></tr>
+<tr><td bgcolor="#ccffcc"><small>&nbsp;&nbsp;<a target="GIF89M_spec" href="GIF89M3.htm#UnlabeledBlocks">Unlabeled ~</a></small></td></tr>
+<tr><td bgcolor="#ccffcc"><small><a target="GIF89M_spec" href="GIF89M3.htm#BlockSizes">Block Size</a></small></td></tr>
+<tr><td bgcolor="#ccffcc"><small><a target="GIF89M_spec" href="GIF89M3.htm#BlockTerminator">Block Terminator</a></small></td></tr>
+<tr><td bgcolor="#ccffcc"><small><a target="GIF89M_spec" href="GIF89M3.htm#ByteOrdering">Byte Ordering</a></small></td></tr>
+<tr><td bgcolor="#99ffcc"><a name="C"><b>C</b></a><small> [<a href="#ABC">ABC...</a>]</small></td></tr>
+<tr><td bgcolor="#ccffcc"><small><a target="GIF89M_spec" href="GIF89M3.htm#25CharacterCellHeight">Character Cell Height</a></small></td></tr>
+<tr><td bgcolor="#ccffcc"><small><a target="GIF89M_spec" href="GIF89M3.htm#25CharacterCellWidth">Character Cell Width</a></small></td></tr>
+<tr><td bgcolor="#ccffcc"><small><a target="GIF89M_spec" href="GIF89M3.htm#ClearCode">Clear Code</a></small></td></tr>
+<tr><td bgcolor="#ccffcc"><small>&nbsp;&nbsp;<a target="GIF89M_spec" href="GIF89M3.htm#DeferredClearCode">Deferred ~</a></small></td></tr>
+<tr><td bgcolor="#ccffcc"><small><a target="GIF89M_spec" href="GIF89M3.htm#EstablishCodeSize">Code Size</a></small></td></tr>
+<tr><td bgcolor="#ccffcc"><small><a target="GIF89M_spec" href="GIF89M3.htm#ColorIndices">Color Index</a></small></td></tr>
+<tr><td bgcolor="#ccffcc"><small><a target="GIF89M_spec" href="GIF89M3.htm#ColorOrder">Color Order</a></small></td></tr>
+<tr><td bgcolor="#ccffcc"><small><a target="GIF89M_spec" href="GIF89M3.htm#18ColorResolution">Color Resolution</a></small></td></tr>
+<tr><td bgcolor="#ccffcc"><small><a target="GIF89M_spec" href="GIF89M3.htm#AboutColorTables">Color Tables</a></small></td></tr>
+<tr><td bgcolor="#ccffcc"><small><a target="GIF89M_spec" href="GIF89M3.htm#24CommentData">Comment Data</a></small></td></tr>
+<tr><td bgcolor="#ccffcc"><small><a target="GIF89M_spec" href="GIF89M3.htm#CommentExtension">Comment Extension</a></small></td></tr>
+<tr><td bgcolor="#ccffcc"><small><a target="GIF89M_spec" href="GIF89M3.htm#Compression">Compression</a></small></td></tr>
+<tr><td bgcolor="#ccffcc"><small><a target="GIF89M_spec" href="GIF89M3.htm#ControlBlocks">Control Blocks</a></small></td></tr>
+<tr><td bgcolor="#ccffcc"><small><a target="GIF89M_spec" href="GIF89M3.htm#Conventions">Conventions</a></small></td></tr>
+<tr><td bgcolor="#ccffcc"><small><a target="GIF89M_spec" href="GIF89M3.htm#CourtesyDirectoryFile">Courtesy Directory File</a></small></td></tr>
+<tr><td bgcolor="#99ffcc"><a name="D"><b>D</b></a><small> [<a href="#ABC">ABC...</a>]</small></td></tr>
+<tr><td bgcolor="#ccffcc"><small><a target="GIF89M_spec" href="GIF89M3.htm#DataStream">Data Stream</a></small></td></tr>
+<tr><td bgcolor="#ccffcc"><small><a target="GIF89M_spec" href="GIF89M3.htm#DataSub-blocks">Data Sub-block</a></small></td></tr>
+<tr><td bgcolor="#ccffcc"><small><a target="GIF89M_spec" href="GIF89M3.htm#TheDecoder">Decoder</a></small></td></tr>
+<tr><td bgcolor="#ccffcc"><small><a target="GIF89M_spec" href="GIF89M3.htm#DeferredClearCode">Deferred Clear Code</a></small></td></tr>
+<tr><td bgcolor="#ccffcc"><small><a target="GIF89M_spec" href="GIF89M3.htm#23DelayTime">Delay Time</a></small></td></tr>
+<tr><td bgcolor="#ccffcc"><small><a target="GIF89M_spec" href="GIF89M3.htm#23DisposalMethod">Disposal Method</a></small></td></tr>
+<tr><td bgcolor="#99ffcc"><a name="E"><b>E</b></a><small> [<a href="#ABC">ABC...</a>]</small></td></tr>
+<tr><td bgcolor="#ccffcc"><small><a target="GIF89M_spec" href="GIF89M3.htm#TheEncoder">Encoder</a></small></td></tr>
+<tr><td bgcolor="#ccffcc"><small><a target="GIF89M_spec" href="GIF89M3.htm#EndOfInformationCode">End of Information Code</a></small></td></tr>
+<tr><td bgcolor="#ccffcc"><small><a target="GIF89M_spec" href="GIF89M3.htm#BlocksExtensionsScope">Extension</a></small></td></tr>
+<tr><td bgcolor="#99ffcc"><a name="G"><b>G</b></a><small> [<a href="#ABC">ABC...</a>]</small></td></tr>
+<tr><td bgcolor="#ccffcc"><small><a target="GIF89M_spec" href="GIF89M3.htm#GIFGrammar">GIF Grammar</a></small></td></tr>
+<tr><td bgcolor="#ccffcc"><small><a target="GIF89M_spec" href="GIF89M3.htm#GlobalColorTable">Global Color Table</a></small></td></tr>
+<tr><td bgcolor="#ccffcc"><small><a target="GIF89M_spec" href="GIF89M3.htm#18GlobalColorTableFlag">Global Color Table Flag</a></small></td></tr>
+<tr><td bgcolor="#ccffcc"><small><a target="GIF89M_spec" href="GIF89M3.htm#Glossary">Glossary</a></small></td></tr>
+<tr><td bgcolor="#ccffcc"><small><a target="GIF89M_spec" href="GIF89M3.htm#Graphic">Graphic</a></small></td></tr>
+<tr><td bgcolor="#ccffcc"><small><a target="GIF89M_spec" href="GIF89M3.htm#GraphicControlExtension">Graphic Control Extension</a></small></td></tr>
+<tr><td bgcolor="#ccffcc"><small><a target="GIF89M_spec" href="GIF89M3.htm#Graphic-RenderingBlocks">Graphic-Rendering Blocks</a></small></td></tr>
+<tr><td bgcolor="#99ffcc"><a name="H"><b>H</b></a><small> [<a href="#ABC">ABC...</a>]</small></td></tr>
+<tr><td bgcolor="#ccffcc"><small><a target="GIF89M_spec" href="GIF89M3.htm#Header">Header</a></small></td></tr>
+<tr><td bgcolor="#99ffcc"><a name="I"><b>I</b></a><small> [<a href="#ABC">ABC...</a>]</small></td></tr>
+<tr><td bgcolor="#ccffcc"><small><a target="GIF89M_spec" href="GIF89M3.htm#Image">Image</a></small></td></tr>
+<tr><td bgcolor="#ccffcc"><small><a target="GIF89M_spec" href="GIF89M3.htm#ImageDescriptor">Image Descriptor</a></small></td></tr>
+<tr><td bgcolor="#ccffcc"><small><a target="GIF89M_spec" href="GIF89M3.htm#25ImageGridHeight">Image Grid Height</a></small></td></tr>
+<tr><td bgcolor="#ccffcc"><small><a target="GIF89M_spec" href="GIF89M3.htm#25ImageGridWidth">Image Grid Width</a></small></td></tr>
+<tr><td bgcolor="#ccffcc"><small><a target="GIF89M_spec" href="GIF89M3.htm#20ImageHeight">Image Height</a></small></td></tr>
+<tr><td bgcolor="#ccffcc"><small><a target="GIF89M_spec" href="GIF89M3.htm#20ImageLeftPosition">Image Left Position</a></small></td></tr>
+<tr><td bgcolor="#ccffcc"><small><a target="GIF89M_spec" href="GIF89M3.htm#20ImageSeparator">Image Separator</a></small></td></tr>
+<tr><td bgcolor="#ccffcc"><small><a target="GIF89M_spec" href="GIF89M3.htm#20ImageTopPosition">Image Top Position</a></small></td></tr>
+<tr><td bgcolor="#ccffcc"><small><a target="GIF89M_spec" href="GIF89M3.htm#20ImageWidth">Image Width</a></small></td></tr>
+<tr><td bgcolor="#ccffcc"><small><a target="GIF89M_spec" href="GIF89M3.htm#20InterlaceFlag">Interlace Flag</a></small></td></tr>
+<tr><td bgcolor="#ccffcc"><small><a target="GIF89M_spec" href="GIF89M3.htm#InterlacedImages">Interlaced Images</a></small></td></tr>
+<tr><td bgcolor="#99ffcc"><a name="L"><b>L</b></a><small> [<a href="#ABC">ABC...</a>]</small></td></tr>
+<tr><td bgcolor="#ccffcc"><small><a target="GIF89M_spec" href="GIF89M3.htm#LabelRanges">Label Ranges</a></small></td></tr>
+<tr><td bgcolor="#ccffcc"><small><a target="GIF89M_spec" href="GIF89M3.htm#Licensing">Licensing</a></small></td></tr>
+<tr><td bgcolor="#ccffcc"><small><a target="GIF89M_spec" href="GIF89M3.htm#LittleEndian">Little-endian</a></small></td></tr>
+<tr><td bgcolor="#ccffcc"><small><a target="GIF89M_spec" href="GIF89M3.htm#LocalColorTable">Local Color Table</a></small></td></tr>
+<tr><td bgcolor="#ccffcc"><small><a target="GIF89M_spec" href="GIF89M3.htm#20LocalColorTableFlag">Local Color Table Flag</a></small></td></tr>
+<tr><td bgcolor="#ccffcc"><small><a target="GIF89M_spec" href="GIF89M3.htm#LogicalScreenDescriptor">Logical Screen Descriptor</a></small></td></tr>
+<tr><td bgcolor="#ccffcc"><small><a target="GIF89M_spec" href="GIF89M3.htm#18LogicalScreenHeight">Logical Screen Height</a></small></td></tr>
+<tr><td bgcolor="#ccffcc"><small><a target="GIF89M_spec" href="GIF89M3.htm#18LogicalScreenWidth">Logical Screen Width</a></small></td></tr>
+<tr><td bgcolor="#ccffcc"><small><a target="GIF89M_spec" href="GIF89M3.htm#Variable-Length-CodeLZWCompression">LZW Compression</a></small></td></tr>
+<tr><td bgcolor="#ccffcc"><small>LZW Minimum Code Size<br>&nbsp;-&nbsp;<a target="GIF89M_spec" href="GIF89M3.htm#22LZWMinimumCodeSize">Field name</a><br>&nbsp;-&nbsp;<a target="GIF89M_spec" href="GIF89M3.htm#EstablishCodeSize">Computation</a></small></td></tr>
+<tr><td bgcolor="#ccffcc"><small><a target="GIF89M_spec" href="GIF89M3.htm#Unisys">LZW Patent</a></small></td></tr>
+<tr><td bgcolor="#99ffcc"><a name="M"><b>M</b></a><small> [<a href="#ABC">ABC...</a>]</small></td></tr>
+<tr><td bgcolor="#ccffcc"><small><a target="GIF89M_spec" href="GIF89M3.htm#MaximumCodeSize">Maximum Code Size</a></small></td></tr>
+<tr><td bgcolor="#ccffcc"><small>Minimum Code Size<br>&nbsp;-&nbsp;<a target="GIF89M_spec" href="GIF89M3.htm#22LZWMinimumCodeSize">Field name</a><br>&nbsp;-&nbsp;<a target="GIF89M_spec" href="GIF89M3.htm#EstablishCodeSize">Computation</a></small></td></tr>
+<tr><td bgcolor="#99ffcc"><a name="O"><b>O</b></a><small> [<a href="#ABC">ABC...</a>]</small></td></tr>
+<tr><td bgcolor="#ccffcc"><small><a target="GIF89M_spec" href="GIF89M3.htm#On-lineCapabilitiesDialogue">On-line Capabilities Dialogue</a></small></td></tr>
+<tr><td bgcolor="#99ffcc"><a name="P"><b>P</b></a><small> [<a href="#ABC">ABC...</a>]</small></td></tr>
+<tr><td bgcolor="#ccffcc"><small><a target="GIF89M_spec" href="GIF89M3.htm#Unisys">Patent Information</a></small></td></tr>
+<tr><td bgcolor="#ccffcc"><small><a target="GIF89M_spec" href="GIF89M3.htm#18PixelAspectRatio">Pixel Aspect Ratio</a></small></td></tr>
+<tr><td bgcolor="#ccffcc"><small><a target="GIF89M_spec" href="GIF89M3.htm#25PlainTextData">Plain Text Data</a></small></td></tr>
+<tr><td bgcolor="#ccffcc"><small><a target="GIF89M_spec" href="GIF89M3.htm#PlainTextExtension">Plain Text Extension</a></small></td></tr>
+<tr><td bgcolor="#99ffcc"><a name="Q"><b>Q</b></a><small> [<a href="#ABC">ABC...</a>]</small></td></tr>
+<tr><td bgcolor="#ccffcc"><small><a target="GIF89M_spec" href="GIF89M3.htm#QuickReferenceTable">Quick Reference Table</a></small></td></tr>
+<tr><td bgcolor="#99ffcc"><a name="R"><b>R</b></a><small> [<a href="#ABC">ABC...</a>]</small></td></tr>
+<tr><td bgcolor="#ccffcc"><small><a target="GIF89M_spec" href="GIF89M3.htm#Raster">Raster</a></small></td></tr>
+<tr><td bgcolor="#ccffcc"><small><a target="GIF89M_spec" href="GIF89M3.htm#ReservedFields">Reserved Fields</a></small></td></tr>
+<tr><td bgcolor="#99ffcc"><a name="S"><b>S</b></a><small> [<a href="#ABC">ABC...</a>]</small></td></tr>
+<tr><td bgcolor="#ccffcc"><small><a target="GIF89M_spec" href="GIF89M3.htm#BlocksExtensionsScope">Scope</a></small></td></tr>
+<tr><td bgcolor="#ccffcc"><small><a target="GIF89M_spec" href="GIF89M3.htm#17Signature">Signature</a></small></td></tr>
+<tr><td bgcolor="#ccffcc"><small><a target="GIF89M_spec" href="GIF89M3.htm#18SizeOfGlobalColorTable">Size of Global Color Table</a></small></td></tr>
+<tr><td bgcolor="#ccffcc"><small><a target="GIF89M_spec" href="GIF89M3.htm#20SizeOfLocalColorTable">Size of Local Color Table</a></small></td></tr>
+<tr><td bgcolor="#ccffcc"><small><a target="GIF89M_spec" href="GIF89M3.htm#18SortFlag">Sort Flag (in GCT)</a></small></td></tr>
+<tr><td bgcolor="#ccffcc"><small><a target="GIF89M_spec" href="GIF89M3.htm#20SortFlag">Sort Flag (in LCT)</a></small></td></tr>
+<tr><td bgcolor="#ccffcc"><small><a target="GIF89M_spec" href="GIF89M3.htm#SpecialPurposeBlocks">Special Purpose Blocks</a></small></td></tr>
+<tr><td bgcolor="#99ffcc"><a name="T"><b>T</b></a><small> [<a href="#ABC">ABC...</a>]</small></td></tr>
+<tr><td bgcolor="#ccffcc"><small><a target="GIF89M_spec" href="GIF89M3.htm#TableBasedImageData">Table Based Image Data</a></small></td></tr>
+<tr><td bgcolor="#ccffcc"><small><a target="GIF89M_spec" href="GIF89M3.htm#25TextBackgroundColorIndex">Text Background Color Index</a></small></td></tr>
+<tr><td bgcolor="#ccffcc"><small><a target="GIF89M_spec" href="GIF89M3.htm#25TextForegroundColorIndex">Text Foreground Color Index</a></small></td></tr>
+<tr><td bgcolor="#ccffcc"><small><a target="GIF89M_spec" href="GIF89M3.htm#25ImageGridHeight">Text Grid Height</a></small></td></tr>
+<tr><td bgcolor="#ccffcc"><small><a target="GIF89M_spec" href="GIF89M3.htm#25TextGridLeftPosition">Text Grid Left Position</a></small></td></tr>
+<tr><td bgcolor="#ccffcc"><small><a target="GIF89M_spec" href="GIF89M3.htm#25TextGridTopPosition">Text Grid Top Position</a></small></td></tr>
+<tr><td bgcolor="#ccffcc"><small><a target="GIF89M_spec" href="GIF89M3.htm#25ImageGridWidth">Text Grid Width</a></small></td></tr>
+<tr><td bgcolor="#ccffcc"><small><a target="GIF89M_spec" href="GIF89M3.htm#Trailer">Trailer</a></small></td></tr>
+<tr><td bgcolor="#ccffcc"><small><a target="GIF89M_spec" href="GIF89M3.htm#23TransparencyFlag">Transparency Flag</a></small></td></tr>
+<tr><td bgcolor="#ccffcc"><small><a target="GIF89M_spec" href="GIF89M3.htm#23TransparencyIndex">Transparency Index</a></small></td></tr>
+<tr><td bgcolor="#ccffcc"><small><a target="GIF89M_spec" href="GIF89M3.htm#23TransparencyFlag">Transparent Color Flag</a></small></td></tr>
+<tr><td bgcolor="#ccffcc"><small><a target="GIF89M_spec" href="GIF89M3.htm#23TransparencyIndex">Transparent Color Index</a></small></td></tr>
+<tr><td bgcolor="#99ffcc"><a name="U"><b>U</b></a><small> [<a href="#ABC">ABC...</a>]</small></td></tr>
+<tr><td bgcolor="#ccffcc"><small><a target="GIF89M_spec" href="GIF89M3.htm#Unisys">Unisys</a></small></td></tr>
+<tr><td bgcolor="#ccffcc"><small><a target="GIF89M_spec" href="GIF89M3.htm#UnlabeledBlocks">Unlabeled Blocks</a></small></td></tr>
+<tr><td bgcolor="#ccffcc"><small><a target="GIF89M_spec" href="GIF89M3.htm#23UserInputFlag">User Input Flag</a></small></td></tr>
+<tr><td bgcolor="#99ffcc"><a name="V"><b>V</b></a><small> [<a href="#ABC">ABC...</a>]</small></td></tr>
+<tr><td bgcolor="#ccffcc"><small><a target="GIF89M_spec" href="GIF89M3.htm#17Version">Version	</a></small></td></tr>
+<tr><td bgcolor="#ccffcc"><small><a target="GIF89M_spec" href="GIF89M3.htm#VersionNumbers">Version Numbers</a></small></td></tr>
+<tr><td bgcolor="#ffcccc" align="center"><b><font face="'Courier New',Courier" size="+1"><a class="abc" href="#A">A</a><a class="abc" href="#B">B</a><a class="abc" href="#C">C</a><a class="abc" href="#D">D</a><a class="abc" href="#E">E</a><font color="#999999">F</font><a class="abc" href="#G">G</a><a class="abc" href="#H">H</a><a class="abc" href="#I">I</a><font color="#999999">JK</font><br><a class="abc" href="#L">L</a><a class="abc" href="#M">M</a><font color="#999999">N</font><a class="abc" href="#O">O</a><a class="abc" href="#P">P</a><a class="abc" href="#Q">Q</a><a class="abc" href="#R">R</a><a class="abc" href="#S">S</a><a class="abc" href="#T">T</a><a class="abc" href="#U">U</a><a class="abc" href="#V">V</a></font></b></td></tr>
+</table>
+</div>
+</BODY>
+</HTML>

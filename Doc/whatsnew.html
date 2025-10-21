@@ -1,0 +1,449 @@
+<HTML>
+<HEAD>
+  <TITLE>What's new in TGIFImage version 2.2</TITLE>
+</HEAD>
+
+<BODY BGCOLOR="#FFFFFF">
+
+<TABLE BORDER="0" CELLSPACING="0" CELLPADDING="0" WIDTH="100%" BGCOLOR="#008080">
+  <TR>
+  <TD ALIGN="CENTER"><FONT FACE="Arial,Helvetica" COLOR="#FFFFFF" SIZE="+2">&nbsp;<IMG BORDER=0 HEIGHT=10 WIDTH=10 ALIGN=ABSCENTER SRC="dot_r.gif">&nbsp;What's new in TGIFImage version 2.2&nbsp;<IMG BORDER=0 HEIGHT=10 WIDTH=10 ALIGN=ABSCENTER SRC="dot_l.gif"></FONT></TD>
+  </TR>
+</TABLE>
+
+<P>
+The following is a brief list of new (<IMG BORDER=0 HEIGHT=10 WIDTH=10 SRC="plus.gif" ALT="New">),
+obsolete (<IMG BORDER=0 HEIGHT=10 WIDTH=10 SRC="minus.gif" ALT="Obsolete">) and
+changed (<IMG BORDER=0 HEIGHT=10 WIDTH=10 SRC="recycle.gif" ALT="Changed">)
+functionality as well as bug fixes (<IMG BORDER=0 HEIGHT=10 WIDTH=10 SRC="bug.gif" ALT="Bug fix">) made in
+TGIFImage since version 2.1.
+
+<P>The list only includes high level changes that might affect the developer. For a
+complete list of modifications, see the <A HREF="history.txt">revision history</A>.<BR>
+If you are upgrading from a version prior to version 2.1, you can also read the
+list of changes for version <A HREF="whatsnew0201.html">2.1</A>,
+<A HREF="whatsnew0200.html">2.0</A> and <A HREF="whatsnew0150.html">1.5</A>.
+
+<P>&nbsp;<BR>
+
+<TABLE BORDER="0" ALIGN=LEFT CELLSPACING=8 WIDTH="90%">
+<!-- General -->
+  <TR>
+  <TD WIDTH="25%" COLSPAN="2" BGCOLOR="#008080"><FONT FACE="Arial,Helvetica" COLOR="#FFFFFF" SIZE="+1">&nbsp;<IMG BORDER=0 HEIGHT=10 WIDTH=10 ALIGN=ABSCENTER SRC="dot_r.gif">&nbsp;General</FONT></TD>
+  <TD>&nbsp;</TD>
+  </TR>
+
+  <TR>
+    <TD ALIGN="CENTER" VALIGN="TOP" WIDTH=20><IMG BORDER=0 HEIGHT=20 WIDTH=20 SRC="plus.gif" ALT="New"></TD>
+    <TD COLSPAN="2"><FONT FACE="Arial,Helvetica">
+    On-line documentation.<BR><FONT SIZE="-1">
+    The TGIFImage kit now includes cross referenced context sensitive on-line documentation in
+    the form of a Windows help file.<BR>
+    The on-line help documents the complete TGIFImage library and can be
+    integrated with Delphi's on-line help
+    </FONT></FONT></TD>
+  </TR>
+
+  <TR>
+    <TD ALIGN="CENTER" VALIGN="TOP" WIDTH=20><IMG BORDER=0 HEIGHT=20 WIDTH=20 SRC="plus.gif" ALT="New"></TD>
+    <TD COLSPAN="2"><FONT FACE="Arial,Helvetica">
+    More dithering options.<BR><FONT SIZE="-1">
+    In addition to the existing Floyd Steinberg dithering method, TGIFImage
+    now supports 5 new dithering methods when performing color reduction on
+    imported bitmaps:<BR>
+    &nbsp;•&nbsp;Stucki Error Diffusion dithering<BR>
+    &nbsp;•&nbsp;Sierra Error Diffusion dithering<BR>
+    &nbsp;•&nbsp;Jarvis, Judice & Ninke Error Diffusion dithering<BR>
+    &nbsp;•&nbsp;Stevenson & Arche Error Diffusion dithering<BR>
+    &nbsp;•&nbsp;Burkes Error Diffusion dithering
+    </FONT></FONT></TD>
+  </TR>
+
+  <TR>
+    <TD ALIGN="CENTER" VALIGN="TOP" WIDTH=20><IMG BORDER=0 HEIGHT=20 WIDTH=20 SRC="plus.gif" ALT="New"></TD>
+    <TD COLSPAN="2"><FONT FACE="Arial,Helvetica">
+    GIF optimizer.<BR><FONT SIZE="-1">
+    TGIFImage can now perform non-destructive optimizations on GIFs.<BR>
+    The optimizer can reduce the size of animated and transparent GIFs
+    substantially and thus improve load time. This is a feature usually
+    only found in commercial GIF animators.<BR>
+    &nbsp;•&nbsp;Convert local color maps to a single global color map.<BR>
+    &nbsp;•&nbsp;Reduce color depth without loss of colors.<BR>
+    &nbsp;•&nbsp;Merge frames by replacing redundant pixels with transparency.<BR>
+    &nbsp;•&nbsp;Crop frames by removing empty transparent areas.<BR>
+    &nbsp;•&nbsp;Remove passive elements such as comments.<BR>
+    </FONT></FONT></TD>
+  </TR>
+
+  <TR>
+    <TD ALIGN="CENTER" VALIGN="TOP" WIDTH=20><IMG BORDER=0 HEIGHT=20 WIDTH=20 SRC="recycle.gif" ALT="Changed"></TD>
+    <TD COLSPAN="2"><FONT FACE="Arial,Helvetica">
+    Huge performance improvements.<BR><FONT SIZE="-1">
+    The GIF to bitmap converter has been optimized.<BR>
+    This has improved the performance of GIF display and GIF to bitmap conversion.
+    The improvements varies from Windows NT to Windows 95/98. Benchmarks has
+    shown the following performance improvement relative to version 2.0:<BR>
+    &nbsp;•&nbsp;Non-dithered: from 160% (NT) to 320% (Win95)<BR>
+    &nbsp;•&nbsp;Dithered: from 0% (NT) to 50% (Win95)<BR>
+    and relative to version 2.1:<BR>
+    &nbsp;•&nbsp;Non-dithered: from 1200% (NT) to 1650% (Win95)<BR>
+    &nbsp;•&nbsp;Dithered: from 50% (NT) to 60% (Win95)
+    </FONT></FONT></TD>
+  </TR>
+
+  <TR>
+    <TD ALIGN="CENTER" VALIGN="TOP" WIDTH=20><IMG BORDER=0 HEIGHT=20 WIDTH=20 SRC="plus.gif" ALT="New"></TD>
+    <TD COLSPAN="2"><FONT FACE="Arial,Helvetica">
+    On-load rendering of GIFs.<BR><FONT SIZE="-1">
+    TGIFImage can now optionally render the GIF for display when the GIF is
+    loaded, instead of rendering it on-demand when it is displayed.<BR>
+    Rendering GIFs on-load can in some cases improve the initial smoothness
+    of GIF animations.<BR>
+    On-load rendering can be enabled by setting the global GIFImageRenderOnLoad
+    variable to true.
+    </FONT></FONT></TD>
+  </TR>
+
+  <TR>
+    <TD ALIGN="CENTER" VALIGN="TOP" WIDTH=20><IMG BORDER=0 HEIGHT=20 WIDTH=20 SRC="plus.gif" ALT="New"></TD>
+    <TD COLSPAN="2"><FONT FACE="Arial,Helvetica">
+    Import of transparent Icons, Metafiles and Bitmaps.<BR><FONT SIZE="-1">
+    Transparent TIcons, TMetaFiles and TBitmaps are now converted automatically
+    to transparent GIFs.<BR>
+    Previous versions of TGIFImage did not preserve the transparency of imported images.
+    </FONT></FONT></TD>
+  </TR>
+
+  <TR>
+    <TD ALIGN="CENTER" VALIGN="TOP" WIDTH=20><IMG BORDER=0 HEIGHT=20 WIDTH=20 SRC="bug.gif" ALT="Bug fix"></TD>
+    <TD COLSPAN="2"><FONT FACE="Arial,Helvetica">
+    Resource leak in color reduction routines fixed.<BR><FONT SIZE="-1">
+    The ReduceColors function, used when importing bitmaps with color reduction,
+    would leak a palette handle if an exception was raised during the color reduction.
+    </FONT></FONT></TD>
+  </TR>
+
+  <TR>
+    <TD ALIGN="CENTER" VALIGN="TOP" WIDTH=20><IMG BORDER=0 HEIGHT=20 WIDTH=20 SRC="bug.gif" ALT="Bug fix"></TD>
+    <TD COLSPAN="2"><FONT FACE="Arial,Helvetica">
+    TThread bug work around improved.<BR><FONT SIZE="-1">
+    The work-around of the <A HREF="http://www.dataweb.nl/~r.p.sterkenburg/generated/entry0459.htm">TThread
+    race condition bug</A> that exists in Delphi 4
+    and C++ Builder 3 and 4 has been improved.<BR>
+    The previous work-around did not work well on multiprocessor machines and
+    was very timing dependent. The new work-around doesn't rely on any timing
+    and thus works on multiprocessor machines.
+    </FONT></FONT></TD>
+  </TR>
+
+  <TR>
+    <TD ALIGN="CENTER" VALIGN="TOP" WIDTH=20><IMG BORDER=0 HEIGHT=20 WIDTH=20 SRC="plus.gif" ALT="New"></TD>
+    <TD COLSPAN="2"><FONT FACE="Arial,Helvetica">
+    Improved Delphi 2 import of bitmaps.<BR><FONT SIZE="-1">
+    Import of bitmaps has been improved for Delphi 2 in 8, 16 and 24 bit display mode.
+    </FONT></FONT></TD>
+  </TR>
+
+  <TR>
+    <TD ALIGN="CENTER" VALIGN="TOP" WIDTH=20><IMG BORDER=0 HEIGHT=20 WIDTH=20 SRC="plus.gif" ALT="New"></TD>
+    <TD COLSPAN="2"><FONT FACE="Arial,Helvetica">
+    Color reduction to arbitrary palette.<BR><FONT SIZE="-1">
+    The ReduceColors function can now perform color reduction to a user supplied palette via
+    the rmPalette color reduction method.<BR>
+    See the Quantize demo application for an example of use.
+    </FONT></FONT></TD>
+  </TR>
+
+  <TR>
+    <TD ALIGN="CENTER" VALIGN="TOP" WIDTH=20><IMG BORDER=0 HEIGHT=20 WIDTH=20 SRC="minus.gif" ALT="Obsolete"></TD>
+    <TD COLSPAN="2"><FONT FACE="Arial,Helvetica">
+    Thread pool removed from the GIF renderer.<BR><FONT SIZE="-1">
+    The thread pool manager introduced in version 2.1 has been removed
+    from the GIF renderer.<BR>
+    Benchmarks showed that the potential performance gain of the thread pool
+    were too small and didn't outweigh the added complexity.
+    </FONT></FONT></TD>
+  </TR>
+
+  <TR>
+    <TD ALIGN="CENTER" VALIGN="TOP" WIDTH=20><IMG BORDER=0 HEIGHT=20 WIDTH=20 SRC="plus.gif" ALT="New"></TD>
+    <TD COLSPAN="2"><FONT FACE="Arial,Helvetica">
+    New CreateOptimizedPaletteFromManyBitmaps function.<BR><FONT SIZE="-1">
+    It is now possible to perform color quantization and color reduction on
+    multiple bitmaps via the CreateOptimizedPaletteForManyBitmaps function.<BR>
+    See the Quantize demo application for an example of use.
+    </FONT></FONT></TD>
+  </TR>
+
+  <TR>
+    <TD ALIGN="CENTER" VALIGN="TOP" WIDTH=20><IMG BORDER=0 HEIGHT=20 WIDTH=20 SRC="recycle.gif" ALT="Changed"></TD>
+    <TD COLSPAN="2"><FONT FACE="Arial,Helvetica">
+    Improved import of non-reduced hi-color bitmaps.<BR><FONT SIZE="-1">
+    Import of true-color bitmaps without color reduction now uses the TDIBReader
+    class instead of TCanvas.Pixels. This has resulted in a performance
+    improvement of 500%.
+    </FONT></FONT></TD>
+  </TR>
+
+  <TR>
+    <TD ALIGN="CENTER" VALIGN="TOP" WIDTH=20><IMG BORDER=0 HEIGHT=20 WIDTH=20 SRC="bug.gif" ALT="Bug fix"></TD>
+    <TD COLSPAN="2"><FONT FACE="Arial,Helvetica">
+    Added work around for bug in TBitmap's pf8bit conversion.<BR><FONT SIZE="-1">
+    When converting a TBitmap to pf8bit format, the palette assigned to
+    TBitmap.Palette will be a half tone palette (which only contains
+    the 20 system colors). The problem is that this isn't the palette
+    which is used to render the bitmap and it is also not the palette
+    saved with the bitmap.
+    </FONT></FONT></TD>
+  </TR>
+
+  <TR>
+    <TD ALIGN="CENTER" VALIGN="TOP" WIDTH=20><IMG BORDER=0 HEIGHT=20 WIDTH=20 SRC="plus.gif" ALT="New"></TD>
+    <TD COLSPAN="2"><FONT FACE="Arial,Helvetica">
+    Support for Delphi 5 and C++ Builder 4.<BR><FONT SIZE="-1">
+    TGIFImage now supports Delphi 2, 3, 4 and 5 as well as C++ Builder 3 and 4.
+    </FONT></FONT></TD>
+  </TR>
+
+  <TR>
+    <TD ALIGN="CENTER" VALIGN="TOP" WIDTH=20><IMG BORDER=0 HEIGHT=20 WIDTH=20 SRC="plus.gif" ALT="New"></TD>
+    <TD COLSPAN="2"><FONT FACE="Arial,Helvetica">
+    3 new <A HREF="demos.html">demo</A> applications.<BR><FONT SIZE="-1">
+    &nbsp;•&nbsp;GIF2AVI: Conversion of GIF files to AVI files.<BR>
+    &nbsp;•&nbsp;Quantize: Color reduction.<BR>
+    &nbsp;•&nbsp;Optimizer: GIF optimization.<BR>
+    In addition to the new demos, many of the existing demo applications has
+    been modified to use the the new features.
+    </FONT></FONT></TD>
+  </TR>
+
+  <TR>
+    <TD ALIGN="CENTER" VALIGN="TOP" WIDTH=20><IMG BORDER=0 HEIGHT=20 WIDTH=20 SRC="recycle.gif" ALT="Changed"></TD>
+    <TD COLSPAN="2"><FONT FACE="Arial,Helvetica">
+    Improved reference documents.<BR><FONT SIZE="-1">
+    &nbsp;•&nbsp;The original GIF87a and GIF89a specification documents has been replaced with a
+    cross referenced HTML version of the <A HREF="gif89a/gif89M.HTM">GIF89a specifications</A>.<BR>
+    &nbsp;•&nbsp;The description of the <A HREF="lzw/lzw.html">LZW algorithm</A> has been replaced
+    with an illustrated HTML version.
+    </FONT></FONT></TD>
+  </TR>
+
+
+<!-- TGIFImage class -->
+  <TR><TD>&nbsp;</TD></TR>
+  <TR>
+  <TD WIDTH=20 COLSPAN="2" BGCOLOR="#008080"><FONT FACE="Arial,Helvetica" COLOR="#FFFFFF" SIZE="+1">&nbsp;<IMG BORDER=0 HEIGHT=10 WIDTH=10 ALIGN=ABSCENTER SRC="dot_r.gif">&nbsp;TGIFImage class</FONT></TD>
+  <TD></TD>
+  </TR>
+  
+  <TR>
+    <TD ALIGN="CENTER" VALIGN="TOP" WIDTH=20><IMG BORDER=0 HEIGHT=20 WIDTH=20 SRC="plus.gif" ALT="New"></TD>
+    <TD COLSPAN="2"><FONT FACE="Arial,Helvetica">
+    New event: OnAfterPaint.<BR><FONT SIZE="-1">
+    The OnAfterPaint event occurs right after each frame has been displayed.
+    </FONT></FONT></TD>
+  </TR>
+
+  <TR>
+    <TD ALIGN="CENTER" VALIGN="TOP" WIDTH=20><IMG BORDER=0 HEIGHT=20 WIDTH=20 SRC="bug.gif" ALT="Bug fix"></TD>
+    <TD COLSPAN="2"><FONT FACE="Arial,Helvetica">
+    Fixed bug in display of non-animated GIFs.<BR><FONT SIZE="-1">
+    Two bugs in the InternalPaint method has been fixed.<BR>
+    The bugs, which occurred when TGIFImage.Paint were used to display
+    non-animated GIFs, would typically result in a null pointer assignments
+    (Access Violations) or an endless TranslateMessage/DispatchMessage loop
+    (application would hang).
+    </FONT></FONT></TD>
+  </TR>
+
+  <TR>
+    <TD ALIGN="CENTER" VALIGN="TOP" WIDTH=20><IMG BORDER=0 HEIGHT=20 WIDTH=20 SRC="minus.gif" ALT="Obsolete"></TD>
+    <TD COLSPAN="2"><FONT FACE="Arial,Helvetica">
+    Header property deprecated.<BR><FONT SIZE="-1">
+    The Header property, which were used to access such properties as background
+    color and aspect ratio, has been made obsolete.<BR>
+    The BackgroundColorIndex, BackgroundColor and AspectRatio properties should
+    be used instead. The Header property is still provided for backwards
+    compatibility, but it will be removed in a future version of TGIFImage.
+    </FONT></FONT></TD>
+  </TR>
+
+  <TR>
+    <TD ALIGN="CENTER" VALIGN="TOP" WIDTH=20><IMG BORDER=0 HEIGHT=20 WIDTH=20 SRC="plus.gif" ALT="New"></TD>
+    <TD COLSPAN="2"><FONT FACE="Arial,Helvetica">
+    New method: IsTransparent.<BR><FONT SIZE="-1">
+    The new IsTransparent function can be used to determine if a GIF uses transparency.
+    </FONT></FONT></TD>
+  </TR>
+
+  <TR>
+    <TD ALIGN="CENTER" VALIGN="TOP" WIDTH=20><IMG BORDER=0 HEIGHT=20 WIDTH=20 SRC="plus.gif" ALT="New"></TD>
+    <TD COLSPAN="2"><FONT FACE="Arial,Helvetica">
+    New method: Optimize.<BR><FONT SIZE="-1">
+    The new Optimize procedure performs non-destructive optimization to reduce the size of the GIF.
+    </FONT></FONT></TD>
+  </TR>
+
+  <TR>
+    <TD ALIGN="CENTER" VALIGN="TOP" WIDTH=20><IMG BORDER=0 HEIGHT=20 WIDTH=20 SRC="bug.gif" ALT="Bug fix"></TD>
+    <TD COLSPAN="2"><FONT FACE="Arial,Helvetica">
+    Bug fixed in OptimizeColorMap.<BR><FONT SIZE="-1">
+    The OptimizeColorMap method now correctly optimizes animated GIFs.<BR>
+    In previous versions, OptimizeColorMap could in some rare cases make
+    non-transparent animated GIFs transparent and alter the colors of
+    transparent GIFs.
+    </FONT></FONT></TD>
+  </TR>
+
+
+<!-- TGIFSubImage class -->
+  <TR><TD>&nbsp;</TD></TR>
+  <TR>
+  <TD WIDTH=20 COLSPAN="2" BGCOLOR="#008080"><FONT FACE="Arial,Helvetica" COLOR="#FFFFFF" SIZE="+1">&nbsp;<IMG BORDER=0 HEIGHT=10 WIDTH=10 ALIGN=ABSCENTER SRC="dot_r.gif">&nbsp;TGIFSubImage class</FONT></TD>
+  <TD></TD>
+  </TR>
+
+  <TR>
+    <TD ALIGN="CENTER" VALIGN="TOP" WIDTH=20><IMG BORDER=0 HEIGHT=20 WIDTH=20 SRC="recycle.gif" ALT="Changed"></TD>
+    <TD COLSPAN="2"><FONT FACE="Arial,Helvetica">
+    BoundsRect property is now writable.<BR><FONT SIZE="-1">
+    It is now possible to modify the size and position of a frame with
+    the BoundsRect property.
+    </FONT></FONT></TD>
+  </TR>
+
+  <TR>
+    <TD ALIGN="CENTER" VALIGN="TOP" WIDTH=20><IMG BORDER=0 HEIGHT=20 WIDTH=20 SRC="bug.gif" ALT="Bug fix"></TD>
+    <TD COLSPAN="2"><FONT FACE="Arial,Helvetica">
+    Fixed bug in GetBitmap method.<BR><FONT SIZE="-1">
+    A bug that prevented a transparency mask to be created for frames with a
+    width smaller than 8 pixels has been fixed.
+    </FONT></FONT></TD>
+  </TR>
+
+  <TR>
+    <TD ALIGN="CENTER" VALIGN="TOP" WIDTH=20><IMG BORDER=0 HEIGHT=20 WIDTH=20 SRC="plus.gif" ALT="New"></TD>
+    <TD COLSPAN="2"><FONT FACE="Arial,Helvetica">
+    New method: Crop.<BR><FONT SIZE="-1">
+    The new Crop procedure performs a non-destructive transparency optimization
+    on the frame by removing unused transparent areas.
+    </FONT></FONT></TD>
+  </TR>
+
+  <TR>
+    <TD ALIGN="CENTER" VALIGN="TOP" WIDTH=20><IMG BORDER=0 HEIGHT=20 WIDTH=20 SRC="plus.gif" ALT="New"></TD>
+    <TD COLSPAN="2"><FONT FACE="Arial,Helvetica">
+    New method: Merge.<BR><FONT SIZE="-1">
+    The new Merge procedure performs a non-destructive redundancy optimization
+    on the frame by replacing pixels that are identical to the pixels of the
+    previous frame with transparency.
+    </FONT></FONT></TD>
+  </TR>
+
+  <TR>
+    <TD ALIGN="CENTER" VALIGN="TOP" WIDTH=20><IMG BORDER=0 HEIGHT=20 WIDTH=20 SRC="plus.gif" ALT="New"></TD>
+    <TD COLSPAN="2"><FONT FACE="Arial,Helvetica">
+    New property: Scanline.<BR><FONT SIZE="-1">
+    The new Scanline property gives easy access to the GIF frames scanlines.
+    </FONT></FONT></TD>
+  </TR>
+
+
+<!-- TGIFPainter class -->
+  <TR><TD>&nbsp;</TD></TR>
+  <TR>
+  <TD WIDTH=20 COLSPAN="2" BGCOLOR="#008080"><FONT FACE="Arial,Helvetica" COLOR="#FFFFFF" SIZE="+1">&nbsp;<IMG BORDER=0 HEIGHT=10 WIDTH=10 ALIGN=ABSCENTER SRC="dot_r.gif">&nbsp;TGIFPainter class</FONT></TD>
+  <TD></TD>
+  </TR>
+
+  <TR>
+    <TD ALIGN="CENTER" VALIGN="TOP" WIDTH=20><IMG BORDER=0 HEIGHT=20 WIDTH=20 SRC="plus.gif" ALT="New"></TD>
+    <TD COLSPAN="2"><FONT FACE="Arial,Helvetica">
+    New event: OnAfterPaint.<BR><FONT SIZE="-1">
+    The OnAfterPaint event occurs right after each frame has been displayed.
+    </FONT></FONT></TD>
+  </TR>
+
+  <TR>
+    <TD ALIGN="CENTER" VALIGN="TOP" WIDTH=20><IMG BORDER=0 HEIGHT=20 WIDTH=20 SRC="minus.gif" ALT="Obsolete"></TD>
+    <TD COLSPAN="2"><FONT FACE="Arial,Helvetica">
+    Thread Pool Manager deprecated.<BR><FONT SIZE="-1">
+    The paint thread pooler introduced in previous version of TGIFImage has been
+    removed since it didn't provide sufficient performance improvements.
+    </FONT></FONT></TD>
+  </TR>
+
+  <TR>
+    <TD ALIGN="CENTER" VALIGN="TOP" WIDTH=20><IMG BORDER=0 HEIGHT=20 WIDTH=20 SRC="bug.gif" ALT="Bug fix"></TD>
+    <TD COLSPAN="2"><FONT FACE="Arial,Helvetica">
+    Fixed oscillation problem.<BR><FONT SIZE="-1">
+    A feedback problem that could cause the automatic interframe delay
+    adjustment to oscillate has been fixed.
+    </FONT></FONT></TD>
+  </TR>
+  
+  
+<!-- Misc classes -->
+  <TR><TD>&nbsp;</TD></TR>
+  <TR>
+  <TD WIDTH=20 COLSPAN="2" BGCOLOR="#008080"><FONT FACE="Arial,Helvetica" COLOR="#FFFFFF" SIZE="+1">&nbsp;<IMG BORDER=0 HEIGHT=10 WIDTH=10 ALIGN=ABSCENTER SRC="dot_r.gif">&nbsp;Misc classes</FONT></TD>
+  <TD></TD>
+  </TR>
+
+  <TR>
+    <TD ALIGN="CENTER" VALIGN="TOP" WIDTH=20><IMG BORDER=0 HEIGHT=20 WIDTH=20 SRC="bug.gif" ALT="Bug fix"></TD>
+    <TD COLSPAN="2"><FONT FACE="Arial,Helvetica">
+    Bug in TGIFColorMap.DoOptimize fixed.<BR><FONT SIZE="-1">
+    If a full color map were optimized, the color map would be emptied.
+    </FONT></FONT></TD>
+  </TR>
+
+  <TR>
+    <TD ALIGN="CENTER" VALIGN="TOP" WIDTH=20><IMG BORDER=0 HEIGHT=20 WIDTH=20 SRC="recycle.gif" ALT="Changed"></TD>
+    <TD COLSPAN="2"><FONT FACE="Arial,Helvetica">
+    Type of TGIFApplicationExtension properties changed.<BR><FONT SIZE="-1">
+    The type of the TGIFApplicationExtension.Identifier and Authentication
+    properties has been changed to strings to support C++ Builder 4.<BR>
+    This was done because C++ Builder 4 doesn't support array type properties.
+    </FONT></FONT></TD>
+  </TR>
+
+  <TR>
+    <TD ALIGN="CENTER" VALIGN="TOP" WIDTH=20><IMG BORDER=0 HEIGHT=20 WIDTH=20 SRC="recycle.gif" ALT="Changed"></TD>
+    <TD COLSPAN="2"><FONT FACE="Arial,Helvetica">
+    TGIFColorMap.Add method changed.<BR><FONT SIZE="-1">
+    The TGIFColorMap.Add method has been modified to accept non-unique color
+    values.<BR>
+    In previous versions, calling Add with a color that already existed in
+    the color map, would return the index of the existing color and the color
+    would not be inserted into the color map.<BR>
+    The change was made since duplicate colors in a color map are legal
+    according to the GIF specifications and quite commonly used in connection
+    with transparent GIFs.<BR>
+    The new AddUnique method provides the functionality provided by the old Add
+    method.
+    </FONT></FONT></TD>
+  </TR>
+
+  <TR>
+    <TD ALIGN="CENTER" VALIGN="TOP" WIDTH=20><IMG BORDER=0 HEIGHT=20 WIDTH=20 SRC="plus.gif" ALT="New"></TD>
+    <TD COLSPAN="2"><FONT FACE="Arial,Helvetica">
+    New method: TGIFColorMap.AddUnique.<BR><FONT SIZE="-1">
+    The new TGIFColorMap.AddUnique method replaces the old Add method and
+    provides identical functionality.<BR>
+    </FONT></FONT></TD>
+  </TR>
+
+</TABLE>
+
+<BR CLEAR=all>&nbsp;
+
+<CENTER>
+<HR NOSHADE>
+
+<FONT SIZE="-1">
+  Copyright &copy; 1999 <A HREF="mailto:anders@melander.dk">Anders Melander</A>. All rights reserved.
+</FONT>
+</CENTER>
+</BODY>
+</HTML>

@@ -1,0 +1,87 @@
+<HTML>
+<HEAD>
+  <TITLE>Bug-fix for Delphi 3.0 graphics.pas</TITLE>
+</HEAD>
+
+<BODY TEXT="#000000" BGCOLOR="#FFFFFF">
+
+<TABLE BORDER=0 CELLSPACING=0 CELLPADDING=0 WIDTH="100%" BGCOLOR="#A0A0A0">
+  <TR>
+    <TD ALIGN=CENTER><FONT FACE="Arial,Helvetica" COLOR="#FFFFFF" SIZE="+1">Bug-fix for Delphi 3.0 graphics.pas</FONT></TD>
+  </TR>
+</TABLE>
+
+<P>The <CODE>ByteSwapColors</CODE> procedure in <CODE>graphics.pas</CODE> uses an
+incorrect method to test for end of loop.<BR>
+<CODE>ByteSwapColors</CODE> is used various places in <CODE>graphics.pas</CODE>
+to convert an array of RGB values (TPaletteEntry) to BGR values (TRGBQuad) and vice
+versa. The problem is that the first entry of the array is never converted which
+results in a palette with a wrong color in the first entry.<BR>
+
+<P>The only solution is to modify the <CODE>ByteSwapColors</CODE> procedure as indicated below.
+
+<P><HR noshade><P>
+
+<TABLE WIDTH="60%" BORDER=0 CELLSPACING=0 CELLPADDING=4>
+  <TR BGCOLOR="#FFCC00">
+    <TD>&nbsp;</TD>
+    <TD VALIGN=MIDDLE>
+      <FONT FACE="Arial,Helvetica" COLOR="#000000" SIZE="-1">
+      <STRONG>procedure ByteSwapColors</STRONG><BR>
+      <FONT SIZE="-2">
+      Change the lines marked with <FONT COLOR=red><B>red</B></FONT>.
+      </FONT></FONT>
+    </TD>
+    <TD>&nbsp;</TD>
+  </TR>
+  <TR BGCOLOR="#FFFFCC"><TD>&nbsp;</TD><TD>
+<PRE>
+<B>procedure</B> ByteSwapColors(<B>var</B> Colors; Count: Integer);
+<B>var</B>
+  SysInfo: TSystemInfo;
+<B>begin</B>
+  GetSystemInfo(SysInfo);
+  <B>asm</B>
+        MOV   EDX, Colors
+        MOV   ECX, Count
+        DEC   ECX
+        JS    @@END
+        LEA   EAX, SysInfo
+        CMP   [EAX].TSystemInfo.wProcessorLevel, 3
+        JE    @@386
+  @@1:  MOV   EAX, [EDX+ECX*4]
+        BSWAP EAX
+        SHR   EAX,8
+        MOV   [EDX+ECX*4],EAX
+        DEC   ECX
+        <FONT COLOR=red><B>JNS   @@1</B></FONT>
+        JMP   @@END
+  @@386:
+        PUSH  EBX
+  @@2:  XOR   EBX,EBX
+        MOV   EAX, [EDX+ECX*4]
+        MOV   BH, AL
+        MOV   BL, AH
+        SHR   EAX,16
+        SHL   EBX,8
+        MOV   BL, AL
+        MOV   [EDX+ECX*4],EBX
+        DEC   ECX
+        <FONT COLOR=red><B>JNS   @@2</B></FONT>
+        POP   EBX
+    @@END:
+  <B>end</B>;
+<B>end</B>;</PRE>
+  </TD><TD>&nbsp;</TD></TR>
+</TABLE>
+
+<P>
+
+<CENTER>
+  <HR noshade>
+  <FONT SIZE="-1">
+    Copyright &copy; 1999 <A HREF="mailto:anders@melander.dk">Anders Melander</A>. All rights reserved.
+  </FONT>
+</CENTER>
+
+</HTML>

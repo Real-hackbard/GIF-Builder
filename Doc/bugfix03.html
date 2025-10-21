@@ -1,0 +1,106 @@
+<HTML>
+<HEAD>
+  <TITLE>Bug-fix for Delphi 3.x graphics.pas</TITLE>
+</HEAD>
+
+<BODY TEXT="#000000" BGCOLOR="#FFFFFF">
+
+<TABLE BORDER=0 CELLSPACING=0 CELLPADDING=0 WIDTH="100%" BGCOLOR="#A0A0A0">
+  <TR>
+    <TD ALIGN=CENTER><FONT FACE="Arial,Helvetica" COLOR="#FFFFFF" SIZE="+1">Bug-fix for Delphi 3.x graphics.pas</FONT></TD>
+  </TR>
+</TABLE>
+
+<P>The <CODE>TBitmap.SetPixelFormat</CODE> procedure of the Delphi 3.x
+<CODE>graphics.pas</CODE> unit leaks a palette handle each time a TBitmap is
+converted to pf8bit pixel format (8 bits/pixel).<BR>
+
+<P>One possible solution to this problem is to modify the <CODE>TBitmap.SetPixelFormat</CODE>
+procedure as indicated below.
+
+<P><HR noshade><P>
+
+<TABLE WIDTH="60%" BORDER=0 CELLSPACING=0 CELLPADDING=4>
+  <TR BGCOLOR="#FFCC00">
+    <TD>&nbsp;</TD>
+    <TD VALIGN=MIDDLE>
+      <FONT FACE="Arial,Helvetica" COLOR="#000000" SIZE="-1">
+      <STRONG>TBitmap.SetPixelFormat</STRONG><BR>
+      <FONT SIZE="-2">
+      Add the lines marked with <FONT COLOR=red><B>red</B></FONT>.
+      </FONT></FONT>
+    </TD>
+    <TD>&nbsp;</TD>
+  </TR>
+  <TR BGCOLOR="#FFFFCC"><TD>&nbsp;</TD><TD>
+<PRE>
+<B>procedure</B> TBitmap.SetPixelFormat(Value: TPixelFormat);
+<B>const</B>
+  BitCounts: <B>array</B> [pf1Bit..pf32Bit] <B>of</B> Byte = (1,4,8,16,16,24,32);
+<B>var</B>
+  DIB: TDIBSection;
+  Pal: HPalette;
+  DC: HDC;
+  <FONT COLOR=red>KillPal: Boolean;</FONT>
+<B>begin</B>
+  <B>if</B> Value = GetPixelFormat <B>then</B> Exit;
+  <B>case</B> Value <B>of</B>
+    pfDevice:
+      <B>begin</B>
+        HandleType := bmDDB;
+        Exit;
+      <B>end</B>;
+    pfCustom: InvalidGraphic(SInvalidPixelFormat);
+  <B>else</B>
+    FillChar(DIB, sizeof(DIB), 0);
+    DIB.dsbm := FImage.FDIB.dsbm;
+    <FONT COLOR=red>KillPal := False;</FONT>
+    <B>with</B> DIB, dsbm, dsbmih <B>do</B>
+    <B>begin</B>
+      biSize := sizeof(DIB.dsbmih);
+      biWidth := bmWidth;
+      biHeight := bmHeight;
+      biPlanes := 1;
+      biBitCount := BitCounts[Value];
+      Pal := 0;
+      <B>case</B> Value <B>of</B>
+        pf4Bit: Pal := SystemPalette16;
+        pf8Bit:
+          <B>begin</B>
+            DC := GDICheck(GetDC(0));
+            Pal := CreateHalftonePalette(DC);
+            ReleaseDC(0, DC);
+            <FONT COLOR=red>KillPal := True;</FONT>
+          <B>end</B>;
+        pf16Bit:
+          <B>begin</B>
+            biCompression := BI_BITFIELDS;
+            dsBitFields[0] := $F800;
+            dsBitFields[1] := $07E0;
+            dsBitFields[2] := $001F;
+          <B>end</B>;
+      <B>end</B>;
+      <FONT COLOR=red><B>try</B></FONT>
+        NewImage(0, Pal, DIB, FImage.FOS2Format);
+      <FONT COLOR=red><B>finally</B>
+        <B>if</B> (KillPal) <B>then</B>
+          DeleteObject(Pal);
+      <B>end</B>;</FONT>
+      Changed(Self);
+    <B>end</B>;
+  <B>end</B>;
+<B>end</B>;</PRE>
+  </TD><TD>&nbsp;</TD></TR>
+</TABLE>
+
+<P>
+
+<CENTER>
+  <HR noshade>
+  <FONT SIZE="-1">
+    Copyright &copy; 1999 <A HREF="mailto:anders@melander.dk">Anders Melander</A>. All rights reserved.
+  </FONT>
+</CENTER>
+
+</HTML>
+

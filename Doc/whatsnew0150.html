@@ -1,0 +1,363 @@
+<HTML>
+<HEAD>
+  <TITLE>What's new in TGIFImage version 1.5</TITLE>
+</HEAD>
+
+<BODY BGCOLOR="#FFFFFF">
+
+<TABLE BORDER="0" CELLSPACING="0" CELLPADDING="0" WIDTH="100%" BGCOLOR="#008080">
+  <TR>
+  <TD ALIGN="CENTER"><FONT FACE="Arial,Helvetica" COLOR="#FFFFFF" SIZE="+2">&nbsp;<IMG BORDER=0 HEIGHT=10 WIDTH=10 ALIGN=ABSCENTER SRC="dot_r.gif">&nbsp;What's new in TGIFImage version 1.5&nbsp;<IMG BORDER=0 HEIGHT=10 WIDTH=10 ALIGN=ABSCENTER SRC="dot_l.gif"></FONT></TD>
+  </TR>
+</TABLE>
+
+<P>
+The following is a brief list of additions, changes and bug fixes made in
+TGIFImage since the previous release (version 1.01).
+
+<P>The list only includes high level changes that might affect end-users. For a complete list
+of modifications, see the file <A HREF="history.txt">history.txt</A>
+
+<P>&nbsp;<BR>
+
+<TABLE BORDER="0" ALIGN=LEFT CELLSPACING=8 WIDTH="90%">
+<!-- General -->
+  <TR>
+  <TD WIDTH="25%" COLSPAN="2" BGCOLOR="#008080"><FONT FACE="Arial,Helvetica" COLOR="#FFFFFF" SIZE="+1">&nbsp;<IMG BORDER=0 HEIGHT=10 WIDTH=10 ALIGN=ABSCENTER SRC="dot_r.gif">&nbsp;General</FONT></TD>
+  <TD>&nbsp;</TD>
+  </TR>
+
+  <TR>
+    <TD ALIGN="CENTER" VALIGN="TOP" WIDTH=20><IMG BORDER=0 HEIGHT=20 WIDTH=20 SRC="plus.gif" ALT="New"></TD>
+    <TD COLSPAN="2"><FONT FACE="Arial,Helvetica">
+    The Warning method has been added to TGIFItem and TColorMap in order to improve centralized error handling.<BR>
+    This was done to handle invalid Background color index values in GIFs produced by Microsoft's free GIF animator tool.
+    </FONT></TD>
+  </TR>
+
+  <TR>
+    <TD ALIGN="CENTER" VALIGN="TOP" WIDTH=20><IMG BORDER=0 HEIGHT=20 WIDTH=20 SRC="plus.gif" ALT="New"></TD>
+    <TD COLSPAN="2"><FONT FACE="Arial,Helvetica">
+    A GIF with no color tables defined will now cause a sNoColorTable exception.
+    </FONT></TD>
+  </TR>
+
+  <TR>
+    <TD ALIGN="CENTER" VALIGN="TOP" WIDTH=20><IMG BORDER=0 HEIGHT=20 WIDTH=20 SRC="plus.gif" ALT="New"></TD>
+    <TD COLSPAN="2"><FONT FACE="Arial,Helvetica">
+    New TGIFDrawOption option: "goLoopContinously".<BR>
+    The loop count specified in the GCE will be ignored if this option is set.
+    </FONT></TD>
+  </TR>
+
+  <TR>
+    <TD ALIGN="CENTER" VALIGN="TOP" WIDTH=20><IMG BORDER=0 HEIGHT=20 WIDTH=20 SRC="plus.gif" ALT="New"></TD>
+    <TD COLSPAN="2"><FONT FACE="Arial,Helvetica">
+    New TGIFDrawOption option: "goDither".<BR>
+    goDither will cause bitmaps produced by the GIF to be dithered to the Netscape
+    216 color palette.
+    </FONT></TD>
+  </TR>
+
+  <TR>
+    <TD ALIGN="CENTER" VALIGN="TOP" WIDTH=20><IMG BORDER=0 HEIGHT=20 WIDTH=20 SRC="plus.gif" ALT="New"></TD>
+    <TD COLSPAN="2"><FONT FACE="Arial,Helvetica">
+    New TGIFDrawOption option: "goAutoDither".<BR>
+    The goAutoDither option modifies the behavior of the goDither option. If
+    goAutoDither is set, the goDither option will be ignored on displays which
+    supports more than 256 colors.
+    </FONT></TD>
+  </TR>
+
+  <TR>
+    <TD ALIGN="CENTER" VALIGN="TOP" WIDTH=20><IMG BORDER=0 HEIGHT=20 WIDTH=20 SRC="minus.gif" ALT="Obsolete"></TD>
+    <TD COLSPAN="2"><FONT FACE="Arial,Helvetica">
+    The gwsOK and gwOK constants has been removed since they were unused.
+    </FONT></TD>
+  </TR>
+
+  <TR>
+    <TD ALIGN="CENTER" VALIGN="TOP" WIDTH=20><IMG BORDER=0 HEIGHT=20 WIDTH=20 SRC="minus.gif" ALT="Obsolete"></TD>
+    <TD COLSPAN="2"><FONT FACE="Arial,Helvetica">
+    The TGIFDrawOption "goFullDraw" is now obsolete.
+    </FONT></TD>
+  </TR>
+
+  <TR>
+    <TD ALIGN="CENTER" VALIGN="TOP" WIDTH=20><IMG BORDER=0 HEIGHT=20 WIDTH=20 SRC="recycle.gif" ALT="Changed"></TD>
+    <TD COLSPAN="2"><FONT FACE="Arial,Helvetica">
+    The TGIFWarning type has been changed to "procedure of object".
+    </FONT></TD>
+  </TR>
+
+  <TR>
+    <TD ALIGN="CENTER" VALIGN="TOP" WIDTH=20><IMG BORDER=0 HEIGHT=20 WIDTH=20 SRC="recycle.gif" ALT="Changed"></TD>
+    <TD COLSPAN="2"><FONT FACE="Arial,Helvetica">
+    The TGIFDrawOption "goDrawTransparent" has been renamed to "goTransparent".
+    </FONT></TD>
+  </TR>
+
+  <TR>
+    <TD ALIGN="CENTER" VALIGN="TOP" WIDTH=20><IMG BORDER=0 HEIGHT=20 WIDTH=20 SRC="recycle.gif" ALT="Changed"></TD>
+    <TD COLSPAN="2"><FONT FACE="Arial,Helvetica">
+    Management of palettes has been completely rewritten to a more effective design.
+    </FONT></TD>
+  </TR>
+
+<!-- TGIFImage class -->
+  <TR><TD>&nbsp;</TD></TR>
+  <TR>
+  <TD WIDTH=20 COLSPAN="2" BGCOLOR="#008080"><FONT FACE="Arial,Helvetica" COLOR="#FFFFFF" SIZE="+1">&nbsp;<IMG BORDER=0 HEIGHT=10 WIDTH=10 ALIGN=ABSCENTER SRC="dot_r.gif">&nbsp;TGIFImage class</FONT></TD>
+  <TD></TD>
+  </TR>
+
+  <TR>
+    <TD ALIGN="CENTER" VALIGN="TOP" WIDTH=20><IMG BORDER=0 HEIGHT=20 WIDTH=20 SRC="plus.gif" ALT="New"></TD>
+    <TD COLSPAN="2"><FONT FACE="Arial,Helvetica">
+    New StopDraw method (public) to stop async Draw threads.
+    </FONT></TD>
+  </TR>
+
+  <TR>
+    <TD ALIGN="CENTER" VALIGN="TOP" WIDTH=20><IMG BORDER=0 HEIGHT=20 WIDTH=20 SRC="plus.gif" ALT="New"></TD>
+    <TD COLSPAN="2"><FONT FACE="Arial,Helvetica">
+    New ThreadPriority property (public).
+    </FONT></TD>
+  </TR>
+
+  <TR>
+    <TD ALIGN="CENTER" VALIGN="TOP" WIDTH=20><IMG BORDER=0 HEIGHT=20 WIDTH=20 SRC="plus.gif" ALT="New"></TD>
+    <TD COLSPAN="2"><FONT FACE="Arial,Helvetica">
+    New DrawBackgroundColor property (public).
+    </FONT></TD>
+  </TR>
+
+  <TR>
+    <TD ALIGN="CENTER" VALIGN="TOP" WIDTH=20><IMG BORDER=0 HEIGHT=20 WIDTH=20 SRC="plus.gif" ALT="New"></TD>
+    <TD COLSPAN="2"><FONT FACE="Arial,Helvetica">
+    New TGIFDrawOption option: "goDirectDraw".<BR>
+    goDirectDraw will cause TGIFImage.Draw() to Paint() directly on the destination
+    canvas instead of via the bitmap buffer. This corresponds to the drawing method
+    used in version 1.01.
+    </FONT></TD>
+  </TR>
+
+  <TR>
+    <TD ALIGN="CENTER" VALIGN="TOP" WIDTH=20><IMG BORDER=0 HEIGHT=20 WIDTH=20 SRC="plus.gif" ALT="New"></TD>
+    <TD COLSPAN="2"><FONT FACE="Arial,Helvetica">
+    The LoadFromStream and SaveToStream methods now produce progress events.
+    </FONT></TD>
+  </TR>
+
+  <TR>
+    <TD ALIGN="CENTER" VALIGN="TOP" WIDTH=20><IMG BORDER=0 HEIGHT=20 WIDTH=20 SRC="recycle.gif" ALT="Changed"></TD>
+    <TD COLSPAN="2"><FONT FACE="Arial,Helvetica">
+    Draw and Paint methods completely rewritten to draw indirectly via a TBitmap.<BR>
+    This should eliminate the goAsync problem for Draw.
+    </FONT></TD>
+  </TR>
+
+  <TR>
+    <TD ALIGN="CENTER" VALIGN="TOP" WIDTH=20><IMG BORDER=0 HEIGHT=20 WIDTH=20 SRC="recycle.gif" ALT="Changed"></TD>
+    <TD COLSPAN="2"><FONT FACE="Arial,Helvetica">
+    Bitmap property is now volatile but still public.<BR>
+    Volatile means that you should not use its value indirectly (i.e. assign it
+    to another variable) since the TBitmap it points to may be freed internally
+    at any time.
+    </FONT></TD>
+  </TR>
+
+  <TR>
+    <TD ALIGN="CENTER" VALIGN="TOP" WIDTH=20><IMG BORDER=0 HEIGHT=20 WIDTH=20 SRC="recycle.gif" ALT="Changed"></TD>
+    <TD COLSPAN="2"><FONT FACE="Arial,Helvetica">
+    The Assign method can now assign from any TPicture that can assign to a
+    TBitmap (TPicture&nbsp;->&nbsp;TBitmap&nbsp;->&nbsp;TGIFimage).
+    </FONT></TD>
+  </TR>
+
+  <TR>
+    <TD ALIGN="CENTER" VALIGN="TOP" WIDTH=20><IMG BORDER=0 HEIGHT=20 WIDTH=20 SRC="bug.gif" ALT="Bug fix"></TD>
+    <TD COLSPAN="2"><FONT FACE="Arial,Helvetica">
+    A potential dead lock problem in the Destroy method has been fixed.
+    </FONT></TD>
+  </TR>
+
+<!-- TGIFSubImage class -->
+  <TR><TD>&nbsp;</TD></TR>
+  <TR>
+  <TD WIDTH=20 COLSPAN="2" BGCOLOR="#008080"><FONT FACE="Arial,Helvetica" COLOR="#FFFFFF" SIZE="+1">&nbsp;<IMG BORDER=0 HEIGHT=10 WIDTH=10 ALIGN=ABSCENTER SRC="dot_r.gif">&nbsp;TGIFSubImage class</FONT></TD>
+  <TD></TD>
+  </TR>
+
+  <TR>
+    <TD ALIGN="CENTER" VALIGN="TOP" WIDTH=20><IMG BORDER=0 HEIGHT=20 WIDTH=20 SRC="plus.gif" ALT="New"></TD>
+    <TD COLSPAN="2"><FONT FACE="Arial,Helvetica">
+    New StretchDraw method (public).<BR>
+    Same as the Draw method, but stretches the image to fill the paint rect.
+    </FONT></TD>
+  </TR>
+
+  <TR>
+    <TD ALIGN="CENTER" VALIGN="TOP" WIDTH=20><IMG BORDER=0 HEIGHT=20 WIDTH=20 SRC="plus.gif" ALT="New"></TD>
+    <TD COLSPAN="2"><FONT FACE="Arial,Helvetica">
+    New ScaleRect method (protected).
+    </FONT></TD>
+  </TR>
+
+  <TR>
+    <TD ALIGN="CENTER" VALIGN="TOP" WIDTH=20><IMG BORDER=0 HEIGHT=20 WIDTH=20 SRC="plus.gif" ALT="New"></TD>
+    <TD COLSPAN="2"><FONT FACE="Arial,Helvetica">
+    Support for Floyd Steinberg dithering to the Netscape palette.
+    </FONT></TD>
+  </TR>
+
+  <TR>
+    <TD ALIGN="CENTER" VALIGN="TOP" WIDTH=20><IMG BORDER=0 HEIGHT=20 WIDTH=20 SRC="plus.gif" ALT="New"></TD>
+    <TD COLSPAN="2"><FONT FACE="Arial,Helvetica">
+    New Transparent read-only property (public).<BR>
+    This property is true if transparency is enabled in any of the image's GCEs.
+    </FONT></TD>
+  </TR>
+
+  <TR>
+    <TD ALIGN="CENTER" VALIGN="TOP" WIDTH=20><IMG BORDER=0 HEIGHT=20 WIDTH=20 SRC="recycle.gif" ALT="Changed"></TD>
+    <TD COLSPAN="2"><FONT FACE="Arial,Helvetica">
+    The Decompress method now handles "premature end of file" as a warning.
+    </FONT></TD>
+  </TR>
+
+  <TR>
+    <TD ALIGN="CENTER" VALIGN="TOP" WIDTH=20><IMG BORDER=0 HEIGHT=20 WIDTH=20 SRC="recycle.gif" ALT="Changed"></TD>
+    <TD COLSPAN="2"><FONT FACE="Arial,Helvetica">
+    The Draw method now takes a parameter that specifies if it should draw
+    transparently.
+    </FONT></TD>
+  </TR>
+
+  <TR>
+    <TD ALIGN="CENTER" VALIGN="TOP" WIDTH=20><IMG BORDER=0 HEIGHT=20 WIDTH=20 SRC="bug.gif" ALT="Bug fix"></TD>
+    <TD COLSPAN="2"><FONT FACE="Arial,Helvetica">
+    Transparent drawing is now handled completely without "help" from the
+    Delphi 3 TBitmap.Transparent feature (which is broken).<BR>
+    This fixes a large number of transparency, disposal and palette problems.
+    </FONT></TD>
+  </TR>
+
+<!-- TGIFPainter class -->
+  <TR><TD>&nbsp;</TD></TR>
+  <TR>
+  <TD WIDTH=20 COLSPAN="2" BGCOLOR="#008080"><FONT FACE="Arial,Helvetica" COLOR="#FFFFFF" SIZE="+1">&nbsp;<IMG BORDER=0 HEIGHT=10 WIDTH=10 ALIGN=ABSCENTER SRC="dot_r.gif">&nbsp;TGIFPainter class</FONT></TD>
+  <TD></TD>
+  </TR>
+
+  <TR>
+    <TD ALIGN="CENTER" VALIGN="TOP" WIDTH=20><IMG BORDER=0 HEIGHT=20 WIDTH=20 SRC="plus.gif" ALT="New"></TD>
+    <TD COLSPAN="2"><FONT FACE="Arial,Helvetica">
+    The animation delay now compensates for the time spent converting the GIF to
+    a bitmap, resulting in a more smooth animation.
+    </FONT></TD>
+  </TR>
+
+  <TR>
+    <TD ALIGN="CENTER" VALIGN="TOP" WIDTH=20><IMG BORDER=0 HEIGHT=20 WIDTH=20 SRC="recycle.gif" ALT="Changed"></TD>
+    <TD COLSPAN="2"><FONT FACE="Arial,Helvetica">
+    The DoPaintFrame method has been completely rewritten to handle transparency,
+    palettes and disposal much better and a new DoPaint method (private) for
+    non-buffered paint has been added.
+    </FONT></TD>
+  </TR>
+
+  <TR>
+    <TD ALIGN="CENTER" VALIGN="TOP" WIDTH=20><IMG BORDER=0 HEIGHT=20 WIDTH=20 SRC="recycle.gif" ALT="Changed"></TD>
+    <TD COLSPAN="2"><FONT FACE="Arial,Helvetica">
+    Use of Sleep() in threaded paint has been replaced with WaitForSingleObject
+    with timeout.<BR>
+    This enables the Stop method to abort the thread immediately even though it
+    is waiting for the delay to expire.
+    </FONT></TD>
+  </TR>
+
+  <TR>
+    <TD ALIGN="CENTER" VALIGN="TOP" WIDTH=20><IMG BORDER=0 HEIGHT=20 WIDTH=20 SRC="bug.gif" ALT="Bug fix"></TD>
+    <TD COLSPAN="2"><FONT FACE="Arial,Helvetica">
+    A potential leak in the Execute method has been fixed.<BR>
+    If an exception was raised during the extension preprocessing, the frame
+    buffers would not be freed.
+    </FONT></TD>
+  </TR>
+
+  <TR>
+    <TD ALIGN="CENTER" VALIGN="TOP" WIDTH=20><IMG BORDER=0 HEIGHT=20 WIDTH=20 SRC="bug.gif" ALT="Bug fix"></TD>
+    <TD COLSPAN="2"><FONT FACE="Arial,Helvetica">
+    Fixed loop bug in Execute method where loop would wrap to wrong frame if the
+    loop extension were preceeded by other extensions.
+    </FONT></TD>
+  </TR>
+
+<!-- Misc classes -->
+  <TR><TD>&nbsp;</TD></TR>
+  <TR>
+  <TD WIDTH=20 COLSPAN="2" BGCOLOR="#008080"><FONT FACE="Arial,Helvetica" COLOR="#FFFFFF" SIZE="+1">&nbsp;<IMG BORDER=0 HEIGHT=10 WIDTH=10 ALIGN=ABSCENTER SRC="dot_r.gif">&nbsp;Misc classes</FONT></TD>
+  <TD></TD>
+  </TR>
+
+  <TR>
+    <TD ALIGN="CENTER" VALIGN="TOP" WIDTH=20><IMG BORDER=0 HEIGHT=20 WIDTH=20 SRC="plus.gif" ALT="New"></TD>
+    <TD COLSPAN="2"><FONT FACE="Arial,Helvetica">
+    Added TGIFList.Image property in order to be able to report warnings in
+    LoadFromStream.
+    </FONT></TD>
+  </TR>
+
+  <TR>
+    <TD ALIGN="CENTER" VALIGN="TOP" WIDTH=20><IMG BORDER=0 HEIGHT=20 WIDTH=20 SRC="plus.gif" ALT="New"></TD>
+    <TD COLSPAN="2"><FONT FACE="Arial,Helvetica">
+    Added TGIFList.Warning method (protected) to enable graceful recovery from
+    non fatal errors.
+    </FONT></TD>
+  </TR>
+
+  <TR>
+    <TD ALIGN="CENTER" VALIGN="TOP" WIDTH=20><IMG BORDER=0 HEIGHT=20 WIDTH=20 SRC="plus.gif" ALT="New"></TD>
+    <TD COLSPAN="2"><FONT FACE="Arial,Helvetica">
+    New TGIFColorMap.Data property for access to raw colormap data.
+    </FONT></TD>
+  </TR>
+
+  <TR>
+    <TD ALIGN="CENTER" VALIGN="TOP" WIDTH=20><IMG BORDER=0 HEIGHT=20 WIDTH=20 SRC="plus.gif" ALT="New"></TD>
+    <TD COLSPAN="2"><FONT FACE="Arial,Helvetica">
+    TGIFApplicationExtension.LoadFromStream is now able to handle invalid GIFs
+    produced by older Adobe programs.
+    </FONT></TD>
+  </TR>
+
+  <TR>
+    <TD ALIGN="CENTER" VALIGN="TOP" WIDTH=20><IMG BORDER=0 HEIGHT=20 WIDTH=20 SRC="recycle.gif" ALT="Changed"></TD>
+    <TD COLSPAN="2"><FONT FACE="Arial,Helvetica">
+    The TGIFExtensionList.LoadFromStream method now handles missing extension
+    introducers as a warning.
+    </FONT></TD>
+  </TR>
+
+  <TR>
+    <TD ALIGN="CENTER" VALIGN="TOP" WIDTH=20><IMG BORDER=0 HEIGHT=20 WIDTH=20 SRC="recycle.gif" ALT="Changed"></TD>
+    <TD COLSPAN="2"><FONT FACE="Arial,Helvetica">
+    The TGIFImageList.LoadFromStream method now handles "bad block type" as a
+    warning.
+    </FONT></TD>
+  </TR>
+
+</TABLE>
+
+<BR CLEAR=all>&nbsp;
+
+<CENTER>
+<HR NOSHADE>
+
+<FONT SIZE="-1">
+  Copyright &copy; 1998 <A HREF="mailto:anders@melander.dk">Anders Melander</A>. All rights reserved.
+</FONT>
+</CENTER>
+</BODY>
+</HTML>

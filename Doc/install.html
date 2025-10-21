@@ -1,0 +1,755 @@
+<HTML>
+<HEAD>
+  <TITLE>Installation instructions</TITLE>
+</HEAD>
+
+<BODY BGCOLOR="#FFFFFF">
+
+<TABLE BORDER="0" CELLSPACING="0" CELLPADDING="0" WIDTH="100%" BGCOLOR="#008080">
+  <TR>
+  <TD ALIGN="CENTER"><FONT FACE="Arial,Helvetica" COLOR="#FFFFFF" SIZE="+2">&nbsp;<IMG BORDER=0 HEIGHT=10 WIDTH=10 ALIGN=ABSCENTER SRC="dot_r.gif">&nbsp;Installation instructions&nbsp;<IMG BORDER=0 HEIGHT=10 WIDTH=10 ALIGN=ABSCENTER SRC="dot_l.gif"></FONT></TD>
+  </TR>
+</TABLE>
+
+<P>
+Since TGIFImage isn't a component it doesn't really need to be installed before
+you can use it.
+
+<P>However, if you would like to be able to use the TImage component to load and
+display GIFs at design time, Delphi must be told about TGIFImage somehow. The
+procedure to install TGIFImage is the same as with any other component, but
+varies a little with different versions of Delphi and C++ Builder.
+
+<P>
+
+<TABLE BORDER=0 ALIGN=LEFT CELLSPACING=5 WIDTH="90%">
+  <TR>
+    <TD WIDTH=15>&nbsp;</TD>
+    <TD WIDTH=10>&nbsp;</TD>
+    <TD>&nbsp;</TD>
+  </TR>
+  <TR>
+    <TD COLSPAN=3>
+    <TABLE BORDER=0 ALIGN=LEFT CELLSPACING=0 WIDTH="90%">
+      <TR>
+      <TD WIDTH="45%" BGCOLOR="#008080"><FONT FACE="Arial,Helvetica" COLOR="#FFFFFF" SIZE="+1">&nbsp;<IMG BORDER=0 HEIGHT=10 WIDTH=10 ALIGN=ABSCENTER SRC="dot_r.gif">&nbsp;Before you start...</FONT></TD>
+      <TD>&nbsp;</TD>
+      </TR>
+    </TABLE>
+    </TD>
+  </TR>
+  <TR>
+    <TD ROWSPAN=100>&nbsp;</TD>
+    <TD ALIGN="CENTER" VALIGN="TOP" WIDTH=10><IMG BORDER=0 HEIGHT=10 WIDTH=10 SRC="dot_r.gif" ALT="1"></TD>
+    <TD><FONT FACE="Arial,Helvetica">
+    Read the <A HREF="faq.html">FAQ</A>. Pay special attention to the first
+    issue mentioned (GIF doesn't display at run-time).<P>
+    </FONT></TD>
+  </TR>
+  <TR>
+    <TD ALIGN="CENTER" VALIGN="TOP" WIDTH=10><IMG BORDER=0 HEIGHT=10 WIDTH=10 SRC="dot_r.gif" ALT="2"></TD>
+    <TD><FONT FACE="Arial,Helvetica">
+    Verify that you do not have any other GIF libraries installed.<BR>
+    Since TGIFImage registers itself with the TPicture class as a GIF handler,
+    it will conflict with any other GIF libraries that does the same thing (e.g.
+    rxLib and ImageLib).<BR>
+    If you do <B>not</B> have another GIF library installed or you do not use
+    the TImage component to load and display GIFs, you can skip this step.<P>
+
+    To verify that you don't have another GIF library installed you can create a
+    new form, add a <B>TImage</B> component to it and click on the <B>Picture</B>
+    property in the "Object Inspector".<P>
+
+    If the "Load Picture" dialog already has the "<B>GIF</B>" file type listed
+    or you are able to load and display a GIF file, you do have another GIF library
+    installed and will need to do something about it (if you have a previous
+    version of TGIFImage installed you are obviously already using TGIFImage and
+    thus do not need to do anything).<P>
+
+    To avoid conflicts you must disable the TImage/TPicture integration of either
+    TGIFImage or the other GIF library:<BR>
+    <UL>
+    To disable TGIFImage's TImage integration you should undefine the
+    <B>REGISTER_TGIFIMAGE</B> conditional define in gifimage.pas, but note that
+    if you do so you will not be able to use TGIFImage with the TImage component.<P>
+
+    To disable the GIF support of the other GIF library, you should consult the
+    library's documentation on how to do so. The following is what rxLib says
+    about the issue:<BR><BR>
+    <BLOCKQUOTE><I>
+      If you are using another GIF image support library (like ImageLib),
+      deactivate the conditional define USE_RX_GIF in RX\UNITS\RX.INC file and
+      rebuild your component library.
+    </I></BLOCKQUOTE>
+    </FONT></TD>
+    </UL>
+  </TR>
+</TABLE>
+
+<!-- Delphi 5 -->
+<BR CLEAR=all>&nbsp;
+<TABLE BORDER=0 ALIGN=LEFT CELLSPACING=5 WIDTH="90%">
+  <TR>
+    <TD WIDTH=15>&nbsp;</TD>
+    <TD WIDTH=10>&nbsp;</TD>
+    <TD>&nbsp;</TD>
+  </TR>
+  <TR>
+    <TD COLSPAN=3>
+    <TABLE BORDER="0" ALIGN=LEFT CELLSPACING=0 WIDTH="90%">
+      <TR>
+      <TD WIDTH="45%" BGCOLOR="#008080"><FONT FACE="Arial,Helvetica" COLOR="#FFFFFF" SIZE="+1">&nbsp;<IMG BORDER=0 HEIGHT=10 WIDTH=10 ALIGN=ABSCENTER SRC="dot_r.gif">&nbsp;Delphi 5</FONT></TD>
+      <TD>&nbsp;</TD>
+      </TR>
+    </TABLE>
+    </TD>
+  </TR>
+
+  <TR>
+    <TD COLSPAN=3><FONT FACE="Arial,Helvetica"><B>Library installation</B></FONT></TD>
+  </TR>
+  <TR>
+    <TD ROWSPAN=6>&nbsp;</TD>
+    <TD ALIGN="CENTER" VALIGN="TOP" WIDTH=10><IMG BORDER=0 HEIGHT=10 WIDTH=10 SRC="dot_r.gif" ALT="1"></TD>
+    <TD><FONT FACE="Arial,Helvetica">
+    From the <B>Component</B> menu select <B>Install Component...</B><P>
+    </FONT></TD>
+  </TR>
+  <TR>
+    <TD ALIGN="CENTER" VALIGN="TOP" WIDTH=10><IMG BORDER=0 HEIGHT=10 WIDTH=10 SRC="dot_r.gif" ALT="2"></TD>
+    <TD><FONT FACE="Arial,Helvetica">
+    Specify <B>gifimage</B> as the <B>Unit file name</B>.<BR>
+    If the gifimage unit isn't in the library search path, you can use the
+    <B>Browse</B> button to specify where it is located.<P>
+    </FONT></TD>
+  </TR>
+  <TR>
+    <TD ALIGN="CENTER" VALIGN="TOP" WIDTH=10><IMG BORDER=0 HEIGHT=10 WIDTH=10 SRC="dot_r.gif" ALT="3"></TD>
+    <TD><FONT FACE="Arial,Helvetica">
+    Specify the package to add gifimage to in the <B>Package file name</B> field.<BR>
+    Unless you prefer another package, I recommend that you use the <B>dclusr50.dpk</B>
+    package which is reserved for "User's Components".<P>
+    </FONT></TD>
+  </TR>
+  <TR>
+    <TD ALIGN="CENTER" VALIGN="TOP" WIDTH=10><IMG BORDER=0 HEIGHT=10 WIDTH=10 SRC="dot_r.gif" ALT="4"></TD>
+    <TD><FONT FACE="Arial,Helvetica">
+    When you close the "Install Component" dialog, the package will be recompiled and installed
+    for you.<BR>
+    Please note that TGIFImage will not show up on your component palette since
+    it is not a component. If this surprises you, you should read the
+    <A HREF="faq.html">FAQ</A> again.<P>
+    </FONT></TD>
+  </TR>
+  <TR>
+    <TD ALIGN="CENTER" VALIGN="TOP" WIDTH=10><IMG BORDER=0 HEIGHT=10 WIDTH=10 SRC="dot_r.gif" ALT="5"></TD>
+    <TD><FONT FACE="Arial,Helvetica">
+    To verify that TGIFImage is now available at design time, you can create a
+    new form, add a <B>TImage</B> component to it and click on the <B>Picture</B>
+    property in the "Object Inspector".<BR>
+    The "Load Picture" dialog should now have a "<B>GIF Image</B>" file type and
+    if you load a GIF file it should be displayed by the TImage component.<P>
+    </FONT></TD>
+  </TR>
+  <TR>
+    <TD ALIGN="CENTER" VALIGN="TOP" WIDTH=10><IMG BORDER=0 HEIGHT=10 WIDTH=10 SRC="dot_r.gif" ALT="6"></TD>
+    <TD><FONT FACE="Arial,Helvetica">
+    Finally, read the <A HREF="faq.html">FAQ</A> again.<BR>
+    It might also be a good idea for you to read the list of <A HREF="bugs.html">Known Problems</A>.<P>
+    </FONT></TD>
+  </TR>
+
+  <TR>
+    <TD COLSPAN=3><FONT FACE="Arial,Helvetica"><B>&nbsp;<BR>Context sensitive help installation</B></FONT></TD>
+  </TR>
+  <TR>
+    <TD ROWSPAN=5>&nbsp;</TD>
+    <TD ALIGN="CENTER" VALIGN="TOP" WIDTH=10><IMG BORDER=0 HEIGHT=10 WIDTH=10 SRC="dot_r.gif" ALT="1"></TD>
+    <TD><FONT FACE="Arial,Helvetica">
+    From the <B>Help</B> menu select <B>Customize...</B><P>
+    </FONT></TD>
+  </TR>
+  <TR>
+    <TD ALIGN="CENTER" VALIGN="TOP" WIDTH=10><IMG BORDER=0 HEIGHT=10 WIDTH=10 SRC="dot_r.gif" ALT="2"></TD>
+    <TD><FONT FACE="Arial,Helvetica">
+    When the OpenHelp dialog appears select the <B>Index</B> tab.</FONT></TD>
+  </TR>
+  <TR>
+    <TD ALIGN="CENTER" VALIGN="TOP" WIDTH=10><IMG BORDER=0 HEIGHT=10 WIDTH=10 SRC="dot_r.gif" ALT="3"></TD>
+    <TD><FONT FACE="Arial,Helvetica">
+    Click the <B>Add Files</B> toolbar button and add tgifimage.hlp which
+    will be found in the folder where you installed TGIFImage.</FONT></TD>
+  </TR>
+  <TR>
+    <TD ALIGN="CENTER" VALIGN="TOP" WIDTH=10><IMG BORDER=0 HEIGHT=10 WIDTH=10 SRC="dot_r.gif" ALT="4"></TD>
+    <TD><FONT FACE="Arial,Helvetica">
+    Close the OpenHelp dialog and Save the project when prompted.</FONT></TD>
+  </TR>
+  <TR>
+    <TD ALIGN="CENTER" VALIGN="TOP" WIDTH=10><IMG BORDER=0 HEIGHT=10 WIDTH=10 SRC="dot_r.gif" ALT="5"></TD>
+    <TD><FONT FACE="Arial,Helvetica">
+    It may be necessary to exit and restart Delphi before the help system is properly updated
+    (An alternative is to delete the Delphi5.gid file located in Delphi's help directory).</FONT></TD>
+  </TR>
+</TABLE>
+
+<!-- Delphi 4 -->
+<BR CLEAR=all>&nbsp;
+<TABLE BORDER=0 ALIGN=LEFT CELLSPACING=5 WIDTH="90%">
+  <TR>
+    <TD WIDTH=15>&nbsp;</TD>
+    <TD WIDTH=10>&nbsp;</TD>
+    <TD>&nbsp;</TD>
+  </TR>
+  <TR>
+    <TD COLSPAN=3>
+    <TABLE BORDER="0" ALIGN=LEFT CELLSPACING=0 WIDTH="90%">
+      <TR>
+      <TD WIDTH="45%" BGCOLOR="#008080"><FONT FACE="Arial,Helvetica" COLOR="#FFFFFF" SIZE="+1">&nbsp;<IMG BORDER=0 HEIGHT=10 WIDTH=10 ALIGN=ABSCENTER SRC="dot_r.gif">&nbsp;Delphi 4</FONT></TD>
+      <TD>&nbsp;</TD>
+      </TR>
+    </TABLE>
+    </TD>
+  </TR>
+
+  <TR>
+    <TD COLSPAN=3><FONT FACE="Arial,Helvetica"><B>Library installation</B></FONT></TD>
+  </TR>
+  <TR>
+    <TD ROWSPAN=6>&nbsp;</TD>
+    <TD ALIGN="CENTER" VALIGN="TOP" WIDTH=10><IMG BORDER=0 HEIGHT=10 WIDTH=10 SRC="dot_r.gif" ALT="1"></TD>
+    <TD><FONT FACE="Arial,Helvetica">
+    From the <B>Component</B> menu select <B>Install Component...</B><P>
+    </FONT></TD>
+  </TR>
+  <TR>
+    <TD ALIGN="CENTER" VALIGN="TOP" WIDTH=10><IMG BORDER=0 HEIGHT=10 WIDTH=10 SRC="dot_r.gif" ALT="2"></TD>
+    <TD><FONT FACE="Arial,Helvetica">
+    Specify <B>gifimage</B> as the <B>Unit file name</B>.<BR>
+    If the gifimage unit isn't in the library search path, you can use the
+    <B>Browse</B> button to specify where it is located.<P>
+    </FONT></TD>
+  </TR>
+  <TR>
+    <TD ALIGN="CENTER" VALIGN="TOP" WIDTH=10><IMG BORDER=0 HEIGHT=10 WIDTH=10 SRC="dot_r.gif" ALT="3"></TD>
+    <TD><FONT FACE="Arial,Helvetica">
+    Specify the package to add gifimage to in the <B>Package file name</B> field.<BR>
+    Unless you prefer another package, I recommend that you use the <B>dclusr40.dpk</B>
+    package which is reserved for "User's Components".<P>
+    </FONT></TD>
+  </TR>
+  <TR>
+    <TD ALIGN="CENTER" VALIGN="TOP" WIDTH=10><IMG BORDER=0 HEIGHT=10 WIDTH=10 SRC="dot_r.gif" ALT="4"></TD>
+    <TD><FONT FACE="Arial,Helvetica">
+    When you close the "Install Component" dialog, the package will be recompiled and installed
+    for you.<BR>
+    Please note that TGIFImage will not show up on your component palette since
+    it is not a component. If this surprises you, you should read the
+    <A HREF="faq.html">FAQ</A> again.<P>
+    </FONT></TD>
+  </TR>
+  <TR>
+    <TD ALIGN="CENTER" VALIGN="TOP" WIDTH=10><IMG BORDER=0 HEIGHT=10 WIDTH=10 SRC="dot_r.gif" ALT="5"></TD>
+    <TD><FONT FACE="Arial,Helvetica">
+    To verify that TGIFImage is now available at design time, you can create a
+    new form, add a <B>TImage</B> component to it and click on the <B>Picture</B>
+    property in the "Object Inspector".<BR>
+    The "Load Picture" dialog should now have a "<B>GIF Image</B>" file type and
+    if you load a GIF file it should be displayed by the TImage component.<P>
+    </FONT></TD>
+  </TR>
+  <TR>
+    <TD ALIGN="CENTER" VALIGN="TOP" WIDTH=10><IMG BORDER=0 HEIGHT=10 WIDTH=10 SRC="dot_r.gif" ALT="6"></TD>
+    <TD><FONT FACE="Arial,Helvetica">
+    Finally, read the <A HREF="faq.html">FAQ</A> again.<BR>
+    It might also be a good idea for you to read the list of <A HREF="bugs.html">Known Problems</A>.<P>
+    </FONT></TD>
+  </TR>
+
+  <TR>
+    <TD COLSPAN=3><FONT FACE="Arial,Helvetica"><B>&nbsp;<BR>Context sensitive help installation</B></FONT></TD>
+  </TR>
+  <TR>
+    <TD ROWSPAN=5>&nbsp;</TD>
+    <TD ALIGN="CENTER" VALIGN="TOP" WIDTH=10><IMG BORDER=0 HEIGHT=10 WIDTH=10 SRC="dot_r.gif" ALT="1"></TD>
+    <TD><FONT FACE="Arial,Helvetica">
+    From the <B>Help</B> menu select <B>Customize...</B><P>
+    </FONT></TD>
+  </TR>
+  <TR>
+    <TD ALIGN="CENTER" VALIGN="TOP" WIDTH=10><IMG BORDER=0 HEIGHT=10 WIDTH=10 SRC="dot_r.gif" ALT="2"></TD>
+    <TD><FONT FACE="Arial,Helvetica">
+    When the OpenHelp dialog appears select the <B>Index</B> tab.</FONT></TD>
+  </TR>
+  <TR>
+    <TD ALIGN="CENTER" VALIGN="TOP" WIDTH=10><IMG BORDER=0 HEIGHT=10 WIDTH=10 SRC="dot_r.gif" ALT="3"></TD>
+    <TD><FONT FACE="Arial,Helvetica">
+    Click the <B>Add Files</B> toolbar button and add tgifimage.hlp which
+    will be found in the folder where you installed TGIFImage.</FONT></TD>
+  </TR>
+  <TR>
+    <TD ALIGN="CENTER" VALIGN="TOP" WIDTH=10><IMG BORDER=0 HEIGHT=10 WIDTH=10 SRC="dot_r.gif" ALT="4"></TD>
+    <TD><FONT FACE="Arial,Helvetica">
+    Close the OpenHelp dialog and Save the project when prompted.</FONT></TD>
+  </TR>
+  <TR>
+    <TD ALIGN="CENTER" VALIGN="TOP" WIDTH=10><IMG BORDER=0 HEIGHT=10 WIDTH=10 SRC="dot_r.gif" ALT="5"></TD>
+    <TD><FONT FACE="Arial,Helvetica">
+    It may be necessary to exit and restart Delphi before the help system is properly updated
+    (An alternative is to delete the Delphi4.gid file located in Delphi's help directory).</FONT></TD>
+  </TR>
+</TABLE>
+
+<!-- Delphi 3 -->
+<BR CLEAR=all>&nbsp;
+<TABLE BORDER="0" ALIGN=LEFT CELLSPACING=5 WIDTH="90%">
+  <TR>
+    <TD WIDTH=15>&nbsp;</TD>
+    <TD WIDTH=10>&nbsp;</TD>
+    <TD>&nbsp;</TD>
+  </TR>
+  <TR>
+    <TD COLSPAN=3>
+    <TABLE BORDER="0" ALIGN=LEFT CELLSPACING=0 WIDTH="90%">
+      <TR>
+      <TD WIDTH="45%" BGCOLOR="#008080"><FONT FACE="Arial,Helvetica" COLOR="#FFFFFF" SIZE="+1">&nbsp;<IMG BORDER=0 HEIGHT=10 WIDTH=10 ALIGN=ABSCENTER SRC="dot_r.gif">&nbsp;Delphi 3</FONT></TD>
+      <TD>&nbsp;</TD>
+      </TR>
+    </TABLE>
+    </TD>
+  </TR>
+
+  <TR>
+    <TD COLSPAN=3><FONT FACE="Arial,Helvetica"><B>Library installation</B></FONT></TD>
+  </TR>
+  <TR>
+    <TD ROWSPAN=6>&nbsp;</TD>
+    <TD ALIGN="CENTER" VALIGN="TOP" WIDTH=10><IMG BORDER=0 HEIGHT=10 WIDTH=10 SRC="dot_r.gif" ALT="1"></TD>
+    <TD><FONT FACE="Arial,Helvetica">
+    From the <B>Component</B> menu select <B>Install Component...</B><P>
+    </FONT></TD>
+  </TR>
+  <TR>
+    <TD ALIGN="CENTER" VALIGN="TOP" WIDTH=10><IMG BORDER=0 HEIGHT=10 WIDTH=10 SRC="dot_r.gif" ALT="2"></TD>
+    <TD><FONT FACE="Arial,Helvetica">
+    Specify <B>gifimage</B> as the <B>Unit file name</B>.<BR>
+    If the gifimage unit isn't in the library search path, you can use the
+    <B>Browse</B> button to specify where it is located.<P>
+    </FONT></TD>
+  </TR>
+  <TR>
+    <TD ALIGN="CENTER" VALIGN="TOP" WIDTH=10><IMG BORDER=0 HEIGHT=10 WIDTH=10 SRC="dot_r.gif" ALT="3"></TD>
+    <TD><FONT FACE="Arial,Helvetica">
+    Specify the package to add gifimage to in the <B>Package file name</B> field.<BR>
+    Unless you prefer another package, I recommend that you use the <B>dclusr30.dpk</B>
+    package which is reserved for "User's Components".<P>
+    </FONT></TD>
+  </TR>
+  <TR>
+    <TD ALIGN="CENTER" VALIGN="TOP" WIDTH=10><IMG BORDER=0 HEIGHT=10 WIDTH=10 SRC="dot_r.gif" ALT="4"></TD>
+    <TD><FONT FACE="Arial,Helvetica">
+    When you close the "Install Component" dialog, the package will be recompiled and installed
+    for you.<BR>
+    Please note that TGIFImage will not show up on your component palette since
+    it is not a component. If this surprises you, you should read the
+    <A HREF="faq.html">FAQ</A> again.<P>
+    </FONT></TD>
+  </TR>
+  <TR>
+    <TD ALIGN="CENTER" VALIGN="TOP" WIDTH=10><IMG BORDER=0 HEIGHT=10 WIDTH=10 SRC="dot_r.gif" ALT="5"></TD>
+    <TD><FONT FACE="Arial,Helvetica">
+    To verify that TGIFImage is now available at design time, you can create a
+    new form, add a <B>TImage</B> component to it and click on the <B>Picture</B>
+    property in the "Object Inspector".<BR>
+    The "Load Picture" dialog should now have a "<B>GIF Image</B>" file type and
+    if you load a GIF file it should be displayed by the TImage component.<P>
+    </FONT></TD>
+  </TR>
+  <TR>
+    <TD ALIGN="CENTER" VALIGN="TOP" WIDTH=10><IMG BORDER=0 HEIGHT=10 WIDTH=10 SRC="dot_r.gif" ALT="6"></TD>
+    <TD><FONT FACE="Arial,Helvetica">
+    Finally, read the <A HREF="faq.html">FAQ</A> again.<BR>
+    It might also be a good idea for you to read the list of <A HREF="bugs.html">Known Problems</A>.<P>
+    </FONT></TD>
+  </TR>
+
+  <TR>
+    <TD COLSPAN=3><FONT FACE="Arial,Helvetica"><B>&nbsp;<BR>Context sensitive help installation</B></FONT></TD>
+  </TR>
+  <TR>
+    <TD ROWSPAN=5>&nbsp;</TD>
+    <TD ALIGN="CENTER" VALIGN="TOP" WIDTH=10><IMG BORDER=0 HEIGHT=10 WIDTH=10 SRC="dot_r.gif" ALT="1"></TD>
+    <TD><FONT FACE="Arial,Helvetica">
+    In the Delphi Help directory open Delphi3.cnt with a text editor and insert<BR>
+    
+    <P><CODE>&nbsp;&nbsp;:Index TGIFImage reference =<FONT COLOR=red>Path</FONT>\tgifimage.hlp</CODE>
+    
+    <P>into the Index section. Replace <FONT COLOR=red>Path</FONT> with the path to the
+    directory where you installed TGIFImage.
+    
+    <P>The index section will then look something like this:
+    <P><CODE>
+    &nbsp;&nbsp;; Index section<BR>
+    &nbsp;&nbsp;;==============<BR>
+    &nbsp;&nbsp;:Index VCL Object and Component Reference=vcl3.hlp<BR>
+    &nbsp;&nbsp;:Index Object Pascal Reference =obpascl3.hlp<BR>
+    &nbsp;&nbsp;:Index TGIFImage reference =c:\Source\Gifimage\tgifimage.hlp</CODE><BR>&nbsp;</FONT></TD>
+  </TR>
+  <TR>
+    <TD ALIGN="CENTER" VALIGN="TOP" WIDTH=10><IMG BORDER=0 HEIGHT=10 WIDTH=10 SRC="dot_r.gif" ALT="2"></TD>
+    <TD><FONT FACE="Arial,Helvetica">
+    Save the modified Delphi3.cnt file.</FONT></TD>
+  </TR>
+</TABLE>
+
+<!-- Delphi 2 -->
+<BR CLEAR=all>&nbsp;
+<TABLE BORDER="0" ALIGN=LEFT CELLSPACING=5 WIDTH="90%">
+  <TR>
+    <TD WIDTH=15>&nbsp;</TD>
+    <TD WIDTH=10>&nbsp;</TD>
+    <TD>&nbsp;</TD>
+  </TR>
+  <TR>
+    <TD COLSPAN=3>
+    <TABLE BORDER="0" ALIGN=LEFT CELLSPACING=0 WIDTH="90%">
+      <TR>
+      <TD WIDTH="45%" BGCOLOR="#008080"><FONT FACE="Arial,Helvetica" COLOR="#FFFFFF" SIZE="+1">&nbsp;<IMG BORDER=0 HEIGHT=10 WIDTH=10 ALIGN=ABSCENTER SRC="dot_r.gif">&nbsp;Delphi 2</FONT></TD>
+      <TD>&nbsp;</TD>
+      </TR>
+    </TABLE>
+    </TD>
+  </TR>
+
+  <TR>
+    <TD COLSPAN=3><FONT FACE="Arial,Helvetica"><B>Library installation</B></FONT></TD>
+  </TR>
+  <TR>
+    <TD ROWSPAN=5>&nbsp;</TD>
+    <TD ALIGN="CENTER" VALIGN="TOP" WIDTH=10><IMG BORDER=0 HEIGHT=10 WIDTH=10 SRC="dot_r.gif" ALT="1"></TD>
+    <TD><FONT FACE="Arial,Helvetica">
+    From the <B>Component</B> menu select <B>Install...</B><P>
+    </FONT></TD>
+  </TR>
+  <TR>
+    <TD ALIGN="CENTER" VALIGN="TOP" WIDTH=10><IMG BORDER=0 HEIGHT=10 WIDTH=10 SRC="dot_r.gif" ALT="2"></TD>
+    <TD><FONT FACE="Arial,Helvetica">
+    Click the <B>Add...</B> button and specify <B>gifimage.pas</B> as the <B>Module name</B>.<BR>
+    If the gifimage unit isn't in the library search path, you can use the
+    <B>Browse</B> button to specify where it is located.<P>
+    </FONT></TD>
+  </TR>
+  <TR>
+    <TD ALIGN="CENTER" VALIGN="TOP" WIDTH=10><IMG BORDER=0 HEIGHT=10 WIDTH=10 SRC="dot_r.gif" ALT="3"></TD>
+    <TD><FONT FACE="Arial,Helvetica">
+    When you close the "Install Components" dialog, the component library will
+    recompiled be for you.<BR>
+    Please note that TGIFImage will not show up on your component palette since
+    it is not a component. If this surprises you, you should read the
+    <A HREF="faq.html">FAQ</A> again.<P>
+    </FONT></TD>
+  </TR>
+  <TR>
+    <TD ALIGN="CENTER" VALIGN="TOP" WIDTH=10><IMG BORDER=0 HEIGHT=10 WIDTH=10 SRC="dot_r.gif" ALT="4"></TD>
+    <TD><FONT FACE="Arial,Helvetica">
+    To verify that TGIFImage is now available at design time, you can create a
+    new form, add a <B>TImage</B> component to it and click on the <B>Picture</B>
+    property in the "Object Inspector".<BR>
+    The "Load Picture" dialog should now have a "<B>GIF Image</B>" file type and
+    if you load a GIF file it should be displayed by the TImage component.<P>
+    </FONT></TD>
+  </TR>
+  <TR>
+    <TD ALIGN="CENTER" VALIGN="TOP" WIDTH=10><IMG BORDER=0 HEIGHT=10 WIDTH=10 SRC="dot_r.gif" ALT="5"></TD>
+    <TD><FONT FACE="Arial,Helvetica">
+    Finally, read the <A HREF="faq.html">FAQ</A> again.<BR>
+    It might also be a good idea for you to read the list of <A HREF="bugs.html">Known Problems</A>.<P>
+    </FONT></TD>
+  </TR>
+
+  <TR>
+    <TD COLSPAN=3><FONT FACE="Arial,Helvetica"><B>&nbsp;<BR>Context sensitive help installation</B></FONT></TD>
+  </TR>
+  <TR>
+    <TD>&nbsp;</TD>
+    <TD ALIGN="CENTER" VALIGN="TOP" WIDTH=10><IMG BORDER=0 HEIGHT=10 WIDTH=10 SRC="dot_r.gif" ALT="1"></TD>
+    <TD><FONT FACE="Arial,Helvetica">
+    The TGIFImage context sensitive help currently doesn't support Delphi 2.</FONT></TD>
+  </TR>
+</TABLE>
+
+<!-- C++ Builder 4 -->
+<BR CLEAR=all>&nbsp;
+<TABLE BORDER="0" ALIGN=LEFT CELLSPACING=5 WIDTH="90%">
+  <TR>
+    <TD WIDTH=15>&nbsp;</TD>
+    <TD WIDTH=10>&nbsp;</TD>
+    <TD>&nbsp;</TD>
+  </TR>
+  <TR>
+    <TD COLSPAN=3>
+    <TABLE BORDER="0" ALIGN=LEFT CELLSPACING=0 WIDTH="90%">
+      <TR>
+      <TD WIDTH="45%" BGCOLOR="#008080"><FONT FACE="Arial,Helvetica" COLOR="#FFFFFF" SIZE="+1">&nbsp;<IMG BORDER=0 HEIGHT=10 WIDTH=10 ALIGN=ABSCENTER SRC="dot_r.gif">&nbsp;C++ Builder 4</FONT></TD>
+      <TD>&nbsp;</TD>
+      </TR>
+    </TABLE>
+    </TD>
+  </TR>
+
+  <TR>
+    <TD COLSPAN=3><FONT FACE="Arial,Helvetica"><B>Library installation</B></FONT></TD>
+  </TR>
+  <TR>
+    <TD ROWSPAN=6>&nbsp;</TD>
+    <TD ALIGN="CENTER" VALIGN="TOP" WIDTH=10><IMG BORDER=0 HEIGHT=10 WIDTH=10 SRC="dot_r.gif" ALT="1"></TD>
+    <TD><FONT FACE="Arial,Helvetica">
+    From the <B>Component</B> menu select <B>Install Component...</B><P>
+    </FONT></TD>
+  </TR>
+  <TR>
+    <TD ALIGN="CENTER" VALIGN="TOP" WIDTH=10><IMG BORDER=0 HEIGHT=10 WIDTH=10 SRC="dot_r.gif" ALT="2"></TD>
+    <TD><FONT FACE="Arial,Helvetica">
+    Specify <B>gifimage.pas</B> as the <B>Unit file name</B>.<BR>
+    If the gifimage unit isn't in the library search path, you can use the
+    <B>Browse</B> button to specify where it is located.<P>
+    </FONT></TD>
+  </TR>
+  <TR>
+    <TD ALIGN="CENTER" VALIGN="TOP" WIDTH=10><IMG BORDER=0 HEIGHT=10 WIDTH=10 SRC="dot_r.gif" ALT="3"></TD>
+    <TD><FONT FACE="Arial,Helvetica">
+    Specify the package to add gifimage to in the <B>Package file name</B> field.<BR>
+    Unless you prefer another package, I recommend that you use the <B>dclusr40.bpk</B>
+    package which is reserved for "User's Components".<P>
+    </FONT></TD>
+  </TR>
+  <TR>
+    <TD ALIGN="CENTER" VALIGN="TOP" WIDTH=10><IMG BORDER=0 HEIGHT=10 WIDTH=10 SRC="dot_r.gif" ALT="4"></TD>
+    <TD><FONT FACE="Arial,Helvetica">
+    When you close the "Install Component" dialog, the package will be recompiled and installed
+    for you.<BR>
+    Please note that TGIFImage will not show up on your component palette since
+    it is not a component. If this surprises you, you should read the
+    <A HREF="faq.html">FAQ</A> again.<P>
+    </FONT></TD>
+  </TR>
+  <TR>
+    <TD ALIGN="CENTER" VALIGN="TOP" WIDTH=10><IMG BORDER=0 HEIGHT=10 WIDTH=10 SRC="dot_r.gif" ALT="5"></TD>
+    <TD><FONT FACE="Arial,Helvetica">
+    To verify that TGIFImage is now available at design time, you can create a
+    new form, add a <B>TImage</B> component to it and click on the <B>Picture</B>
+    property in the "Object Inspector".<BR>
+    The "Load Picture" dialog should now have a "<B>GIF Image</B>" file type and
+    if you load a GIF file it should be displayed by the TImage component.<P>
+    </FONT></TD>
+  </TR>
+  <TR>
+    <TD ALIGN="CENTER" VALIGN="TOP" WIDTH=10><IMG BORDER=0 HEIGHT=10 WIDTH=10 SRC="dot_r.gif" ALT="6"></TD>
+    <TD><FONT FACE="Arial,Helvetica">
+    Finally, read the <A HREF="faq.html">FAQ</A> again.<BR>
+    It might also be a good idea for you to read the list of <A HREF="bugs.html">Known Problems</A>.<P>
+    </FONT></TD>
+  </TR>
+
+  <TR>
+    <TD COLSPAN=3><FONT FACE="Arial,Helvetica"><B>&nbsp;<BR>Context sensitive help installation</B></FONT></TD>
+  </TR>
+  <TR>
+    <TD ROWSPAN=5>&nbsp;</TD>
+    <TD ALIGN="CENTER" VALIGN="TOP" WIDTH=10><IMG BORDER=0 HEIGHT=10 WIDTH=10 SRC="dot_r.gif" ALT="1"></TD>
+    <TD><FONT FACE="Arial,Helvetica">
+    From the <B>Help</B> menu select <B>Customize...</B><P>
+    </FONT></TD>
+  </TR>
+  <TR>
+    <TD ALIGN="CENTER" VALIGN="TOP" WIDTH=10><IMG BORDER=0 HEIGHT=10 WIDTH=10 SRC="dot_r.gif" ALT="2"></TD>
+    <TD><FONT FACE="Arial,Helvetica">
+    When the OpenHelp dialog appears select the <B>Index</B> tab.</FONT></TD>
+  </TR>
+  <TR>
+    <TD ALIGN="CENTER" VALIGN="TOP" WIDTH=10><IMG BORDER=0 HEIGHT=10 WIDTH=10 SRC="dot_r.gif" ALT="3"></TD>
+    <TD><FONT FACE="Arial,Helvetica">
+    Click the <B>Add Files</B> toolbar button and add tgifimage.hlp which
+    will be found in the folder where you installed TGIFImage.</FONT></TD>
+  </TR>
+  <TR>
+    <TD ALIGN="CENTER" VALIGN="TOP" WIDTH=10><IMG BORDER=0 HEIGHT=10 WIDTH=10 SRC="dot_r.gif" ALT="4"></TD>
+    <TD><FONT FACE="Arial,Helvetica">
+    Close the OpenHelp dialog and Save the project when prompted.</FONT></TD>
+  </TR>
+  <TR>
+    <TD ALIGN="CENTER" VALIGN="TOP" WIDTH=10><IMG BORDER=0 HEIGHT=10 WIDTH=10 SRC="dot_r.gif" ALT="5"></TD>
+    <TD><FONT FACE="Arial,Helvetica">
+    It may be necessary to exit and restart C++ Builder before the help system is properly updated
+    (An alternative is to delete the Bcb4.gid file located in C++ Builder's help directory).</FONT></TD>
+  </TR>
+</TABLE>
+
+<!-- C++ Builder 3 -->
+<BR CLEAR=all>&nbsp;
+<TABLE BORDER="0" ALIGN=LEFT CELLSPACING=5 WIDTH="90%">
+  <TR>
+    <TD WIDTH=15>&nbsp;</TD>
+    <TD WIDTH=10>&nbsp;</TD>
+    <TD>&nbsp;</TD>
+  </TR>
+  <TR>
+    <TD COLSPAN=3>
+    <TABLE BORDER="0" ALIGN=LEFT CELLSPACING=0 WIDTH="90%">
+      <TR>
+      <TD WIDTH="45%" BGCOLOR="#008080"><FONT FACE="Arial,Helvetica" COLOR="#FFFFFF" SIZE="+1">&nbsp;<IMG BORDER=0 HEIGHT=10 WIDTH=10 ALIGN=ABSCENTER SRC="dot_r.gif">&nbsp;C++ Builder 3</FONT></TD>
+      <TD>&nbsp;</TD>
+      </TR>
+    </TABLE>
+    </TD>
+  </TR>
+
+  <TR>
+    <TD COLSPAN=3><FONT FACE="Arial,Helvetica"><B>Library installation</B></FONT></TD>
+  </TR>
+  <TR>
+    <TD ROWSPAN=6>&nbsp;</TD>
+    <TD ALIGN="CENTER" VALIGN="TOP" WIDTH=10><IMG BORDER=0 HEIGHT=10 WIDTH=10 SRC="dot_r.gif" ALT="1"></TD>
+    <TD><FONT FACE="Arial,Helvetica">
+    From the <B>Component</B> menu select <B>Install Component...</B><P>
+    </FONT></TD>
+  </TR>
+  <TR>
+    <TD ALIGN="CENTER" VALIGN="TOP" WIDTH=10><IMG BORDER=0 HEIGHT=10 WIDTH=10 SRC="dot_r.gif" ALT="2"></TD>
+    <TD><FONT FACE="Arial,Helvetica">
+    Specify <B>gifimage.pas</B> as the <B>Unit file name</B>.<BR>
+    If the gifimage unit isn't in the library search path, you can use the
+    <B>Browse</B> button to specify where it is located.<P>
+    </FONT></TD>
+  </TR>
+  <TR>
+    <TD ALIGN="CENTER" VALIGN="TOP" WIDTH=10><IMG BORDER=0 HEIGHT=10 WIDTH=10 SRC="dot_r.gif" ALT="3"></TD>
+    <TD><FONT FACE="Arial,Helvetica">
+    Specify the package to add gifimage to in the <B>Package file name</B> field.<BR>
+    Unless you prefer another package, I recommend that you use the <B>dclusr35.bpk</B>
+    package which is reserved for "User's Components".<P>
+    </FONT></TD>
+  </TR>
+  <TR>
+    <TD ALIGN="CENTER" VALIGN="TOP" WIDTH=10><IMG BORDER=0 HEIGHT=10 WIDTH=10 SRC="dot_r.gif" ALT="4"></TD>
+    <TD><FONT FACE="Arial,Helvetica">
+    When you close the "Install Component" dialog, the package will be recompiled and installed
+    for you.<BR>
+    Please note that TGIFImage will not show up on your component palette since
+    it is not a component. If this surprises you, you should read the
+    <A HREF="faq.html">FAQ</A> again.<P>
+    </FONT></TD>
+  </TR>
+  <TR>
+    <TD ALIGN="CENTER" VALIGN="TOP" WIDTH=10><IMG BORDER=0 HEIGHT=10 WIDTH=10 SRC="dot_r.gif" ALT="5"></TD>
+    <TD><FONT FACE="Arial,Helvetica">
+    To verify that TGIFImage is now available at design time, you can create a
+    new form, add a <B>TImage</B> component to it and click on the <B>Picture</B>
+    property in the "Object Inspector".<BR>
+    The "Load Picture" dialog should now have a "<B>GIF Image</B>" file type and
+    if you load a GIF file it should be displayed by the TImage component.<P>
+    </FONT></TD>
+  </TR>
+  <TR>
+    <TD ALIGN="CENTER" VALIGN="TOP" WIDTH=10><IMG BORDER=0 HEIGHT=10 WIDTH=10 SRC="dot_r.gif" ALT="6"></TD>
+    <TD><FONT FACE="Arial,Helvetica">
+    Finally, read the <A HREF="faq.html">FAQ</A> again.<BR>
+    It might also be a good idea for you to read the list of <A HREF="bugs.html">Known Problems</A>.<P>
+    </FONT></TD>
+  </TR>
+
+  <TR>
+    <TD COLSPAN=3><FONT FACE="Arial,Helvetica"><B>&nbsp;<BR>Context sensitive help installation</B></FONT></TD>
+  </TR>
+  <TR>
+    <TD ROWSPAN=5>&nbsp;</TD>
+    <TD ALIGN="CENTER" VALIGN="TOP" WIDTH=10><IMG BORDER=0 HEIGHT=10 WIDTH=10 SRC="dot_r.gif" ALT="1"></TD>
+    <TD><FONT FACE="Arial,Helvetica">
+    From the <B>Help</B> menu select <B>Customize...</B><P>
+    </FONT></TD>
+  </TR>
+  <TR>
+    <TD ALIGN="CENTER" VALIGN="TOP" WIDTH=10><IMG BORDER=0 HEIGHT=10 WIDTH=10 SRC="dot_r.gif" ALT="2"></TD>
+    <TD><FONT FACE="Arial,Helvetica">
+    When the OpenHelp dialog appears select the <B>Index</B> tab.</FONT></TD>
+  </TR>
+  <TR>
+    <TD ALIGN="CENTER" VALIGN="TOP" WIDTH=10><IMG BORDER=0 HEIGHT=10 WIDTH=10 SRC="dot_r.gif" ALT="3"></TD>
+    <TD><FONT FACE="Arial,Helvetica">
+    Click the <B>Add Files</B> toolbar button and add tgifimage.hlp which
+    will be found in the folder where you installed TGIFImage.</FONT></TD>
+  </TR>
+  <TR>
+    <TD ALIGN="CENTER" VALIGN="TOP" WIDTH=10><IMG BORDER=0 HEIGHT=10 WIDTH=10 SRC="dot_r.gif" ALT="4"></TD>
+    <TD><FONT FACE="Arial,Helvetica">
+    Close the OpenHelp dialog and Save the project when prompted.</FONT></TD>
+  </TR>
+  <TR>
+    <TD ALIGN="CENTER" VALIGN="TOP" WIDTH=10><IMG BORDER=0 HEIGHT=10 WIDTH=10 SRC="dot_r.gif" ALT="5"></TD>
+    <TD><FONT FACE="Arial,Helvetica">
+    It may be necessary to exit and restart C++ Builder before the help system is properly updated
+    (An alternative is to delete the Bcb3.gid file located in C++ Builder's help directory).</FONT></TD>
+  </TR>
+
+  <TR>
+    <TD COLSPAN=3><FONT FACE="Arial,Helvetica"><B>&nbsp;<BR>Examples</B><BR>
+    If you wish to use the TGIFImage demo applications with C++ Builder 3, you will
+    need to convert them from C++ Builder 4 format before they can be compiled.</FONT></TD>
+  </TR>
+  <TR>
+    <TD ROWSPAN=7>&nbsp;</TD>
+    <TD ALIGN="CENTER" VALIGN="TOP" WIDTH=10><IMG BORDER=0 HEIGHT=10 WIDTH=10 SRC="dot_r.gif" ALT="1"></TD>
+    <TD><FONT FACE="Arial,Helvetica">
+    Open the <B>bcb_gifdemos.bpg</B> project group from the TGIFImage demo directory in C++ Builder.</FONT></TD>
+  </TR>
+  <TR>
+    <TD ALIGN="CENTER" VALIGN="TOP" WIDTH=10><IMG BORDER=0 HEIGHT=10 WIDTH=10 SRC="dot_r.gif" ALT="2"></TD>
+    <TD><FONT FACE="Arial,Helvetica">
+    For each project in the project group, C++ Builder will notify you that it has updated the
+    project make file from version 0 to version 3.</FONT></TD>
+  </TR>
+  <TR>
+    <TD ALIGN="CENTER" VALIGN="TOP" WIDTH=10><IMG BORDER=0 HEIGHT=10 WIDTH=10 SRC="dot_r.gif" ALT="3"></TD>
+    <TD><FONT FACE="Arial,Helvetica">
+    Adjust the Include path of all projects in the project group:<BR>
+    From the "Project" menu select "Options", then select the "Directories" tab
+    and add <B>$(BCB)\include;$(BCB)\include\vcl</B> to the "Include path".</FONT></TD>
+  </TR>
+  <TR>
+    <TD ALIGN="CENTER" VALIGN="TOP" WIDTH=10><IMG BORDER=0 HEIGHT=10 WIDTH=10 SRC="dot_r.gif" ALT="4"></TD>
+    <TD><FONT FACE="Arial,Helvetica">
+    In turn, open all forms of all projects in the project group.<BR>
+    C++ Builder will display an error that says something like "Error reading XXXX:
+    Property does not exist". Press the "Ignore All" button and save the form.</FONT></TD>
+  </TR>
+  <TR>
+    <TD ALIGN="CENTER" VALIGN="TOP" WIDTH=10><IMG BORDER=0 HEIGHT=10 WIDTH=10 SRC="dot_r.gif" ALT="5"></TD>
+    <TD><FONT FACE="Arial,Helvetica">
+    In turn, open the "make" file (.BPR files) of all projects in the project group.<BR>
+    Remove any references to <B>DCLSTD35.LIB</B> from the "LIBRARIES" and "SPARELIBS" section.</FONT></TD>
+  </TR>
+  <TR>
+    <TD ALIGN="CENTER" VALIGN="TOP" WIDTH=10><IMG BORDER=0 HEIGHT=10 WIDTH=10 SRC="dot_r.gif" ALT="6"></TD>
+    <TD><FONT FACE="Arial,Helvetica">
+    Select "Close All" from the "File" menu to close all files and write all changes to disk.</FONT></TD>
+  </TR>
+  <TR>
+    <TD ALIGN="CENTER" VALIGN="TOP" WIDTH=10><IMG BORDER=0 HEIGHT=10 WIDTH=10 SRC="dot_r.gif" ALT="7"></TD>
+    <TD><FONT FACE="Arial,Helvetica">
+    Reopen the <B>bcb_gifdemos.bpg</B> project group and select "Make All Projects" from the project menu.<BR>
+    C++ Builder should now compile all the demo projects without problems.<BR>
+    <I>Note: The Comments demo application currently fails to run when compiled with C++ Builder 3.</I></FONT></TD>
+  </TR>
+</TABLE>
+
+<BR CLEAR=all>&nbsp;
+
+<CENTER>
+<HR NOSHADE>
+
+<FONT SIZE="-1">
+  Copyright &copy; 1999 <A HREF="mailto:anders@melander.dk">Anders Melander</A>. All rights reserved.
+</FONT>
+</CENTER>
+</BODY>
+</HTML>

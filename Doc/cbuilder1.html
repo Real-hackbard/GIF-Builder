@@ -1,0 +1,92 @@
+<HTML>
+<HEAD>
+  <TITLE>What about C++ Builder 1?</TITLE>
+</HEAD>
+
+<BODY BGCOLOR="#FFFFFF">
+
+<TABLE BORDER="0" CELLSPACING="0" CELLPADDING="0" WIDTH="100%" BGCOLOR="#008080">
+  <TR>
+  <TD ALIGN="CENTER"><FONT FACE="Arial,Helvetica" COLOR="#FFFFFF" SIZE="+2">&nbsp;<IMG BORDER=0 HEIGHT=10 WIDTH=10 ALIGN=ABSCENTER SRC="dot_r.gif">&nbsp;So what happened with C++ Builder 1?&nbsp;<IMG BORDER=0 HEIGHT=10 WIDTH=10 ALIGN=ABSCENTER SRC="dot_l.gif"></FONT></TD>
+  </TR>
+</TABLE>
+
+<P>
+<TABLE BORDER="0" ALIGN=LEFT CELLSPACING=5 WIDTH="75%">
+  <TR>
+    <TD>
+Some of you (the C++ Builder 1 users notably) may be wondering why this version
+of TGIFImage doesn't support C++ Builder 1 as planned... Well, what can I say,
+things didn't work out between C++ Builder 1 and me.<BR>
+The following are the conclusions of my attempt at porting TGIFImage to C++
+Builder 1:
+    </FONT></TD>
+  </TR>
+</TABLE>
+
+<BR CLEAR=all>&nbsp;
+<TABLE BORDER="0" ALIGN=LEFT CELLSPACING=5 WIDTH="90%">
+  <TR>
+    <TD ALIGN="CENTER" VALIGN="TOP" WIDTH=10><IMG BORDER=0 HEIGHT=10 WIDTH=10 SRC="dot_r.gif" ALT="Sorry"></TD>
+    <TD><FONT FACE="Arial,Helvetica">
+I only have the demo version of C++ Builder 1 that expired december 1997.<BR>
+This means that every time I have to test something for compatibility, I have to
+set my system clock a year back. I guess this could solve the year 2000 problem
+for me, but it's really annoying and it freaks out the time space continuum (I
+think it has created a small "worm hole", because my socks are slowly
+disappearing one by one).
+    </FONT></TD>
+  </TR>
+  <TR>
+    <TD ALIGN="CENTER" VALIGN="TOP" WIDTH=10><IMG BORDER=0 HEIGHT=10 WIDTH=10 SRC="dot_r.gif" ALT="Sorry"></TD>
+    <TD><FONT FACE="Arial,Helvetica">
+C++ Builder 1's TBitmap uses DDB's (Device Dependent Bitmaps), not DIBs.<BR>
+So does Delphi 2, but appearantly Builder does things sligtly different from
+Delphi 2, because the bitmap routines that works with Delphi 2's TBitmap, doesn't
+work with C++ Builder 1.
+    </FONT></TD>
+  </TR>
+  <TR>
+    <TD ALIGN="CENTER" VALIGN="TOP" WIDTH=10><IMG BORDER=0 HEIGHT=10 WIDTH=10 SRC="dot_r.gif" ALT="Sorry"></TD>
+    <TD><FONT FACE="Arial,Helvetica">
+Since the demo version of C++ Builder 1 doesn't include the source of the
+graphics.pas unit, I have no way of determining why the Delphi 2 stuff doesn't
+work with C++ Builder. I could experiment, but time is limited and to be
+honest, I don't think the result would improve the general quality of TGIFImage.
+    </FONT></TD>
+  </TR>
+  <TR>
+    <TD ALIGN="CENTER" VALIGN="TOP" WIDTH=10><IMG BORDER=0 HEIGHT=10 WIDTH=10 SRC="dot_r.gif" ALT="Sorry"></TD>
+    <TD><FONT FACE="Arial,Helvetica">
+C++ Builder 1 doesn't support all of the Object Pascal features used by
+TGIFImage.<BR>
+Namely it doesn't support "virtual class methods" which are used when reading
+GIF extensions. I could easily modify TGIFImage to only use the language
+features supported by C++ Builder 1, but given the fact that so many other
+things doesn't work with C++ Builder 1, I decided against it since it would only
+complicate things for "the other compilers".
+    </FONT></TD>
+  </TR>
+  <TR>
+    <TD ALIGN="CENTER" VALIGN="TOP" WIDTH=10><IMG BORDER=0 HEIGHT=10 WIDTH=10 SRC="dot_r.gif" ALT="Sorry"></TD>
+    <TD><FONT FACE="Arial,Helvetica">
+Every time I install C++ Builder 1, it trashes my Delphi 4 and C++ Builder 3
+installations.<BR>
+I consider this to be a hostile action on C++ Builder's behalf and the third
+time I had to reinstall Delphi, I concluded that C++ Builder 1 simply didn't
+want me to port TGIFImage to it. 
+    </FONT></TD>
+  </TR>
+</TABLE>
+
+<BR CLEAR=all>&nbsp;
+
+<CENTER>
+<HR NOSHADE>
+
+<FONT SIZE="-1">
+  Copyright &copy; 1999 <A HREF="mailto:anders@melander.dk">Anders Melander</A>. All rights reserved.
+</FONT>
+</CENTER>
+</BODY>
+</HTML>

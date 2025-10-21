@@ -1,0 +1,330 @@
+<HTML>
+<HEAD>
+  <TITLE>TGIFImage Known Problems</TITLE>
+</HEAD>
+
+<BODY BGCOLOR="#FFFFFF">
+
+<TABLE BORDER="0" CELLSPACING="0" CELLPADDING="0" WIDTH="100%" BGCOLOR="#008080">
+  <TR>
+  <TD ALIGN="CENTER"><FONT FACE="Arial,Helvetica" COLOR="#FFFFFF" SIZE="+2">&nbsp;<IMG BORDER=0 HEIGHT=10 WIDTH=10 ALIGN=ABSCENTER SRC="dot_r.gif">&nbsp;Known Problems and Bugs&nbsp;<IMG BORDER=0 HEIGHT=10 WIDTH=10 ALIGN=ABSCENTER SRC="dot_l.gif"></FONT></TD>
+  </TR>
+</TABLE>
+
+<P>
+The following are the problems with TGIFImage that are known to exist at this
+time (10-may-1999).<BR>
+Please check out the <A HREF="http://www.melander.dk/delphi/gifimage/release_notes/bugs.html">bug list</A>
+at the TGIFImage home page for up to date information.<P>
+
+In the following code snippets, <FONT COLOR=RED>red text</FONT> denotes text that should be added
+or modified and <FONT COLOR=RED><STRIKE>red, strike-through text</STRIKE></FONT> denotes text that
+should be deleted.
+
+<P>
+
+<TABLE BORDER=0 ALIGN=LEFT CELLSPACING=10 WIDTH="90%">
+  <TR><TD COLSPAN=2>
+  <TABLE BORDER=0 ALIGN=LEFT CELLPADDING=2 WIDTH="30%" BGCOLOR="#008080">
+    <TR>
+      <TD><FONT FACE="Arial,Helvetica" COLOR="#FFFFFF" SIZE="+1">C++ Builder 4 problems</FONT></TD>
+    </TR>
+  </TABLE>
+  </TD></TR>
+  <TR>
+    <TD ALIGN="CENTER" VALIGN="TOP" WIDTH=20><IMG BORDER=0 HEIGHT=20 WIDTH=20 SRC="bug.gif" ALT="bug"></TD>
+    <TD>
+    Compiling gifimage.pas with C++ Builder 4 fails with the following error:
+    <I>Unsupported language feature:'property of array type'.</I><BR>
+    To avoid this error, the TGIFApplicationExtension.Identifier and Authentication
+    properties must be disabled by removing the following lines in the
+    declaration of the TGIFApplicationExtension class in gifimage.pas:<P>
+    <CODE>
+      TGIFApplicationExtension = <B>class</B>(TGIFExtension)<BR>
+      <B>private</B><BR>
+      &nbsp;&nbsp;FIdent		: TGIFApplicationRec;<BR>
+      <B>protected</B><BR>
+      &nbsp;&nbsp;<B>function</B> GetExtensionType: TGIFExtensionType; <B>override</B>;<BR>
+      &nbsp;&nbsp;<B>procedure</B> SaveData(Stream: TStream); <B>virtual</B>; <B>abstract</B>;<BR>
+      &nbsp;&nbsp;<B>procedure</B> LoadData(Stream: TStream); <B>virtual</B>; <B>abstract</B>;<BR>
+      <B>public</B><BR>
+      &nbsp;&nbsp;<B>constructor</B> Create(ASubImage: TGIFSubImage); <B>override</B>;<BR>
+      &nbsp;&nbsp;<B>destructor</B> Destroy; <B>override</B>;<BR>
+      &nbsp;&nbsp;<B>procedure</B> SaveToStream(Stream: TStream); <B>override</B>;<BR>
+      &nbsp;&nbsp;<B>procedure</B> LoadFromStream(Stream: TStream); <B>override</B>;<BR>
+      &nbsp;&nbsp;<B>class procedure</B> RegisterExtension(eIdent: TGIFApplicationRec; eClass: TGIFAppExtensionClass);<BR>
+      &nbsp;&nbsp;<B>class function</B> FindSubExtension(Stream: TStream): TGIFExtensionClass; <B>override</B>;<BR>
+      &nbsp;&nbsp;<FONT COLOR=RED><STRIKE>property Identifier: TGIFIdentifierCode read FIdent.Identifier</STRIKE></FONT><BR>
+      &nbsp;&nbsp;&nbsp;&nbsp;<FONT COLOR=RED><STRIKE>write FIdent.Identifier;</STRIKE></FONT><BR>
+      &nbsp;&nbsp;<FONT COLOR=RED><STRIKE>property Authentication: TGIFAuthenticationCode read FIdent.Authentication</STRIKE></FONT><BR>
+      &nbsp;&nbsp;&nbsp;&nbsp;<FONT COLOR=RED><STRIKE>write FIdent.Authentication;</STRIKE></FONT><BR>
+      <B>end;
+    </CODE><BR><BR>
+    </TD>
+  </TR>
+
+  <TR>
+    <TD ALIGN="CENTER" VALIGN="TOP" WIDTH=20><IMG BORDER=0 HEIGHT=20 WIDTH=20 SRC="bug.gif" ALT="bug"></TD>
+    <TD>
+    The following modification is needed for some of the following bug fixes.
+    At the start of the gifimage unit, add the following;<BR>
+    <CODE>
+      <FONT COLOR=RED>
+      // C++ Builder 4.x<BR>
+      {$IFDEF VER125}<BR>
+        {$DEFINE VER10_PLUS}<BR>
+        {$DEFINE VER11_PLUS}<BR>
+        {$DEFINE VER12_PLUS}<BR>
+        {$DEFINE VER125_PLUS}<BR>
+      {$ENDIF}</FONT>
+    </CODE><BR><BR>
+    </TD>
+  </TR>
+
+  <TR>
+    <TD ALIGN="CENTER" VALIGN="TOP" WIDTH=20><IMG BORDER=0 HEIGHT=20 WIDTH=20 SRC="bug.gif" ALT="bug"></TD>
+    <TD>
+    When compiling the TGIFImage demo applications, you will get the
+    following errors:<BR>
+    <I>Unable to find package import</I> for inetdb40.bpi and inet40.bpi<BR>
+    <I>Unable to open file DCLUSR40.LIB</I><BR>
+    This is caused by a bug in C++ Builder's conversion of the projects
+    from C++ Builder version 3 to version 4 format. To resolve the problem, do
+    the following for all the demo .BPR files (make files):<BR>
+    <TABLE BORDER=0 ALIGN=LEFT CELLPADDING=0 WIDTH="80%">
+      <TR>
+        <TD ALIGN="CENTER" VALIGN="TOP" WIDTH=15><IMG BORDER=0 HEIGHT=15 WIDTH=15 SRC="1g.gif" ALT="1"></TD>
+        <TD>Exit C++ Builder (to avoid caching problems).</TD>
+      </TR>
+      <TR>
+        <TD ALIGN="CENTER" VALIGN="TOP" WIDTH=15><IMG BORDER=0 HEIGHT=15 WIDTH=15 SRC="1g.gif" ALT="2"></TD>
+        <TD>Open the .BPR file in notepad.</TD>
+      </TR>
+      <TR>
+        <TD ALIGN="CENTER" VALIGN="TOP" WIDTH=15><IMG BORDER=0 HEIGHT=15 WIDTH=15 SRC="2g.gif" ALT="3"></TD>
+        <TD>In the SPARELIBS line, remove the reference to DCLUSR40.lib.</TD>
+      </TR>
+      <TR>
+        <TD ALIGN="CENTER" VALIGN="TOP" WIDTH=15><IMG BORDER=0 HEIGHT=15 WIDTH=15 SRC="3g.gif" ALT="4"></TD>
+        <TD>In the PACKAGES line, remove the references to inetdb40.bpi and inet40.bpi</TD>
+      </TR>
+      <TR>
+        <TD ALIGN="CENTER" VALIGN="TOP" WIDTH=15><IMG BORDER=0 HEIGHT=15 WIDTH=15 SRC="4g.gif" ALT="5"></TD>
+        <TD>Save the file.<BR><BR></TD>
+      </TR>
+    </TABLE>
+    </TD>
+  </TR>
+
+  <TR>
+    <TD ALIGN="CENTER" VALIGN="TOP" WIDTH=20><IMG BORDER=0 HEIGHT=20 WIDTH=20 SRC="bug.gif" ALT="bug"></TD>
+    <TD>
+    Because the return value of most GDI functions has changed from Integer
+    (signed) to Cardinal (unsigned), the GDICheck function can cause a "Range
+    Check" exception in some cases.<BR>
+    To avoid this change the following lines in the implementation of the
+    GDICheck function in gifimage.pas:<P>
+    <CODE>
+      {$ifdef <FONT COLOR=RED>VER110</FONT>}<BR>
+      <B>function</B> GDICheck(Value: Integer): Integer;<BR>
+      {$else}<BR>
+      <B>function</B> GDICheck(Value: Cardinal): Cardinal;<BR>
+      {$endif}
+    </CODE><BR><BR>
+    </TD>
+  </TR>
+
+  <TR>
+    <TD ALIGN="CENTER" VALIGN="TOP" WIDTH=20><IMG BORDER=0 HEIGHT=20 WIDTH=20 SRC="bug.gif" ALT="bug"></TD>
+    <TD>
+    The AVI2GIF demo application has a bug that causes it to fail with an
+    "Integer Overflow" error.<BR>
+    The bug can be fixed by deleting the following line of the TFormMain.ButtonConvertClick
+    method in main.pas of the AVI2GIF demo application:<P>
+    <CODE>
+      // Copy palette to DIB<BR>
+      <FONT COLOR=RED><STRIKE>for i := 0 to BitmapInfo^.bmiHeader.biClrUsed-1 do</STRIKE></FONT><BR>
+      &nbsp;&nbsp;Move(BitmapInfo^.bmiColors, Bits^.bmiColors,<BR>
+      &nbsp;&nbsp;&nbsp;&nbsp;(BitmapInfo^.bmiHeader.biClrUsed * sizeof(TRGBQuad)));
+    </CODE><BR><BR>
+    </TD>
+  </TR>
+
+  <TR>
+    <TD ALIGN="CENTER" VALIGN="TOP" WIDTH=20><IMG BORDER=0 HEIGHT=20 WIDTH=20 SRC="bug.gif" ALT="bug"></TD>
+    <TD>
+    C++ Builder's Pascal compiler has a bug that causes the compiler to pack auto variables when
+    optimization is enabled. This causes problems for certain GDI functions which requires
+    alligned data.<BR>
+    The bug can be worked around by disabling optimization locally for the methods which
+    requires stack aligment. Apply the following two modifications to gifimage.pas:<P>
+    <CODE>
+      <FONT COLOR=RED><STRIKE>{$IFDEF D4_BCB3}</STRIKE></FONT><BR>
+      <FONT COLOR=RED>{$IFDEF VER11_PLUS}</FONT><BR>
+      &nbsp;&nbsp;// Disable optimization to circumvent D4/BCB3<FONT COLOR=RED>/BCB4</FONT> optimizer bug<BR>
+      &nbsp;&nbsp;{$IFOPT O+}<BR>
+      &nbsp;&nbsp;&nbsp;&nbsp;{$DEFINE O_PLUS}<BR>
+      &nbsp;&nbsp;&nbsp;&nbsp;{$O-}<BR>
+      &nbsp;&nbsp;{$ENDIF}<BR>
+      {$ENDIF}<BR>
+      <B>procedure</B> InitializeBitmapInfoHeader(Bitmap: HBITMAP; <B>var</B> Info: TBitmapInfoHeader;<BR>
+      &nbsp;&nbsp;PixelFormat: TPixelFormat);
+    </CODE>
+    <P>and<P>
+    <CODE>
+      <FONT COLOR=RED><STRIKE>{$IFDEF D4_BCB3}</STRIKE></FONT><BR>
+      <FONT COLOR=RED>{$IFDEF VER11_PLUS}</FONT><BR>
+      &nbsp;&nbsp;// Disable optimization to circumvent D4/BCB3<FONT COLOR=RED>/BCB4</FONT> optimizer bug<BR>
+      &nbsp;&nbsp;{$IFOPT O+}<BR>
+      &nbsp;&nbsp;&nbsp;&nbsp;{$DEFINE O_PLUS}<BR>
+      &nbsp;&nbsp;&nbsp;&nbsp;{$O-}<BR>
+      &nbsp;&nbsp;{$ENDIF}<BR>
+      {$ENDIF}<BR>
+      <B>function</B> GetPixelFormat(Bitmap: TBitmap): TPixelFormat;<BR>
+    </CODE><BR><BR>
+    </TD>
+  </TR>
+
+
+  <TR><TD COLSPAN=2>
+  <TABLE BORDER=0 ALIGN=LEFT CELLPADDING=2 WIDTH="30%" BGCOLOR="#008080">
+    <TR>
+      <TD><FONT FACE="Arial,Helvetica" COLOR="#FFFFFF" SIZE="+1">General problems</FONT></TD>
+    </TR>
+  </TABLE>
+  </TD></TR>
+  <TR>
+    <TD ALIGN="CENTER" VALIGN="TOP" WIDTH=20><IMG BORDER=0 HEIGHT=20 WIDTH=20 SRC="bug.gif" ALT="bug"></TD>
+    <TD>
+    In some rare cases, the frames of an animated GIFs are alternately displayed
+    too fast and too slow.<BR>
+    The problem is that the GIF renderer attempts to adjust the interframe delay
+    to compensate for the time spent converting the GIF to bitmaps and drawing
+    the frames. In some cases the present algorithm alternately over- and
+    undercompensates and thus causes a feedback oscillation.<BR>
+    To fix the problem, modify the following line of TGIFPainter.Execute in
+    gifimage.pas:<P>
+    <CODE>
+      // Calculate number of mS used in prefetch and display<BR>
+      <B>try</B><BR>
+      &nbsp;&nbsp;DelayUsed := <FONT COLOR=RED>(</FONT>(NewDelayStart-DelayStart)-OldDelay<FONT COLOR=RED>) DIV 2</FONT>;<BR>
+      &nbsp;&nbsp;OldDelay := Delay * GIFDelayExp;<BR>
+      &nbsp;&nbsp;// Convert delay value to mS and...<BR>
+      &nbsp;&nbsp;// ...Adjust for time already spent converting GIF to bitmap and...<BR>
+      &nbsp;&nbsp;// ...Adjust for Animation Speed factor.<BR>
+      &nbsp;&nbsp;Delay := MulDiv(Delay * GIFDelayExp - DelayUsed, 100, FAnimationSpeed);<BR>
+      <B>except</B><BR>
+      &nbsp;&nbsp;Delay := GIFMaximumDelay * GIFDelayExp;<BR>
+      <B>end</B>;
+    </CODE><BR><BR>
+    </TD>
+  </TR>
+
+  <TR>
+    <TD ALIGN="CENTER" VALIGN="TOP" WIDTH=20><IMG BORDER=0 HEIGHT=20 WIDTH=20 SRC="bug.gif" ALT="bug"></TD>
+    <TD>
+    Displaying a non-animated GIF with the TGIFImage.Paint nethod causes the
+    application to hang or crash with an access violation.<BR>
+    Apply the following modifications to TGIFImage.InternalPaint in gifimage.pas:<P>
+    <CODE>
+      // Note: Painter threads executing in the main thread are freed upon exit<BR>
+      // from the Execute method, so no need to do it here.<BR>
+      Result := nil;<BR>
+      <FONT COLOR=RED><B>if</B> (Painter <> nil) <B>then</B></FONT><BR>
+      &nbsp;&nbsp;Painter^ := Result;
+    </CODE><P>
+    and:<P>
+    <CODE>
+      // Draw in main thread if only one image<BR>
+      <B>if</B> (Images.Count = 1) <B>then</B><BR>
+      &nbsp;&nbsp;Options := Options - [goAsync<FONT COLOR=RED>, goAnimate</FONT>];
+    </CODE><BR><BR>
+    </TD>
+  </TR>
+
+
+  <TR><TD COLSPAN=2>
+  <TABLE BORDER=0 ALIGN=LEFT CELLPADDING=2 WIDTH="30%" BGCOLOR="#008080">
+    <TR>
+      <TD><FONT FACE="Arial,Helvetica" COLOR="#FFFFFF" SIZE="+1">Old problems</FONT></TD>
+    </TR>
+  </TABLE>
+  </TD></TR>
+  <TR>
+    <TD ALIGN="CENTER" VALIGN="TOP" WIDTH=20><IMG BORDER=0 HEIGHT=20 WIDTH=20 SRC="bug.gif" ALT="bug"></TD>
+    <TD>
+    The combination of buffered, tiled and transparent draw will display the
+    background incorrectly (scaled).<BR>
+    Consider using the goDirectDraw option to circumvent this problem.<BR><BR>
+    </TD>
+  </TR>
+
+  <TR>
+    <TD ALIGN="CENTER" VALIGN="TOP" WIDTH=20><IMG BORDER=0 HEIGHT=20 WIDTH=20 SRC="bug.gif" ALT="bug"></TD>
+    <TD>
+    The combination of non-buffered (goDirectDraw) and stretched draw is some
+    times distorted with a checkerboard effect.<BR>
+    The cause of this problem is believed to be a bug in either Windows GDI or
+    certain video drivers.<BR><BR>
+    </TD>
+  </TR>
+
+  <TR>
+    <TD ALIGN="CENTER" VALIGN="TOP" WIDTH=20><IMG BORDER=0 HEIGHT=20 WIDTH=20 SRC="bug.gif" ALT="bug"></TD>
+    <TD>
+    Buffered display flickers when TGIFImage is used by a transparent TImage
+    component to display an animated GIF.<BR>
+    This is a problem with TImage caused by the fact that TImage was designed
+    with static images in mind. Not much I can do about it.<BR><BR>
+    </TD>
+  </TR>
+
+  <TR>
+    <TD ALIGN="CENTER" VALIGN="TOP" WIDTH=20><IMG BORDER=0 HEIGHT=20 WIDTH=20 SRC="bug.gif" ALT="bug"></TD>
+    <TD>
+    The VCL unit <CODE>graphics.pas</CODE> in Delphi 3.0 contains a bug that
+    causes multi-threaded applications to hang if they use TBitmap. If you plan
+    to use the multi-threaded GIF painter or use TGIFImage in multi-threaded
+    applications (Delphi 3 CGI applications are multi-threaded) you'll have to
+    fix the bug in <CODE>graphics.pas</CODE>.<BR>
+
+    The modification you need to perform on <CODE>graphics.pas</CODE> are
+    described <A HREF="bugfix01.html">here</A> but are also available from
+    <A HREF="http://www.dataweb.nl/~r.p.sterkenburg/bugs3/vcl.htm#Graphics-LockList">The Delphi Bug List</A>.<BR>
+
+    The bug has been fixed by Borland in Delphi 3.01.<BR><BR>
+    </TD>
+  </TR>
+
+  <TR>
+    <TD ALIGN="CENTER" VALIGN="TOP" WIDTH=20><IMG BORDER=0 HEIGHT=20 WIDTH=20 SRC="bug.gif" ALT="bug"></TD>
+    <TD>
+    The <CODE>ByteSwapColors</CODE> procedure of the Delphi 3.0
+    <CODE>graphics.pas</CODE> unit contains a bug that affects TGIFImage.<BR>
+
+    <CODE>ByteSwapColors</CODE> is used various places in <CODE>graphics.pas</CODE>
+    to convert an array of RGB values (TPaletteEntry) to BGR values (TRGBQuad) and vice
+    versa. The problem is that the first entry of the array is never converted.<BR>
+
+    The problem does not exist in versions of Delphi prior to 3.0 since
+    they use a different method to convert between RGB and BGR.<BR>
+
+    The modification you need to perform on <CODE>graphics.pas</CODE> are
+    described <A HREF="bugfix02.html">here</A>.<BR>
+
+    The bug has been fixed by Borland in Delphi 3.01.<BR><BR>
+    </TD>
+  </TR>
+</TABLE>
+
+<BR CLEAR=all>&nbsp;
+
+<CENTER>
+<HR NOSHADE>
+
+<FONT SIZE="-1">
+  Copyright &copy; 1998-99 <A HREF="mailto:anders@melander.dk">Anders Melander</A>. All rights reserved.
+</FONT>
+</CENTER>
+</BODY>
+</HTML>
