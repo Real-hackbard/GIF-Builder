@@ -183,7 +183,7 @@ So what can TGIFImage do and how does it differentiate itself from some of the o
 * Monochrome
 * Gray Scale
 * Windows Gray
-* Windows 256 (Best)
+* Windows 256 (**This is the actual color setting**)
 * Windows20
 * Quantize
 * Quantize Windows
