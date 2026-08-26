@@ -122,10 +122,9 @@ Welch filed a patent application for the LZW method in June 1983. The resulting 
 
 
 
-
+# :speech_balloon: Features
 So what can TGIFImage do and how does it differentiate itself from some of the other implementations?
 
-# :speech_balloon: Features
 * Full source included.
 * Derived from TGraphic.
 * Supports all palette sizes.
