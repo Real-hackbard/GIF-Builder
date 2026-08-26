@@ -39,7 +39,11 @@ To demonstrate its use, TGIFImage comes with several sample applications: The â€
 
 <br>
 
-# :speech_balloon: Converting bitmap to a GIF file.
+# :speech_balloon: Frame Order
+
+
+
+# :speech_balloon: Converting bitmap to a GIF file
 
 ```pascal
 procedure ConvertBMP2GIF;
@@ -94,6 +98,8 @@ begin
   end;
 end;
 ```
+
+[Portable Network Graphics](https://en.wikipedia.org/wiki/PNG) (PNG) was designed as a replacement for GIF to avoid infringement of Unisys' patent on the LZW compression technique. PNG offers better compression and more features than GIF, animation being the only significant exception. PNG is more suitable than GIF in instances where true-color imaging and [alpha transparency](https://en.wikipedia.org/wiki/Alpha_compositing) are required.
 
 <br>
 
