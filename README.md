@@ -51,6 +51,8 @@ Once the frames have been loaded, the playback order can be determined using the
 
 To export the frames of a GIF file, each frame must be extracted individually. Generally, these images are saved in GIF format, but they can also be exported to other formats.
 
+Formats : ```gif; bmp; jpg; png; ico; tif; emf; wmf;```
+
 However, there are limitations here. The project includes an older GIF library that is unable to export all GIF frames at the optimal image size.
 
 Naturally, a more powerful GIF library exists, but it is a licensed, paid product. Anyone wishing to make full use of this feature can purchase and integrate that library.
