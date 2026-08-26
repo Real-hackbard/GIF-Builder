@@ -123,7 +123,9 @@ So what can TGIFImage do and how does it differentiate itself from some of the o
 * Clean Up
 * Tranzparent
 * Stretch
-* Palette
+* Color Mapping
+* Remove Comments
+* Reduce Colors
 ### :speech_balloon: Color Options
 * Netscape
 * Monochrome
