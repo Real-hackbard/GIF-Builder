@@ -61,7 +61,7 @@ begin
 end;
 ```
 
-### :speech_balloon: How do I make a transparent GIF?
+# :speech_balloon: How do I make a transparent GIF?
 Try something like this:
 
 ```pascal
