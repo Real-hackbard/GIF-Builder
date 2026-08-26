@@ -57,6 +57,11 @@ However, there are limitations here. The project includes an older GIF library t
 
 Naturally, a more powerful GIF library exists, but it is a licensed, paid product. Anyone wishing to make full use of this feature can purchase and integrate that library.
 
+<br>
+
+# :speech_balloon: Watermark
+
+If you want to protect your own GIF animations, you can embed a watermark into the animation here. When activated, the specified text is rendered into all frames at your chosen position.
 
 # :speech_balloon: Converting bitmap to a GIF file
 
