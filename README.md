@@ -45,6 +45,11 @@ Although GIF was not designed as an animation medium, its ability to store multi
 
 Once the frames have been loaded, the playback order can be determined using the list by dragging the path names up or down.
 
+<br>
+
+# :speech_balloon: Export frames
+
+To export the frames of a GIF file, each frame must be extracted individually. Generally, these images are saved in GIF format, but they can also be exported to other formats.
 
 
 # :speech_balloon: Converting bitmap to a GIF file
