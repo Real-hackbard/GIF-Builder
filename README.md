@@ -45,6 +45,8 @@ Although GIF was not designed as an animation medium, its ability to store multi
 
 Once the frames have been loaded, the playback order can be determined using the list by dragging the path names up or down.
 
+This is very useful when loading numeric filenames that a list box does not always list in numeric order.
+
 <br>
 
 # :speech_balloon: Export frames
