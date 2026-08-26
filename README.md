@@ -1,4 +1,4 @@
-# GIF-Builder:
+# :computer: GIF-Builder:
 
 </br>
 
@@ -10,20 +10,19 @@
 
 </br>
 
-
-
-
-
-
-
 TGIFImage is a full TGraphic implementation of the GIF graphics format.
 
 It reads, writes and displays animated GIFs and can convert to and from TBitmap (i.e. the BMP format) and any other TGraphic derived format (e.g TJPEGImage, TIcon and TMetaFile).TGIFImage can either be used stand-alone or as part of Delphiâ€™s extensible TImage/TPicture/TGraphic framework. When used in connection with the TImage component, TGIFImage registers itself with the TPicture class, giving you instant support for the GIF format throughout Delphi. After installing TGIFImage, you will be able to load, save and display GIFs without any additional code!
+
+<br>
 
 
 ![gif](https://github.com/user-attachments/assets/b0b06fc7-6c0e-476d-8518-a36313fd104a)
 
 
+
+<br>
+<br>
 
 TGIFImage has full support for animated GIF and is the only solution that can display animated GIFs in the TImage component.
 TGIFImage implements the complete GIF87a and GIF89a specification as well as all common GIF extensions:
@@ -42,7 +41,7 @@ To demonstrate its use, TGIFImage comes with several sample applications: The â€
 
 ### Example 1 : Converting a BMP file to a GIF file.
 
-```ruby
+```pascal
 procedure ConvertBMP2GIF;
 var
   bmp: TBitmap;
@@ -66,7 +65,8 @@ end;
 
 ### How do I make a transparent GIF?
 Try something like this:
-```ruby
+
+```pascal
 var
   GIF: TGIFImage;
   Ext: TGIFGraphicControlExtension;
