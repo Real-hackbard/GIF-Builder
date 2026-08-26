@@ -170,7 +170,9 @@ So what can TGIFImage do and how does it differentiate itself from some of the o
 * Burkes
 * SteveArch
 
-### :speech_balloon: Current Status
+<br>
+
+# :speech_balloon: Current Status
 In February 2007 I donated TGIFImage to [CodeGear](https://www.codegear.com/DevDaysofSummer/) with the purpose of adding in-the-box GIF support to the VCL, starting with Delphi 2007.
 
 Besides giving me motivation to work on TGIFImage again, the transfer of ownership also gave me an opportunity to pull TGIFImage out the limbo it had been in and secure future development.
