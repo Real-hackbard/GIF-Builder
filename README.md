@@ -37,7 +37,7 @@ And much more…
 Support for new Application Extension types can be added by the developer without modification to the TGIFImage source by registering the format at run-time with TGIFImage.
 To demonstrate its use, TGIFImage comes with several sample applications: The “GIF Explorer” that can be used to view GIF files and examine their structure, a “simple” web-counter that demonstrates how to use TGIFImage with the Delphi CGI, ISAPI and NSAPI components together, an animated button component and an AVI to GIF and GIF to AVI converter just to mention a few of them.
 
-### Example 1 : Converting a BMP file to a GIF file.
+### :speech_balloon: Example 1 : Converting a BMP file to a GIF file.
 
 ```pascal
 procedure ConvertBMP2GIF;
@@ -61,7 +61,7 @@ begin
 end;
 ```
 
-### How do I make a transparent GIF?
+### :speech_balloon: How do I make a transparent GIF?
 Try something like this:
 
 ```pascal
@@ -97,7 +97,7 @@ TGIFImage has been tested with several thousand GIF files, so I’m fairly confi
 
 So what can TGIFImage do and how does it differentiate itself from some of the other implementations?
 
-### Features:
+### :speech_balloon: Features:
 * Full source included.
 * Derived from TGraphic.
 * Supports all palette sizes.
@@ -115,14 +115,14 @@ So what can TGIFImage do and how does it differentiate itself from some of the o
 * Context sensitive on-line help.
 * Automatic color reduction of bitmaps with more than 256 colors using color quantization and 6 different dithering methods (e.g. Floyd Steinberg).
 
-### Optimize Features
+### :speech_balloon: Optimize Features
 * Merge
 * Crop
 * Clean Up
 * Tranzparent
 * Stretch
 * Palette
-### Color Options
+### :speech_balloon: Color Options
 * Netscape
 * Monochrome
 * Gray Scale
@@ -131,7 +131,7 @@ So what can TGIFImage do and how does it differentiate itself from some of the o
 * Windows20
 * Quantize
 * Quantize Windows
-### Dithering Modes:
+### :speech_balloon: Dithering Modes:
 * FloydSteinberg
 * Nearest
 * Sierra
