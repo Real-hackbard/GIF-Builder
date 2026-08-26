@@ -16,10 +16,11 @@ It reads, writes and displays animated GIFs and can convert to and from TBitmap 
 
 <br>
 
-<img src="https://github.com/user-attachments/assets/2bda9b9e-558d-459b-91ef-307456e83917" />
+<img width="822" height="614" alt="GIF_Builder" src="https://github.com/user-attachments/assets/2bda9b9e-558d-459b-91ef-307456e83917" />
 
 <br>
 <br>
+
 
 TGIFImage has full support for animated GIF and is the only solution that can display animated GIFs in the TImage component.
 TGIFImage implements the complete GIF87a and GIF89a specification as well as all common GIF extensions:
