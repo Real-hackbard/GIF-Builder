@@ -66,7 +66,7 @@ If you want to protect your own GIF animations, you can embed a watermark into t
 Example:
 <br>
 
-<img width="74" height="67" alt="dfsdfs" src="https://github.com/user-attachments/assets/b5f137f9-e761-4ae7-88a2-dad079e8c40b" />
+<img width="174" height="167" alt="dfsdfs" src="https://github.com/user-attachments/assets/b5f137f9-e761-4ae7-88a2-dad079e8c40b" />
 
 <br>
 
