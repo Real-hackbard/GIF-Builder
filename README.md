@@ -37,7 +37,7 @@ And much more…
 Support for new Application Extension types can be added by the developer without modification to the TGIFImage source by registering the format at run-time with TGIFImage.
 To demonstrate its use, TGIFImage comes with several sample applications: The “GIF Explorer” that can be used to view GIF files and examine their structure, a “simple” web-counter that demonstrates how to use TGIFImage with the Delphi CGI, ISAPI and NSAPI components together, an animated button component and an AVI to GIF and GIF to AVI converter just to mention a few of them.
 
-### :speech_balloon: Example 1 : Converting a BMP file to a GIF file.
+# :speech_balloon: Example 1 : Converting a BMP file to a GIF file.
 
 ```pascal
 procedure ConvertBMP2GIF;
