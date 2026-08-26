@@ -37,6 +37,8 @@ And much more…
 Support for new Application Extension types can be added by the developer without modification to the TGIFImage source by registering the format at run-time with TGIFImage.
 To demonstrate its use, TGIFImage comes with several sample applications: The “GIF Explorer” that can be used to view GIF files and examine their structure, a “simple” web-counter that demonstrates how to use TGIFImage with the Delphi CGI, ISAPI and NSAPI components together, an animated button component and an AVI to GIF and GIF to AVI converter just to mention a few of them.
 
+<br>
+
 # :speech_balloon: Converting bitmap to a GIF file.
 
 ```pascal
@@ -60,6 +62,8 @@ begin
   end;
 end;
 ```
+
+<br>
 
 # :speech_balloon: How do I make a transparent GIF?
 One color entry in a single GIF or PNG image's palette can be defined as "transparent" rather than an actual color. This means that when the decoder encounters a pixel with this value, it is rendered in the background color of the part of the screen where the image is placed, also if this varies pixel-by-pixel as in the case of a background image.
@@ -91,6 +95,8 @@ begin
 end;
 ```
 
+<br>
+
 Many other freeware GIF libraries exists, so you might wonder why we need another one… The need for TGIFImage arose when I was writing a CGI application that needed to create large GIF images on-the-fly. After having tested a number of freeware libraries I concluded that they weren’t quite fit for the job with regard to performance and GIF compliance. Some of the DLL based implementations were OK, but Delphi integration were missing. So after reading through the GIF specifications and several articles on LZW compression, I decided that it couldn’t be to hard to whip something useful together.
 
 The name TGIFImage might be a bit unfortunate as almost every known Delphi implementation of the GIF format is called TGIFImage, but it’s the most logical name for the gizmo and it shouldn’t be a problem once I have made the “competing” implementations obsolete :-)
@@ -99,7 +105,7 @@ TGIFImage has been tested with several thousand GIF files, so I’m fairly confi
 
 So what can TGIFImage do and how does it differentiate itself from some of the other implementations?
 
-### :speech_balloon: Features:
+### :speech_balloon: Features
 * Full source included.
 * Derived from TGraphic.
 * Supports all palette sizes.
@@ -145,7 +151,7 @@ So what can TGIFImage do and how does it differentiate itself from some of the o
 * Burkes
 * SteveArch
 
-### :speech_balloon: Current Status:
+### :speech_balloon: Current Status
 In February 2007 I donated TGIFImage to [CodeGear](https://www.codegear.com/DevDaysofSummer/) with the purpose of adding in-the-box GIF support to the VCL, starting with Delphi 2007.
 
 Besides giving me motivation to work on TGIFImage again, the transfer of ownership also gave me an opportunity to pull TGIFImage out the limbo it had been in and secure future development.
