@@ -112,7 +112,7 @@ TGIFImage has been tested with several thousand GIF files, so I’m fairly confi
 <br>
 
 # :speech_balloon: Compression
-In 1977 and 1978, [Jacob Ziv](https://en.wikipedia.org/wiki/Jacob_Ziv) and [Abraham Lempel](https://en.wikipedia.org/wiki/Abraham_Lempel) published a pair of papers on a new class of lossless data-compression algorithms, now collectively referred to as [LZ77 and LZ78](https://en.wikipedia.org/wiki/LZ77_and_LZ78). In 1983, Terry Welch developed a fast variant of LZ78 which was named Lempel–Ziv–Welch (LZW).
+In 1977 and 1978, [Jacob Ziv](https://en.wikipedia.org/wiki/Jacob_Ziv) and [Abraham Lempel](https://en.wikipedia.org/wiki/Abraham_Lempel) published a pair of papers on a new class of lossless data-compression algorithms, now collectively referred to as [LZ77 and LZ78](https://en.wikipedia.org/wiki/LZ77_and_LZ78). In 1983, [Terry Welch](https://en.wikipedia.org/wiki/Terry_Welch) developed a fast variant of LZ78 which was named [Lempel–Ziv–Welch](https://en.wikipedia.org/wiki/Lempel%E2%80%93Ziv%E2%80%93Welch) (LZW).
 
 Welch filed a patent application for the LZW method in June 1983. The resulting patent, US4558302, granted in December 1985, was assigned to Sperry Corporation who subsequently merged with Burroughs Corporation in 1986 and formed Unisys.Further patents were obtained in the United Kingdom, France, Germany, Italy, Japan and Canada.
 
