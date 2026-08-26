@@ -126,6 +126,7 @@ So what can TGIFImage do and how does it differentiate itself from some of the o
 * Color Mapping
 * Remove Comments
 * Reduce Colors
+* Compression Mode
 ### :speech_balloon: Color Options
 * Netscape
 * Monochrome
