@@ -137,7 +137,7 @@ So what can TGIFImage do and how does it differentiate itself from some of the o
 * Quantize
 * Quantize Windows
 * Palette
-### :speech_balloon: Dithering Modes:
+### :speech_balloon: Dithering Modes
 * FloydSteinberg
 * Nearest
 * Sierra
