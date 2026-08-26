@@ -49,7 +49,7 @@ This is very useful when loading numeric filenames that a list box does not alwa
 
 <br>
 
-# :speech_balloon: Export frames
+# :speech_balloon: Export frames restrictions
 
 To export the frames of a GIF file, each frame must be extracted individually. Generally, these images are saved in GIF format, but they can also be exported to other formats.
 
