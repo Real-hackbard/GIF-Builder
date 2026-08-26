@@ -16,10 +16,7 @@ It reads, writes and displays animated GIFs and can convert to and from TBitmap 
 
 <br>
 
-
-![gif](https://github.com/user-attachments/assets/b0b06fc7-6c0e-476d-8518-a36313fd104a)
-
-
+<img width="822" height="614" alt="GIF_Builder" src="https://github.com/user-attachments/assets/2bda9b9e-558d-459b-91ef-307456e83917" />
 
 <br>
 <br>
