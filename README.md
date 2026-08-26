@@ -99,15 +99,25 @@ begin
 end;
 ```
 
-[Portable Network Graphics](https://en.wikipedia.org/wiki/PNG) (PNG) was designed as a replacement for GIF to avoid infringement of Unisys' patent on the LZW compression technique. PNG offers better compression and more features than GIF, animation being the only significant exception. PNG is more suitable than GIF in instances where true-color imaging and [alpha transparency](https://en.wikipedia.org/wiki/Alpha_compositing) are required.
-
 <br>
+
+[Portable Network Graphics](https://en.wikipedia.org/wiki/PNG) (PNG) was designed as a replacement for GIF to avoid infringement of Unisys' patent on the LZW compression technique. PNG offers better compression and more features than GIF, animation being the only significant exception. PNG is more suitable than GIF in instances where true-color imaging and [alpha transparency](https://en.wikipedia.org/wiki/Alpha_compositing) are required.
 
 Many other freeware GIF libraries exists, so you might wonder why we need another one… The need for TGIFImage arose when I was writing a CGI application that needed to create large GIF images on-the-fly. After having tested a number of freeware libraries I concluded that they weren’t quite fit for the job with regard to performance and GIF compliance. Some of the DLL based implementations were OK, but Delphi integration were missing. So after reading through the GIF specifications and several articles on LZW compression, I decided that it couldn’t be to hard to whip something useful together.
 
 The name TGIFImage might be a bit unfortunate as almost every known Delphi implementation of the GIF format is called TGIFImage, but it’s the most logical name for the gizmo and it shouldn’t be a problem once I have made the “competing” implementations obsolete :-)
 
-TGIFImage has been tested with several thousand GIF files, so I’m fairly confident that it will handle whatever you throw at it. If you find a valid GIF file that cannot be handled correctly by TGIFImage, please mail it to me with a description of the problem enter a QC report, and I’ll give you your money back :-)
+TGIFImage has been tested with several thousand GIF files, so I’m fairly confident that it will handle whatever you throw at it. If you find a valid GIF file that cannot be handled correctly by TGIFImage, please mail it to me with a description of the problem enter a QC report, and I’ll give you your money back :-).
+
+<br>
+
+# :speech_balloon: Compression
+In 1977 and 1978, [Jacob Ziv](https://en.wikipedia.org/wiki/Jacob_Ziv) and [Abraham Lempel](https://en.wikipedia.org/wiki/Abraham_Lempel) published a pair of papers on a new class of lossless data-compression algorithms, now collectively referred to as [LZ77 and LZ78](https://en.wikipedia.org/wiki/LZ77_and_LZ78). In 1983, Terry Welch developed a fast variant of LZ78 which was named Lempel–Ziv–Welch (LZW).
+
+Welch filed a patent application for the LZW method in June 1983. The resulting patent, US4558302, granted in December 1985, was assigned to Sperry Corporation who subsequently merged with Burroughs Corporation in 1986 and formed Unisys.Further patents were obtained in the United Kingdom, France, Germany, Italy, Japan and Canada.
+
+
+
 
 So what can TGIFImage do and how does it differentiate itself from some of the other implementations?
 
