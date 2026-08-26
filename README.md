@@ -63,6 +63,13 @@ Naturally, a more powerful GIF library exists, but it is a licensed, paid produc
 
 If you want to protect your own GIF animations, you can embed a watermark into the animation here. When activated, the specified text is rendered into all frames at your chosen position.
 
+Example:
+<br>
+
+<img width="74" height="67" alt="dfsdfs" src="https://github.com/user-attachments/assets/b5f137f9-e761-4ae7-88a2-dad079e8c40b" />
+
+<br>
+
 # :speech_balloon: Converting bitmap to a GIF file
 
 ```pascal
