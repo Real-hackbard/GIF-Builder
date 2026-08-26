@@ -62,6 +62,8 @@ end;
 ```
 
 # :speech_balloon: How do I make a transparent GIF?
+One color entry in a single GIF or PNG image's palette can be defined as "transparent" rather than an actual color. This means that when the decoder encounters a pixel with this value, it is rendered in the background color of the part of the screen where the image is placed, also if this varies pixel-by-pixel as in the case of a background image.
+
 Try something like this:
 
 ```pascal
