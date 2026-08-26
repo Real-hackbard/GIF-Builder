@@ -41,6 +41,8 @@ To demonstrate its use, TGIFImage comes with several sample applications: The â€
 
 # :speech_balloon: Frame Order
 
+Although GIF was not designed as an animation medium, its ability to store multiple images in one file naturally suggested using the format to store the [frames](https://en.wikipedia.org/wiki/Film_frame) of an animation sequence. To facilitate displaying animations, the GIF89a spec added the Graphic Control Extension (GCE), which allows the images (frames) in the file to be painted with time delays, forming a video clip. Each frame in an animation GIF is introduced by its own GCE specifying the time delay to wait after the frame is drawn.
+
 
 
 # :speech_balloon: Converting bitmap to a GIF file
